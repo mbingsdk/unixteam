@@ -11,7 +11,6 @@ const _geistMono = Geist_Mono({ subsets: ["latin"], variable: '--font-mono' });
 export const metadata: Metadata = {
   title: 'UNIX-TEAM | Gaming-Tech Community',
   description: 'UNIX-TEAM is a premium gaming and technology community building innovative Roblox experiences, tools, and scripts.',
-  generator: 'v0.app',
   metadataBase: new URL('https://unixteam.my.id'),
   openGraph: {
     type: 'website',

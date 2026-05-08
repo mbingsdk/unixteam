@@ -27,3 +27,30 @@ Thumbs.db
 
 # gh-pages deployment
 .gh-pages/
+
+
+app/
+components/
+constants/
+hooks/
+lib/
+public/
+styles/
+.env
+.nojekyll
+components.json
+CONTENT_EXAMPLES.md
+CONTENT_MANAGEMENT.md
+CONTENT_QUICK_REFERENCE.md
+CUSTOM_DOMAIN_SETUP.md
+DEPLOYMENT.md
+next-env.d.ts
+next.config.mjs
+package-lock.json
+package.json
+pnpm-lock.yaml
+postcss.config.mjs
+QUICK_START.md
+SETUP_UNIXTEAM_DOMAIN.md
+tailwind.config.mjs
+tsconfig.json
