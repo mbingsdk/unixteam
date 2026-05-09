@@ -29,3 +29,5 @@ Thumbs.db
 .gh-pages/
 
 app.zip
+.github/
+public/

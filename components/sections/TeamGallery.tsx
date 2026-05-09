@@ -8,6 +8,7 @@ import { MessageCircle } from 'lucide-react';
 import { RobloxIcon, InstagramIcon, TikTokIcon } from '@/components/ui/SocialIcons';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
 import { Badge } from '@/components/ui/badge';
+import { toast } from 'sonner';
 
 export default function TeamGallery() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -31,7 +32,6 @@ export default function TeamGallery() {
     });
   }, [searchQuery, selectedTag]);
 
-  // Reset visible count when filters change
   useEffect(() => {
     setVisibleCount(ITEMS_PER_PAGE);
   }, [searchQuery, selectedTag]);
@@ -47,18 +47,25 @@ export default function TeamGallery() {
 
   const isBioLong = (bio: string) => bio.length > 65;
 
+  const handleCopyDiscord = async (username: string) => {
+    try {
+      await navigator.clipboard.writeText(username);
+      toast.success(`Discord disalin!`, {
+        description: username,
+        duration: 2000,
+      });
+    } catch {
+      toast.error('Gagal nyalin. Coba manual ya.');
+    }
+  };
+
   const getSocialIcon = (type: string) => {
     switch (type) {
-      case 'roblox':
-        return RobloxIcon;
-      case 'instagram':
-        return InstagramIcon;
-      case 'tiktok':
-        return TikTokIcon;
-      case 'discord':
-        return MessageCircle;
-      default:
-        return null;
+      case 'roblox': return RobloxIcon;
+      case 'instagram': return InstagramIcon;
+      case 'tiktok': return TikTokIcon;
+      case 'discord': return MessageCircle;
+      default: return null;
     }
   };
 
@@ -78,7 +85,6 @@ export default function TeamGallery() {
         {/* Filters */}
         <ScrollReveal delay={0.1} className="mb-12">
           <div className="space-y-6">
-            {/* Search */}
             <div className="relative">
               <input
                 type="text"
@@ -87,12 +93,9 @@ export default function TeamGallery() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full px-6 py-3 rounded-lg bg-card border border-border text-foreground placeholder-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
               />
-              <span className="absolute right-6 top-1/2 -translate-y-1/2 text-foreground/40">
-                🔍
-              </span>
+              <span className="absolute right-6 top-1/2 -translate-y-1/2 text-foreground/40">🔍</span>
             </div>
 
-            {/* Tag Filter */}
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setSelectedTag(null)}
@@ -135,7 +138,7 @@ export default function TeamGallery() {
                   <ImageWithFallback
                     src={member.image}
                     alt={member.name}
-                    sizes="(max-width: 768px) 50vw, 25vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     className="object-cover"
                     fallback={
                       <div className="w-full h-full flex items-center justify-center">
@@ -151,6 +154,7 @@ export default function TeamGallery() {
                 <div className="p-6">
                   <h3 className="text-lg font-bold text-foreground mb-1">{member.name}</h3>
                   <p className="text-sm text-accent font-medium mb-2">{member.role}</p>
+
                   {member.tags && member.tags.length > 0 && (
                     <div className="flex flex-wrap gap-1 mb-3">
                       {member.tags.map((tag) => (
@@ -165,6 +169,7 @@ export default function TeamGallery() {
                       ))}
                     </div>
                   )}
+
                   <div className="mb-4">
                     <div className={expandedBio.has(member.id) ? '' : 'h-[42px] overflow-hidden'}>
                       <p className="text-foreground/60 text-sm leading-[21px]">
@@ -198,7 +203,7 @@ export default function TeamGallery() {
                               key={type}
                               whileHover={{ scale: 1.1 }}
                               whileTap={{ scale: 0.95 }}
-                              onClick={() => navigator.clipboard.writeText(handle)}
+                              onClick={() => handleCopyDiscord(handle)}
                               className="p-2 rounded-lg hover:bg-accent/10 text-foreground/60 hover:text-accent transition-all duration-200"
                               title={`Salin username Discord: ${handle}`}
                             >
@@ -230,7 +235,7 @@ export default function TeamGallery() {
           ))}
         </div>
 
-        {/* Load More Button */}
+        {/* Load More */}
         {filteredMembers.length > visibleCount && (
           <ScrollReveal className="mt-12 text-center">
             <motion.button

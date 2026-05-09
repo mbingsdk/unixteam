@@ -53,7 +53,8 @@ export default function BlogPreview() {
                       alt={post.title}
                       sizes="(max-width: 768px) 100vw, 33vw"
                       className="object-cover"
-                      loading="lazy"
+                      // Gambar pertama eager biar LCP ga warning
+                      loading={index === 0 ? 'eager' : 'lazy'}
                       fallback={
                         <div className="w-full h-full flex items-center justify-center">
                           <div className="text-5xl font-bold text-accent/20 group-hover:scale-110 transition-transform duration-300">

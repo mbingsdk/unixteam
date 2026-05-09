@@ -3,8 +3,15 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/effects/ScrollReveal';
-import { Mail, MessageSquare } from 'lucide-react';
+import { Mail, MessageSquare, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import { RobloxIcon, InstagramIcon } from '@/components/ui/SocialIcons';
+
+// Daftar di https://formspree.io lalu ganti ini dengan Form ID kamu
+// atau set env var NEXT_PUBLIC_FORMSPREE_ID
+const FORMSPREE_ENDPOINT =
+  process.env.NEXT_PUBLIC_FORMSPREE_ID
+    ? `https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID}`
+    : null;
 
 const contacts = [
   {
@@ -29,25 +36,53 @@ const contacts = [
     icon: InstagramIcon,
     label: 'Instagram',
     value: '@unixteam',
-    href: 'https://instagram.com/unixteam',
+    href: 'https://instagram.com/mbingsdk',
   },
 ];
 
-export default function ContactForm() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
-  const [submitted, setSubmitted] = useState(false);
+type Status = 'idle' | 'loading' | 'success' | 'error';
 
-  const handleSubmit = (e: React.FormEvent) => {
+export default function ContactForm() {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState<Status>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setFormData({ name: '', email: '', message: '' });
-    setTimeout(() => setSubmitted(false), 3000);
+    setStatus('loading');
+    setErrorMsg('');
+
+    if (!FORMSPREE_ENDPOINT) {
+      // Fallback kalau belum setup Formspree — simulasi success
+      await new Promise((r) => setTimeout(r, 800));
+      setStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+      return;
+    }
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        const data = await res.json();
+        setErrorMsg(data?.error || 'Gagal kirim pesan. Coba lagi ya.');
+        setStatus('error');
+      }
+    } catch {
+      setErrorMsg('Koneksi bermasalah. Cek internet terus coba lagi.');
+      setStatus('error');
+    }
   };
+
+  const inputClass =
+    'w-full px-4 py-2 rounded-lg bg-card border border-border text-foreground placeholder-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all disabled:opacity-50';
 
   return (
     <main className="min-h-screen">
@@ -71,76 +106,103 @@ export default function ContactForm() {
                   Kirim Pesan (Dibaca Kalau Sempat)
                 </h2>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Nama
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.name}
-                      onChange={(e) =>
-                        setFormData({ ...formData, name: e.target.value })
-                      }
-                      required
-                      className="w-full px-4 py-2 rounded-lg bg-card border border-border text-foreground placeholder-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
-                      placeholder="Nama lu siapa"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) =>
-                        setFormData({ ...formData, email: e.target.value })
-                      }
-                      required
-                      className="w-full px-4 py-2 rounded-lg bg-card border border-border text-foreground placeholder-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
-                      placeholder="your@email.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Pesan
-                    </label>
-                    <textarea
-                      value={formData.message}
-                      onChange={(e) =>
-                        setFormData({ ...formData, message: e.target.value })
-                      }
-                      required
-                      rows={5}
-                      className="w-full px-4 py-2 rounded-lg bg-card border border-border text-foreground placeholder-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all resize-none"
-                      placeholder="Mau ngomong apa..."
-                    />
-                  </div>
-
-                  <motion.button
-                    type="submit"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-full px-6 py-3 rounded-lg bg-accent text-brand-dark font-semibold hover:bg-accent/90 transition-all duration-300"
+                {/* Success state */}
+                {status === 'success' ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex flex-col items-center justify-center gap-4 py-12 text-center"
                   >
-                    {submitted ? 'Pesan Terkirim!' : 'Kirim Pesan'}
-                  </motion.button>
-                </form>
+                    <CheckCircle2 className="text-accent" size={48} />
+                    <h3 className="text-xl font-bold text-foreground">Pesan Terkirim!</h3>
+                    <p className="text-foreground/60 text-sm max-w-xs">
+                      Kita udah terima pesanmu. Balas? Ntar. Kalau sempat.
+                    </p>
+                    <button
+                      onClick={() => setStatus('idle')}
+                      className="mt-2 text-accent text-sm hover:underline"
+                    >
+                      Kirim pesan lain
+                    </button>
+                  </motion.div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">Nama</label>
+                      <input
+                        type="text"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        required
+                        disabled={status === 'loading'}
+                        className={inputClass}
+                        placeholder="Nama lu siapa"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">Email</label>
+                      <input
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        required
+                        disabled={status === 'loading'}
+                        className={inputClass}
+                        placeholder="your@email.com"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">Pesan</label>
+                      <textarea
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        required
+                        disabled={status === 'loading'}
+                        rows={5}
+                        className={`${inputClass} resize-none`}
+                        placeholder="Mau ngomong apa..."
+                      />
+                    </div>
+
+                    {/* Error message */}
+                    {status === 'error' && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="flex items-center gap-2 text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-lg px-4 py-3"
+                      >
+                        <AlertCircle size={16} className="shrink-0" />
+                        {errorMsg}
+                      </motion.div>
+                    )}
+
+                    <motion.button
+                      type="submit"
+                      disabled={status === 'loading'}
+                      whileHover={{ scale: status === 'loading' ? 1 : 1.02 }}
+                      whileTap={{ scale: status === 'loading' ? 1 : 0.98 }}
+                      className="w-full px-6 py-3 rounded-lg bg-accent text-brand-dark font-semibold hover:bg-accent/90 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    >
+                      {status === 'loading' ? (
+                        <>
+                          <Loader2 size={16} className="animate-spin" />
+                          Mengirim...
+                        </>
+                      ) : (
+                        'Kirim Pesan'
+                      )}
+                    </motion.button>
+                  </form>
+                )}
               </div>
             </ScrollReveal>
 
             {/* Contact Methods */}
             <ScrollReveal delay={0.1}>
               <div className="space-y-6">
-                <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-6">
-                    Cara Lain Buat Chat
-                  </h2>
-                </div>
-
+                <h2 className="text-2xl font-bold text-foreground mb-6">Cara Lain Buat Chat</h2>
                 {contacts.map((contact, index) => {
                   const Icon = contact.icon;
                   return (
@@ -162,12 +224,8 @@ export default function ContactForm() {
                         </div>
                       </div>
                       <div className="flex-1">
-                        <h3 className="font-bold text-foreground mb-1">
-                          {contact.label}
-                        </h3>
-                        <p className="text-foreground/60 text-sm">
-                          {contact.value}
-                        </p>
+                        <h3 className="font-bold text-foreground mb-1">{contact.label}</h3>
+                        <p className="text-foreground/60 text-sm">{contact.value}</p>
                       </div>
                     </motion.a>
                   );

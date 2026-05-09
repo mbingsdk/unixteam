@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import StructuredData, { generateOrganizationSchema, generateWebSiteSchema } from '@/components/StructuredData'
+import { Toaster } from '@/components/ui/sonner'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"], variable: '--font-sans' });
@@ -87,10 +88,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: BASE_URL,
   },
-  verification: {
-    // Isi saat udah punya kode verifikasi dari Google Search Console:
-    // google: 'kode-verifikasi-dari-GSC',
-  },
 }
 
 export default function RootLayout({
@@ -110,6 +107,16 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <Toaster
+          position="bottom-right"
+          toastOptions={{
+            style: {
+              background: 'var(--card)',
+              border: '1px solid var(--border)',
+              color: 'var(--foreground)',
+            },
+          }}
+        />
       </body>
     </html>
   )

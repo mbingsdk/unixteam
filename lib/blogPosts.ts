@@ -1,3 +1,5 @@
+import { calcReadingTime } from '@/lib/utils';
+
 export interface BlogPost {
   id: string;
   slug: string;
@@ -21,14 +23,21 @@ export interface BlogPost {
   }>;
 }
 
+// Helper biar post baru ga perlu isi readingTime manual
+function post(p: Omit<BlogPost, 'readingTime'> & { readingTime?: string }): BlogPost {
+  return {
+    ...p,
+    readingTime: p.readingTime ?? calcReadingTime(p.sections),
+  };
+}
+
 export const blogPosts: BlogPost[] = [
-  {
+  post({
     id: '1',
     slug: 'panduan-bertahan-di-unix',
     title: 'Panduan Bertahan di UNIX Tanpa Kena Bully (Spoiler: Ga Bisa)',
     description: 'Panduan lengkap buat member baru yang mau survive di UNIX tanpa kehilangan jati diri. Tidak ada jaminan berhasil.',
     date: '2026-04-15',
-    readingTime: '5 menit baca',
     category: 'Community',
     author: 'UNIX-TEAM',
     featured: false,
@@ -75,14 +84,13 @@ export const blogPosts: BlogPost[] = [
         content: 'Kalau sudah bosan, boleh leave kapanpun. Ga perlu pamit, ga perlu announcement, ga perlu drama. Silent leave adalah budaya, bukan pengkhianatan. Yang tidak diperbolehkan secara kultural adalah leave dengan fanfare — bilang mau inactive, minta perhatian, atau menunggu orang-orang merayu untuk tetap tinggal. Itu terlalu formal untuk UNIX.',
       },
     ],
-  },
-  {
+  }),
+  post({
     id: '2',
     slug: 'cara-jadi-afk-legend',
     title: 'Cara Jadi AFK Legend yang Paling Ditakuti di UNIX',
     description: 'Panduan menjadi member yang paling sering offline tapi entah kenapa paling direspek. Ini bukan jokes, ini strategi hidup.',
     date: '2026-03-10',
-    readingTime: '4 menit baca',
     category: 'Strategi',
     author: 'UNIX-TEAM',
     featured: true,
@@ -125,14 +133,13 @@ export const blogPosts: BlogPost[] = [
         content: 'Nama kamu disebut bahkan saat kamu tidak online. Orang-orang tag kamu di hal-hal yang tidak penting hanya karena ingin tahu kamu masih hidup. Dan setiap kali kamu muncul, ada setidaknya satu orang yang bilang sesuatu seperti "eh kamu masih ada?"',
       },
     ],
-  },
-  {
+  }),
+  post({
     id: '3',
     slug: 'kamus-bahasa-unix',
     title: 'Kamus Bahasa UNIX: Panduan Ngerti Omongan Member',
     description: 'Glossarium resmi (tidak resmi) untuk memahami bahasa komunikasi UNIX yang membingungkan, menyesatkan, dan kadang tidak masuk akal sama sekali.',
     date: '2026-02-05',
-    readingTime: '6 menit baca',
     category: 'Community',
     author: 'UNIX-TEAM',
     featured: true,
@@ -183,14 +190,13 @@ export const blogPosts: BlogPost[] = [
         ],
       },
     ],
-  },
-  {
+  }),
+  post({
     id: '4',
     slug: 'sejarah-rivalri-katspoll',
     title: 'Sejarah Legendaris Rivalri UNIX vs @katspoll',
     description: 'Dokumentasi tidak resmi tentang perjalanan panjang bully-membully yang membentuk identitas UNIX dan melahirkan seorang NPC legendaris.',
     date: '2026-01-28',
-    readingTime: '7 menit baca',
     category: 'Lore',
     author: 'UNIX-TEAM',
     featured: false,
@@ -237,14 +243,13 @@ export const blogPosts: BlogPost[] = [
         content: 'Tradisi masih berlanjut, @katspoll masih ada, dan tidak ada tanda-tanda perubahan dalam waktu dekat. Ini mungkin adalah hubungan paling konsisten yang pernah ada di UNIX — di antara semua hal yang tidak pernah selesai dan tidak pernah jelas, setidaknya ini stabil.',
       },
     ],
-  },
-  {
+  }),
+  post({
     id: '5',
     slug: 'mabar-pembubaran-unix',
     title: 'Mabar Pembubaran UNIX: Foto Bareng 6 Jam, Satu Baris Pun Belum Lurus',
     description: 'Dokumentasi resmi sesi mabar terakhir UNIX yang harusnya penuh haru tapi berakhir jadi rekaman terlengkap tentang bagaimana jaringan bisa menghancurkan segalanya.',
     date: '2026-05-09',
-    readingTime: '5 menit baca',
     category: 'Chaos',
     author: 'UNIX-TEAM',
     featured: true,
@@ -301,5 +306,5 @@ export const blogPosts: BlogPost[] = [
         content: 'Jam 3 pagi, setelah kurang lebih enam jam, foto bareng resmi dinyatakan belum selesai dan ditunda tanpa tanggal yang jelas. Bukan karena menyerah, tapi karena ada yang harus bangun jam 6. Yang tersisa dari seluruh sesi ini adalah 47 screenshot gagal, beberapa rekaman layar yang blur di bagian paling penting, dan satu foto di mana hanya dua dari dua belas orang yang seharusnya ada bisa terlihat. Sisanya tidak ada di frame, tidak ada penjelasan kenapa, dan tidak ada yang cukup peduli untuk menyelidikinya lebih lanjut. Foto finalnya belum ada sampai artikel ini ditulis. Kemungkinan besar tidak akan pernah ada.',
       },
     ],
-  },
+  }),
 ];

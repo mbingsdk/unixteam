@@ -1,0 +1,36 @@
+import { MetadataRoute } from 'next';
+
+export const dynamic = 'force-static';
+
+export default function manifest(): MetadataRoute.Manifest {
+  return {
+    name: 'UNIX-TEAM',
+    short_name: 'UNIX',
+    description: 'Komunitas Game Tidak Sehat Dan Sangat Menyesatkan',
+    start_url: '/',
+    display: 'standalone',
+    background_color: '#141414',
+    theme_color: '#141414',
+    orientation: 'portrait',
+    categories: ['games', 'social'],
+    icons: [
+      {
+        src: '/apple-icon.png',
+        sizes: '180x180',
+        type: 'image/png',
+        purpose: 'any',
+      },
+      {
+        src: '/icon-dark-32x32.png',
+        sizes: '32x32',
+        type: 'image/png',
+      },
+      {
+        src: '/icon.svg',
+        sizes: 'any',
+        type: 'image/svg+xml',
+        purpose: 'maskable',
+      },
+    ],
+  };
+}
