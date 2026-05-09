@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import Navigation from '@/components/Navigation'
+import ScrollToTop from '@/components/ui/ScrollToTop';
 import Footer from '@/components/Footer'
 import StructuredData, { generateOrganizationSchema, generateWebSiteSchema } from '@/components/StructuredData'
 import { Toaster } from '@/components/ui/sonner'
@@ -107,6 +108,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <ScrollToTop />
         <Toaster
           position="bottom-right"
           toastOptions={{

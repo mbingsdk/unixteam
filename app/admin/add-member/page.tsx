@@ -1,10 +1,14 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import { motion } from 'framer-motion';
-import { Copy, Check } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Copy, Check, Lock, Eye, EyeOff } from 'lucide-react';
 import ScrollReveal from '@/components/effects/ScrollReveal';
 
+// Ganti ini dengan password yang kamu mau
+const ADMIN_PASSWORD = '!unix3admin@2026';
+
+// ── Types ─────────────────────────────────────────────────────────────────────
 interface FormData {
   id: string;
   name: string;
@@ -19,16 +23,8 @@ interface FormData {
 }
 
 const INITIAL: FormData = {
-  id: '',
-  name: '',
-  role: '',
-  tags: '',
-  bio: '',
-  image: '',
-  roblox: '',
-  instagram: '',
-  tiktok: '',
-  discord: '',
+  id: '', name: '', role: '', tags: '', bio: '',
+  image: '', roblox: '', instagram: '', tiktok: '', discord: '',
 };
 
 function esc(s: string) {
@@ -39,15 +35,13 @@ function generateSnippet(f: FormData): string {
   const tags = f.tags
     ? f.tags.split(',').map((t) => `'${esc(t.trim())}'`).join(', ')
     : '';
-
-  const imagePath = f.image || `/images/team/${f.name.toLowerCase().replace(/\s+/g, '-')}.png`;
-
+  const imagePath =
+    f.image || `/images/team/${f.name.toLowerCase().replace(/\s+/g, '-')}.png`;
   const socialLines: string[] = [];
   if (f.roblox)    socialLines.push(`      roblox: '${esc(f.roblox)}',`);
   if (f.instagram) socialLines.push(`      instagram: '${esc(f.instagram)}',`);
   if (f.tiktok)    socialLines.push(`      tiktok: '${esc(f.tiktok)}',`);
   if (f.discord)   socialLines.push(`      discord: '${esc(f.discord)}',`);
-
   const socialBlock = socialLines.length
     ? `    social: {\n${socialLines.join('\n')}\n    },`
     : `    social: {},`;
@@ -63,14 +57,98 @@ ${socialBlock}
   },`;
 }
 
-export default function AddMemberForm() {
+// ── Password gate ─────────────────────────────────────────────────────────────
+function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
+  const [value, setValue] = useState('');
+  const [show, setShow] = useState(false);
+  const [error, setError] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (value === ADMIN_PASSWORD) {
+      onUnlock();
+    } else {
+      setError(true);
+      setValue('');
+      setTimeout(() => setError(false), 2000);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center px-4">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="glass-effect rounded-lg p-8 w-full max-w-sm space-y-6"
+      >
+        <div className="text-center space-y-2">
+          <div className="flex justify-center">
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-accent/10">
+              <Lock size={22} className="text-accent" />
+            </div>
+          </div>
+          <h1 className="text-xl font-bold text-foreground">Admin Area</h1>
+          <p className="text-foreground/50 text-sm">
+            Masukkan password buat lanjut
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="relative">
+            <input
+              type={show ? 'text' : 'password'}
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              placeholder="Password"
+              className={`w-full px-4 py-2.5 pr-10 rounded-lg bg-card border text-foreground text-sm
+                placeholder-foreground/40 focus:outline-none focus:ring-2 focus:ring-accent
+                focus:border-transparent transition-all
+                ${error ? 'border-red-500 ring-2 ring-red-500/30' : 'border-border'}`}
+              autoFocus
+            />
+            <button
+              type="button"
+              onClick={() => setShow((s) => !s)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground/40 hover:text-foreground/70"
+            >
+              {show ? <EyeOff size={16} /> : <Eye size={16} />}
+            </button>
+          </div>
+
+          <AnimatePresence>
+            {error && (
+              <motion.p
+                initial={{ opacity: 0, y: -4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                className="text-red-400 text-xs text-center"
+              >
+                Password salah. Coba lagi.
+              </motion.p>
+            )}
+          </AnimatePresence>
+
+          <button
+            type="submit"
+            className="w-full py-2.5 rounded-lg bg-accent text-brand-dark font-semibold text-sm
+                       hover:bg-accent/90 transition-all"
+          >
+            Masuk
+          </button>
+        </form>
+      </motion.div>
+    </div>
+  );
+}
+
+// ── Main form ─────────────────────────────────────────────────────────────────
+function AddMemberForm() {
   const [form, setForm] = useState<FormData>(INITIAL);
   const [copied, setCopied] = useState(false);
-
-  const set = (key: keyof FormData) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-    setForm((prev) => ({ ...prev, [key]: e.target.value }));
-
   const snippet = generateSnippet(form);
+  const set = (key: keyof FormData) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      setForm((prev) => ({ ...prev, [key]: e.target.value }));
 
   const handleCopy = useCallback(async () => {
     await navigator.clipboard.writeText(snippet);
@@ -79,29 +157,30 @@ export default function AddMemberForm() {
   }, [snippet]);
 
   const inputClass =
-    'w-full px-4 py-2.5 rounded-lg bg-card border border-border text-foreground placeholder-foreground/40 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all text-sm';
+    'w-full px-4 py-2.5 rounded-lg bg-card border border-border text-foreground ' +
+    'placeholder-foreground/40 focus:outline-none focus:ring-2 focus:ring-accent ' +
+    'focus:border-transparent transition-all text-sm';
   const labelClass = 'block text-xs font-medium text-foreground/60 mb-1.5';
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 min-h-screen">
       <div className="mx-auto max-w-4xl">
-
         <ScrollReveal className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-3">Add Member</h1>
-          <p className="text-foreground/60">Generator snippet buat tambahin member baru ke <code className="text-accent text-sm">content.ts</code></p>
+          <p className="text-foreground/60">
+            Generator snippet buat tambahin member baru ke{' '}
+            <code className="text-accent text-sm">content.ts</code>
+          </p>
         </ScrollReveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-
           {/* Form */}
           <ScrollReveal>
             <div className="glass-effect rounded-lg p-6 space-y-5">
-
-              {/* ID & Name */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className={labelClass}>ID</label>
-                  <input className={inputClass} placeholder="6" value={form.id} onChange={set('id')} />
+                  <input className={inputClass} placeholder="14" value={form.id} onChange={set('id')} />
                 </div>
                 <div>
                   <label className={labelClass}>Name</label>
@@ -109,34 +188,34 @@ export default function AddMemberForm() {
                 </div>
               </div>
 
-              {/* Role & Tags */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className={labelClass}>Role</label>
                   <input className={inputClass} placeholder="Tukang Ribut" value={form.role} onChange={set('role')} />
                 </div>
                 <div>
-                  <label className={labelClass}>Tags <span className="text-foreground/40 font-normal">(pisah koma)</span></label>
-                  <input className={inputClass} placeholder="CAPABLE, AFK Legend" value={form.tags} onChange={set('tags')} />
+                  <label className={labelClass}>
+                    Tags <span className="text-foreground/40 font-normal">(pisah koma)</span>
+                  </label>
+                  <input className={inputClass} placeholder="CAPABLE, DEV" value={form.tags} onChange={set('tags')} />
                 </div>
               </div>
 
-              {/* Bio */}
               <div>
                 <label className={labelClass}>Bio</label>
                 <textarea
                   className={`${inputClass} resize-none`}
                   rows={3}
-                  placeholder="Gatau pokoknya yang penting ribut, kadang suka ngilang tiba-tiba"
+                  placeholder="Gatau pokoknya yang penting ribut"
                   value={form.bio}
                   onChange={set('bio')}
                 />
               </div>
 
-              {/* Image */}
               <div>
                 <label className={labelClass}>
-                  Image path <span className="text-foreground/40 font-normal">(kosongkan = auto dari nama)</span>
+                  Image path{' '}
+                  <span className="text-foreground/40 font-normal">(kosongkan = auto dari nama)</span>
                 </label>
                 <input
                   className={inputClass}
@@ -146,27 +225,25 @@ export default function AddMemberForm() {
                 />
               </div>
 
-              {/* Social */}
               <div className="space-y-3 pt-1">
                 <p className="text-xs font-medium text-foreground/60">Social</p>
-                <div className="flex items-center gap-3">
-                  <span className="text-xs text-foreground/50 w-20 shrink-0">Roblox</span>
-                  <input className={inputClass} placeholder="https://www.roblox.com/users/..." value={form.roblox} onChange={set('roblox')} />
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-xs text-foreground/50 w-20 shrink-0">Instagram</span>
-                  <input className={inputClass} placeholder="https://instagram.com/..." value={form.instagram} onChange={set('instagram')} />
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-xs text-foreground/50 w-20 shrink-0">TikTok</span>
-                  <input className={inputClass} placeholder="https://tiktok.com/..." value={form.tiktok} onChange={set('tiktok')} />
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-xs text-foreground/50 w-20 shrink-0">Discord</span>
-                  <input className={inputClass} placeholder="mbingsdk" value={form.discord} onChange={set('discord')} />
-                </div>
+                {[
+                  { key: 'roblox', label: 'Roblox', placeholder: 'https://www.roblox.com/users/...' },
+                  { key: 'instagram', label: 'Instagram', placeholder: 'https://instagram.com/...' },
+                  { key: 'tiktok', label: 'TikTok', placeholder: 'https://tiktok.com/...' },
+                  { key: 'discord', label: 'Discord', placeholder: 'username' },
+                ].map(({ key, label, placeholder }) => (
+                  <div key={key} className="flex items-center gap-3">
+                    <span className="text-xs text-foreground/50 w-20 shrink-0">{label}</span>
+                    <input
+                      className={inputClass}
+                      placeholder={placeholder}
+                      value={form[key as keyof FormData]}
+                      onChange={set(key as keyof FormData)}
+                    />
+                  </div>
+                ))}
               </div>
-
             </div>
           </ScrollReveal>
 
@@ -195,13 +272,24 @@ export default function AddMemberForm() {
               </pre>
 
               <p className="text-xs text-foreground/40 mt-4 text-center">
-                Paste ke array <code className="text-accent">teamMembers</code> di <code className="text-accent">lib/content.ts</code>
+                Paste ke array <code className="text-accent">teamMembers</code> di{' '}
+                <code className="text-accent">lib/content.ts</code>
               </p>
             </div>
           </ScrollReveal>
-
         </div>
       </div>
     </section>
+  );
+}
+
+// ── Page entry point ──────────────────────────────────────────────────────────
+export default function AdminAddMemberPage() {
+  const [unlocked, setUnlocked] = useState(false);
+
+  return unlocked ? (
+    <AddMemberForm />
+  ) : (
+    <PasswordGate onUnlock={() => setUnlocked(true)} />
   );
 }

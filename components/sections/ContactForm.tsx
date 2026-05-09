@@ -3,15 +3,12 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/effects/ScrollReveal';
-import { Mail, MessageSquare, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Mail, MessageSquare, Loader2, CheckCircle2, AlertCircle, Info } from 'lucide-react';
 import { RobloxIcon, InstagramIcon } from '@/components/ui/SocialIcons';
 
-// Daftar di https://formspree.io lalu ganti ini dengan Form ID kamu
-// atau set env var NEXT_PUBLIC_FORMSPREE_ID
-const FORMSPREE_ENDPOINT =
-  process.env.NEXT_PUBLIC_FORMSPREE_ID
-    ? `https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID}`
-    : null;
+const FORMSPREE_ENDPOINT = process.env.NEXT_PUBLIC_FORMSPREE_ID
+  ? `https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID}`
+  : null;
 
 const contacts = [
   {
@@ -52,11 +49,12 @@ export default function ContactForm() {
     setStatus('loading');
     setErrorMsg('');
 
+    // ✅ Kalau Formspree belum di-setup, arahkan ke Discord/email — jangan fake success
     if (!FORMSPREE_ENDPOINT) {
-      // Fallback kalau belum setup Formspree — simulasi success
-      await new Promise((r) => setTimeout(r, 800));
-      setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
+      setStatus('error');
+      setErrorMsg(
+        'Form belum terhubung ke server. Hubungi kita langsung via Discord atau email di bawah ya.'
+      );
       return;
     }
 
@@ -82,7 +80,9 @@ export default function ContactForm() {
   };
 
   const inputClass =
-    'w-full px-4 py-2 rounded-lg bg-card border border-border text-foreground placeholder-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all disabled:opacity-50';
+    'w-full px-4 py-2 rounded-lg bg-card border border-border text-foreground ' +
+    'placeholder-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent ' +
+    'focus:border-transparent transition-all disabled:opacity-50';
 
   return (
     <main className="min-h-screen">
@@ -106,7 +106,17 @@ export default function ContactForm() {
                   Kirim Pesan (Dibaca Kalau Sempat)
                 </h2>
 
-                {/* Success state */}
+                {/* Banner kalau Formspree belum dikonfigurasi */}
+                {!FORMSPREE_ENDPOINT && status === 'idle' && (
+                  <div className="flex items-start gap-2 text-sm bg-accent/10 border border-accent/20 rounded-lg px-4 py-3 mb-5">
+                    <Info size={16} className="text-accent shrink-0 mt-0.5" />
+                    <p className="text-foreground/70">
+                      Form pengiriman belum dikonfigurasi. Gunakan kontak langsung di sebelah kanan.
+                    </p>
+                  </div>
+                )}
+
+                {/* Success */}
                 {status === 'success' ? (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -166,24 +176,26 @@ export default function ContactForm() {
                       />
                     </div>
 
-                    {/* Error message */}
                     {status === 'error' && (
                       <motion.div
                         initial={{ opacity: 0, y: -8 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="flex items-center gap-2 text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-lg px-4 py-3"
+                        className="flex items-start gap-2 text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-lg px-4 py-3"
                       >
-                        <AlertCircle size={16} className="shrink-0" />
+                        <AlertCircle size={16} className="shrink-0 mt-0.5" />
                         {errorMsg}
                       </motion.div>
                     )}
 
                     <motion.button
                       type="submit"
-                      disabled={status === 'loading'}
-                      whileHover={{ scale: status === 'loading' ? 1 : 1.02 }}
-                      whileTap={{ scale: status === 'loading' ? 1 : 0.98 }}
-                      className="w-full px-6 py-3 rounded-lg bg-accent text-brand-dark font-semibold hover:bg-accent/90 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      disabled={status === 'loading' || !FORMSPREE_ENDPOINT}
+                      whileHover={{ scale: status === 'loading' || !FORMSPREE_ENDPOINT ? 1 : 1.02 }}
+                      whileTap={{ scale: status === 'loading' || !FORMSPREE_ENDPOINT ? 1 : 0.98 }}
+                      className="w-full px-6 py-3 rounded-lg bg-accent text-brand-dark font-semibold
+                                 hover:bg-accent/90 transition-all duration-300
+                                 disabled:opacity-50 disabled:cursor-not-allowed
+                                 flex items-center justify-center gap-2"
                     >
                       {status === 'loading' ? (
                         <>

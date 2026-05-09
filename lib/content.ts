@@ -199,7 +199,7 @@ export const teamMembers = [
     role: 'Real Dwonsol',
     tags: [],
     bio: 'Cewe stecu , baik hati , lembut , yg paling penting cantip',
-    image: '/images/team/lilaccc.jpg',
+    image: '/images/team/lilac.jpg',
     social: {
       roblox: 'https://www.roblox.com/users/8942961359/profile',
       instagram: 'https://www.instagram.com/vanyyy_25',

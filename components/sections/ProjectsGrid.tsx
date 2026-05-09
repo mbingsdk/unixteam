@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '@/components/effects/ScrollReveal';
 import { projects } from '@/lib/content';
@@ -8,16 +9,21 @@ import { ArrowRight, Loader2 } from 'lucide-react';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
 import { useInfiniteScroll } from '@/hooks/use-infinite-scroll';
 
-type Category = 'game' | 'tool' | 'script' | 'library' | 'all';
-type Status = 'active' | 'archived' | 'in-development' | 'all';
-
 export default function ProjectsGrid() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<Category>('all');
-  const [selectedStatus, setSelectedStatus] = useState<Status>('all');
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedStatus, setSelectedStatus] = useState<string>('all');
 
-  const categories = ['all', 'game', 'tool', 'script', 'library'] as Category[];
-  const statuses = ['all', 'active', 'in-development', 'archived'] as Status[];
+  // ✅ Generate categories & statuses dynamically from data (no more hardcoded lowercase)
+  const categories = useMemo(() => {
+    const unique = [...new Set(projects.map((p) => p.category))].sort();
+    return ['all', ...unique];
+  }, []);
+
+  const statuses = useMemo(() => {
+    const unique = [...new Set(projects.map((p) => p.status))].sort();
+    return ['all', ...unique];
+  }, []);
 
   const filteredProjects = useMemo(() => {
     return projects.filter((project) => {
@@ -27,6 +33,7 @@ export default function ProjectsGrid() {
         project.tags.some((tag) =>
           tag.toLowerCase().includes(searchQuery.toLowerCase()),
         );
+      // ✅ Direct string comparison — category & status values from data match filter values
       const matchesCategory =
         selectedCategory === 'all' || project.category === selectedCategory;
       const matchesStatus =
@@ -40,40 +47,16 @@ export default function ProjectsGrid() {
     6,
   );
 
-  const getCategoryLabel = (cat: Category) => {
-    const labels: Record<Category, string> = {
-      all: 'All Projects',
-      game: 'Games',
-      tool: 'Tools',
-      script: 'Scripts',
-      library: 'Libraries',
-    };
-    return labels[cat];
-  };
-
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'active':
+      case 'Active':
         return 'bg-green-500/10 text-green-400';
-      case 'in-development':
+      case 'In Development':
         return 'bg-yellow-500/10 text-yellow-400';
-      case 'archived':
+      case 'Archived':
         return 'bg-gray-500/10 text-gray-400';
       default:
         return 'bg-gray-500/10 text-gray-400';
-    }
-  };
-
-  const getStatusLabel = (status: string) => {
-    switch (status) {
-      case 'in-development':
-        return 'In Development';
-      case 'active':
-        return 'Active';
-      case 'archived':
-        return 'Archived';
-      default:
-        return status;
     }
   };
 
@@ -107,11 +90,9 @@ export default function ProjectsGrid() {
               </span>
             </div>
 
-            {/* Category Filter */}
+            {/* Category Filter — dynamically generated */}
             <div>
-              <p className="text-sm font-semibold text-foreground mb-3">
-                Category
-              </p>
+              <p className="text-sm font-semibold text-foreground mb-3">Category</p>
               <div className="flex flex-wrap gap-2">
                 {categories.map((category) => (
                   <button
@@ -123,17 +104,15 @@ export default function ProjectsGrid() {
                         : 'bg-card border border-border text-foreground hover:border-accent'
                     }`}
                   >
-                    {getCategoryLabel(category)}
+                    {category === 'all' ? 'All Projects' : category}
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* Status Filter */}
+            {/* Status Filter — dynamically generated */}
             <div>
-              <p className="text-sm font-semibold text-foreground mb-3">
-                Status
-              </p>
+              <p className="text-sm font-semibold text-foreground mb-3">Status</p>
               <div className="flex flex-wrap gap-2">
                 {statuses.map((status) => (
                   <button
@@ -145,7 +124,7 @@ export default function ProjectsGrid() {
                         : 'bg-card border border-border text-foreground hover:border-accent'
                     }`}
                   >
-                    {status === 'all' ? 'All Status' : getStatusLabel(status)}
+                    {status === 'all' ? 'All Status' : status}
                   </button>
                 ))}
               </div>
@@ -215,26 +194,41 @@ export default function ProjectsGrid() {
                     </div>
 
                     {/* Footer */}
-                    <div className="flex items-center justify-between pt-4 border-t border-border/50">
+                    <div className="flex items-center justify-between pt-4 border-t border-border/50 gap-2">
                       <span
-                        className={`text-xs font-semibold px-2 py-1 rounded ${getStatusColor(project.status)}`}
+                        className={`text-xs font-semibold px-2 py-1 rounded shrink-0 ${getStatusColor(project.status)}`}
                       >
-                        {getStatusLabel(project.status)}
+                        {project.status}
                       </span>
-                      {project.demoUrl && (
-                        <a
-                          href={project.demoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-accent hover:text-accent/80 transition-colors text-sm font-medium flex items-center gap-1 group/link"
+
+                      <div className="flex items-center gap-3">
+                        {/* ✅ Tombol ke detail page slug */}
+                        <Link
+                          href={`/projects/${project.slug}`}
+                          className="text-foreground/60 hover:text-accent transition-colors text-sm font-medium flex items-center gap-1 group/link"
                         >
-                          Demo
+                          Detail
                           <ArrowRight
                             size={14}
                             className="group-hover/link:translate-x-0.5 transition-transform"
                           />
-                        </a>
-                      )}
+                        </Link>
+
+                        {project.demoUrl && (
+                          <a
+                            href={project.demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-accent hover:text-accent/80 transition-colors text-sm font-medium flex items-center gap-1 group/demo"
+                          >
+                            Demo
+                            <ArrowRight
+                              size={14}
+                              className="group-hover/demo:translate-x-0.5 transition-transform"
+                            />
+                          </a>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </motion.div>

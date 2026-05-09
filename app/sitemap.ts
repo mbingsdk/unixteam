@@ -54,12 +54,8 @@ const staticRoutes: MetadataRoute.Sitemap = [
     changeFrequency: 'monthly',
     priority: 0.7,
   },
-  {
-    url: `${BASE_URL}/server-status`,
-    lastModified: new Date(),
-    changeFrequency: 'hourly',
-    priority: 0.5,
-  },
+  // ✅ server-status dihapus dari sitemap — kontennya hardcoded, ga dinamis,
+  //    ga perlu diindex mesin pencari
   {
     url: `${BASE_URL}/contact`,
     lastModified: new Date(),
@@ -85,7 +81,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  // Individual project pages — sekarang bisa diindex per project
   const projectRoutes = projects.map((project) => ({
     url: `${BASE_URL}/projects/${project.slug}`,
     lastModified: new Date(),
@@ -93,10 +88,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [
-    ...staticRoutes,
-    ...blogRoutes,
-    ...docRoutes,
-    ...projectRoutes,
-  ];
+  return [...staticRoutes, ...blogRoutes, ...docRoutes, ...projectRoutes];
 }
