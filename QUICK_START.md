@@ -42,7 +42,7 @@ Website akan live di: `https://username.github.io/unix-team`
 ### Custom Domain (optional)
 
 1. Buka repo → **Settings** → **Pages**
-2. Di bagian "Custom domain", masukkan: `unix-team.com`
+2. Di bagian "Custom domain", masukkan: `unixteam.my.id`
 3. Pastikan DNS record sudah setup:
    ```
    CNAME: your-domain.com → username.github.io
