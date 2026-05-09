@@ -1,7 +1,6 @@
 User-Agent: *
 Allow: /
 Disallow: /api/
-Disallow: /_next/
 
 Host: https://unixteam.my.id
 Sitemap: https://unixteam.my.id/sitemap.xml
