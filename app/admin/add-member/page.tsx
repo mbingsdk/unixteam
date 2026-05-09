@@ -2,11 +2,13 @@
 
 import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Copy, Check, Lock, Eye, EyeOff } from 'lucide-react';
+import { Copy, Check, Lock, Eye, EyeOff, Loader2 } from 'lucide-react';
+import bcrypt from 'bcryptjs';
 import ScrollReveal from '@/components/effects/ScrollReveal';
 
-// Ganti ini dengan password yang kamu mau
-const ADMIN_PASSWORD = '!unix3admin@2026';
+// ── Ganti ini dengan hash dari scripts/generate-hash.mjs ─────────────────────
+// Jangan simpan password plaintext di sini
+const dskkd = '$2b$12$XoKRU2s8/88lyinG8exq1eTIxaSCsSGIKxEXRRbv.YuJJVCZbKVNC';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 interface FormData {
@@ -62,15 +64,31 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
   const [value, setValue] = useState('');
   const [show, setShow] = useState(false);
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (value === ADMIN_PASSWORD) {
-      onUnlock();
-    } else {
+    if (!value.trim()) return;
+
+    setLoading(true);
+    setError(false);
+
+    try {
+      // bcrypt.compare — lambat by design (cost factor 12), ini yang bikin brute force susah
+      const match = await bcrypt.compare(value, dskkd);
+
+      if (match) {
+        onUnlock();
+      } else {
+        setError(true);
+        setValue('');
+        setTimeout(() => setError(false), 2500);
+      }
+    } catch {
       setError(true);
       setValue('');
-      setTimeout(() => setError(false), 2000);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -100,16 +118,18 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
               value={value}
               onChange={(e) => setValue(e.target.value)}
               placeholder="Password"
+              disabled={loading}
               className={`w-full px-4 py-2.5 pr-10 rounded-lg bg-card border text-foreground text-sm
                 placeholder-foreground/40 focus:outline-none focus:ring-2 focus:ring-accent
-                focus:border-transparent transition-all
+                focus:border-transparent transition-all disabled:opacity-60 disabled:cursor-not-allowed
                 ${error ? 'border-red-500 ring-2 ring-red-500/30' : 'border-border'}`}
               autoFocus
             />
             <button
               type="button"
               onClick={() => setShow((s) => !s)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground/40 hover:text-foreground/70"
+              disabled={loading}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground/40 hover:text-foreground/70 disabled:pointer-events-none"
             >
               {show ? <EyeOff size={16} /> : <Eye size={16} />}
             </button>
@@ -130,10 +150,19 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
 
           <button
             type="submit"
+            disabled={loading || !value.trim()}
             className="w-full py-2.5 rounded-lg bg-accent text-brand-dark font-semibold text-sm
-                       hover:bg-accent/90 transition-all"
+                       hover:bg-accent/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed
+                       flex items-center justify-center gap-2"
           >
-            Masuk
+            {loading ? (
+              <>
+                <Loader2 size={15} className="animate-spin" />
+                Memverifikasi...
+              </>
+            ) : (
+              'Masuk'
+            )}
           </button>
         </form>
       </motion.div>
