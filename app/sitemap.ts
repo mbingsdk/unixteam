@@ -1,10 +1,10 @@
 import { MetadataRoute } from 'next';
 import { blogPosts } from '@/lib/blogPosts';
 import { docPages } from '@/lib/docPages';
+import { projects } from '@/lib/content';
 
 const BASE_URL = 'https://unixteam.my.id';
 
-// Static pages dengan priority dan changeFrequency masing-masing
 const staticRoutes: MetadataRoute.Sitemap = [
   {
     url: BASE_URL,
@@ -71,7 +71,6 @@ const staticRoutes: MetadataRoute.Sitemap = [
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Dynamic blog posts — import blogPosts dari lib kamu
   const blogRoutes = blogPosts.map((post) => ({
     url: `${BASE_URL}/blog/${post.slug}`,
     lastModified: new Date(post.date),
@@ -79,7 +78,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  // Dynamic docs — import docPages dari lib kamu
   const docRoutes = docPages.map((doc) => ({
     url: `${BASE_URL}/documentation/${doc.slug}`,
     lastModified: new Date(),
@@ -87,9 +85,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // Individual project pages — sekarang bisa diindex per project
+  const projectRoutes = projects.map((project) => ({
+    url: `${BASE_URL}/projects/${project.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }));
+
   return [
     ...staticRoutes,
     ...blogRoutes,
     ...docRoutes,
+    ...projectRoutes,
   ];
 }

@@ -4,10 +4,11 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/effects/ScrollReveal';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Loader2 } from 'lucide-react';
 import { blogPosts } from '@/lib/blogPosts';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
 import { formatDate } from '@/lib/date';
+import { useInfiniteScroll } from '@/hooks/use-infinite-scroll';
 
 export default function BlogListing() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -16,14 +17,22 @@ export default function BlogListing() {
   const categories = [...new Set(blogPosts.map((post) => post.category))];
 
   const filteredPosts = useMemo(() => {
-    return [...blogPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).filter((post) => {
-      const matchesSearch =
-        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        post.description.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchesCategory = !selectedCategory || post.category === selectedCategory;
-      return matchesSearch && matchesCategory;
-    });
+    return [...blogPosts]
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .filter((post) => {
+        const matchesSearch =
+          post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          post.description.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchesCategory =
+          !selectedCategory || post.category === selectedCategory;
+        return matchesSearch && matchesCategory;
+      });
   }, [searchQuery, selectedCategory]);
+
+  const { visibleItems, sentinelRef, hasMore } = useInfiniteScroll(
+    filteredPosts,
+    6,
+  );
 
   return (
     <main className="min-h-screen">
@@ -35,7 +44,8 @@ export default function BlogListing() {
               Blog
             </h1>
             <p className="text-foreground/60 text-lg max-w-2xl mx-auto">
-              Tips, tutorial, dan hal-hal random dari komunitas yang ga jelas arahnya
+              Tips, tutorial, dan hal-hal random dari komunitas yang ga jelas
+              arahnya
             </p>
           </ScrollReveal>
 
@@ -87,7 +97,7 @@ export default function BlogListing() {
 
           {/* Blog Posts */}
           <div className="grid grid-cols-1 gap-8">
-            {filteredPosts.map((post, index) => (
+            {visibleItems.map((post, index) => (
               <ScrollReveal key={post.id} delay={index * 0.05}>
                 <motion.div
                   className="glass-effect rounded-lg overflow-hidden hover:border-accent/50 transition-all duration-300 group"
@@ -104,7 +114,9 @@ export default function BlogListing() {
                         loading={index === 0 ? 'eager' : 'lazy'}
                         fallback={
                           <div className="w-full h-full flex items-center justify-center">
-                            <span className="text-4xl font-bold text-accent/20">{post.title[0]}</span>
+                            <span className="text-4xl font-bold text-accent/20">
+                              {post.title[0]}
+                            </span>
                           </div>
                         }
                       />
@@ -159,10 +171,21 @@ export default function BlogListing() {
               className="text-center py-12"
             >
               <p className="text-foreground/60 text-lg">
-                Ga ada artikel yang cocok. Coba cari hal lain, atau emang artikelnya belum dibuat.
+                Ga ada artikel yang cocok. Coba cari hal lain, atau emang
+                artikelnya belum dibuat.
               </p>
             </motion.div>
           )}
+
+          {/* Sentinel + loading indicator */}
+          <div ref={sentinelRef} className="py-8 flex justify-center">
+            {hasMore && (
+              <Loader2
+                size={24}
+                className="animate-spin text-accent/50"
+              />
+            )}
+          </div>
         </div>
       </section>
     </main>

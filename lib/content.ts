@@ -192,7 +192,8 @@ export const teamMembers = [
       tiktok: 'https://www.tiktok.com',
       discord: 'wan7799',
     },
-  },  {
+  },
+  {
     id: '13',
     name: 'Lilaccc',
     role: 'Real Dwonsol',
@@ -211,8 +212,10 @@ export const teamMembers = [
 export const projects = [
   {
     id: '1',
+    slug: 'sumbing-weather-companion',
     title: 'SumbingWeatherCompanion',
-    description: '(Desktop) Aplikasi cuaca khusus Gunung Sumbing. Dibuat karena ada member yang naik gunung tanpa cek cuaca dan nyaris tidak kembali. Kini jadi peringatan hidup tentang pentingnya persiapan.',
+    description:
+      '(Desktop) Aplikasi cuaca khusus Gunung Sumbing. Dibuat karena ada member yang naik gunung tanpa cek cuaca dan nyaris tidak kembali. Kini jadi peringatan hidup tentang pentingnya persiapan.',
     category: 'Tool',
     status: 'Active',
     tags: ['Python', 'Utility', 'Desktop', 'Open Source'],
@@ -222,19 +225,24 @@ export const projects = [
   },
   {
     id: '2',
+    slug: 'sumbing-companion-apk',
     title: 'SumbingCompanionAPK',
-    description: '(Mobile) Port dari SumbingWeatherCompanion ke Android, karena laptopnya ketinggalan. Fungsionalitasnya sama, ukurannya lebih kecil, dan kemungkinan crash-nya lebih besar. Tetap lebih baik dari tidak ada sama sekali.',
+    description:
+      '(Mobile) Port dari SumbingWeatherCompanion ke Android, karena laptopnya ketinggalan. Fungsionalitasnya sama, ukurannya lebih kecil, dan kemungkinan crash-nya lebih besar. Tetap lebih baik dari tidak ada sama sekali.',
     category: 'Tool',
     status: 'Active',
     tags: ['Kotlin', 'Utility', 'Mobile', 'Open Source'],
     featured: true,
     image: '/images/projects/sumbing-companion-apk.jpg',
-    demoUrl: 'http://github.com/mbingsdk/MountSumbingCompanion/releases/tag/v0.3.15.BETA',
+    demoUrl:
+      'http://github.com/mbingsdk/MountSumbingCompanion/releases/tag/v0.3.15.BETA',
   },
   {
     id: '3',
+    slug: 'roblox-npc-automation',
     title: 'RobloxNPCAutomationLUA',
-    description: '(Library) Bikin NPC yang bisa jalan sendiri, ambil keputusan sendiri, dan mungkin lebih cerdas dari beberapa pemain di server. Dikembangkan setelah sesi panjang mengamati NPC bawaan Roblox yang keputusannya mengecewakan.',
+    description:
+      '(Library) Bikin NPC yang bisa jalan sendiri, ambil keputusan sendiri, dan mungkin lebih cerdas dari beberapa pemain di server. Dikembangkan setelah sesi panjang mengamati NPC bawaan Roblox yang keputusannya mengecewakan.',
     category: 'Library',
     status: 'Active',
     tags: ['RobloxLua', 'AI', 'Library'],
@@ -244,8 +252,10 @@ export const projects = [
   },
   {
     id: '4',
+    slug: 'admin-client-hub',
     title: 'AdminClientHub',
-    description: '(Library) Toolkit admin yang fitur utamanya adalah kemampuan memantau situasi server dari jauh. Fitur kick ada, tapi menurut dokumentasinya sendiri "harap digunakan dengan bijaksana", yang di UNIX artinya tidak pernah bijaksana.',
+    description:
+      '(Library) Toolkit admin yang fitur utamanya adalah kemampuan memantau situasi server dari jauh. Fitur kick ada, tapi menurut dokumentasinya sendiri "harap digunakan dengan bijaksana", yang di UNIX artinya tidak pernah bijaksana.',
     category: 'Library',
     status: 'Active',
     tags: ['RobloxLua', 'Admin', 'Library'],
@@ -255,8 +265,10 @@ export const projects = [
   },
   {
     id: '5',
+    slug: 'script-generator',
     title: 'ScriptGenerator',
-    description: '(Tool) AI yang harusnya bisa generate script otomatis. Masih dalam pengembangan karena setiap kali hampir selesai, ada yang punya ide "fitur tambahan" yang menggeser deadline tanpa batas. Progress: ada. ETA: copium.',
+    description:
+      '(Tool) AI yang harusnya bisa generate script otomatis. Masih dalam pengembangan karena setiap kali hampir selesai, ada yang punya ide "fitur tambahan" yang menggeser deadline tanpa batas. Progress: ada. ETA: copium.',
     category: 'Tool',
     status: 'In Development',
     tags: ['AI', 'CodeGen', 'Tool'],
@@ -266,8 +278,10 @@ export const projects = [
   },
   {
     id: '6',
+    slug: 'debug-console',
     title: 'DebugConsole',
-    description: '(Tool) Console debug yang output error messagenya lebih deskriptif dari bawaan. Lahir dari frustasi membaca pesan error yang isinya cuma angka dan nama file yang tidak ada di project manapun yang pernah ada.',
+    description:
+      '(Tool) Console debug yang output error messagenya lebih deskriptif dari bawaan. Lahir dari frustasi membaca pesan error yang isinya cuma angka dan nama file yang tidak ada di project manapun yang pernah ada.',
     category: 'Tool',
     status: 'Active',
     tags: ['Debug', 'Development', 'Tool'],
@@ -307,7 +321,7 @@ export const faqItems = [
       'Komunitas gaming dan teknologi yang fokus ke Roblox dan hal-hal sekitarnya. Tapi pada prakteknya, kita lebih sering ngobrol hal random, debat ga penting, dan saling bully dengan penuh kasih sayang.',
     category: 'Gabung & Komunitas',
   },
- 
+
   // Discord & Server
   {
     id: 'faq-5',
@@ -337,7 +351,7 @@ export const faqItems = [
       'Ga boleh sembarangan. Kalau mau collab atau promote sesuatu, hubungi admin dulu. Kalau langsung spam invite link di channel, langsung ban tanpa peringatan.',
     category: 'Discord & Server',
   },
- 
+
   // Kegiatan & Event
   {
     id: 'faq-9',
@@ -360,7 +374,7 @@ export const faqItems = [
       'Cek channel #projects di Discord untuk info proyek yang lagi aktif. Kalau tertarik, langsung mention atau DM yang pegang proyeknya. Kita terbuka buat kolaborasi selama lu serius dan ga ghosting di tengah jalan.',
     category: 'Kegiatan & Event',
   },
- 
+
   // Lain-lain
   {
     id: 'faq-12',

@@ -4,8 +4,9 @@ import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '@/components/effects/ScrollReveal';
 import { projects } from '@/lib/content';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Loader2 } from 'lucide-react';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
+import { useInfiniteScroll } from '@/hooks/use-infinite-scroll';
 
 type Category = 'game' | 'tool' | 'script' | 'library' | 'all';
 type Status = 'active' | 'archived' | 'in-development' | 'all';
@@ -24,17 +25,20 @@ export default function ProjectsGrid() {
         project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
         project.tags.some((tag) =>
-          tag.toLowerCase().includes(searchQuery.toLowerCase())
+          tag.toLowerCase().includes(searchQuery.toLowerCase()),
         );
-
       const matchesCategory =
         selectedCategory === 'all' || project.category === selectedCategory;
       const matchesStatus =
         selectedStatus === 'all' || project.status === selectedStatus;
-
       return matchesSearch && matchesCategory && matchesStatus;
     });
   }, [searchQuery, selectedCategory, selectedStatus]);
+
+  const { visibleItems, sentinelRef, hasMore } = useInfiniteScroll(
+    filteredProjects,
+    6,
+  );
 
   const getCategoryLabel = (cat: Category) => {
     const labels: Record<Category, string> = {
@@ -105,7 +109,9 @@ export default function ProjectsGrid() {
 
             {/* Category Filter */}
             <div>
-              <p className="text-sm font-semibold text-foreground mb-3">Category</p>
+              <p className="text-sm font-semibold text-foreground mb-3">
+                Category
+              </p>
               <div className="flex flex-wrap gap-2">
                 {categories.map((category) => (
                   <button
@@ -125,7 +131,9 @@ export default function ProjectsGrid() {
 
             {/* Status Filter */}
             <div>
-              <p className="text-sm font-semibold text-foreground mb-3">Status</p>
+              <p className="text-sm font-semibold text-foreground mb-3">
+                Status
+              </p>
               <div className="flex flex-wrap gap-2">
                 {statuses.map((status) => (
                   <button
@@ -152,14 +160,14 @@ export default function ProjectsGrid() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             key={`${selectedCategory}-${selectedStatus}-${searchQuery}`}
           >
-            {filteredProjects.map((project, index) => (
+            {visibleItems.map((project, index) => (
               <motion.div
                 key={project.id}
                 layout
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                transition={{ delay: index * 0.05 }}
+                transition={{ delay: (index % 6) * 0.05 }}
               >
                 <motion.div
                   className="glass-effect rounded-lg overflow-hidden h-full flex flex-col group hover:border-accent/50 transition-all duration-300"
@@ -247,6 +255,13 @@ export default function ProjectsGrid() {
             </p>
           </motion.div>
         )}
+
+        {/* Sentinel + loading spinner */}
+        <div ref={sentinelRef} className="py-8 flex justify-center">
+          {hasMore && (
+            <Loader2 size={24} className="animate-spin text-accent/50" />
+          )}
+        </div>
       </div>
     </section>
   );
