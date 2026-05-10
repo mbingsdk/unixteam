@@ -1,0 +1,86 @@
+[
+  {
+    "id": "faq-1",
+    "question": "Gimana cara gabung UNIX-TEAM?",
+    "answer": "Gampang banget. Klik tombol Join Discord yang ada di mana-mana di website ini, lalu join server kita. Ga ada seleksi ketat, ga ada tes masuk. Yang penting lu bisa toleransi kekacauan.",
+    "category": "Gabung & Komunitas"
+  },
+  {
+    "id": "faq-2",
+    "question": "Siapa aja yang boleh gabung?",
+    "answer": "Semua orang boleh. Ga peduli lu gamer, coder, desainer, atau cuma penonton. Selama lu bisa jaga attitude dan ga nyebar toxic yang kebangetan, lu welcome di sini.",
+    "category": "Gabung & Komunitas"
+  },
+  {
+    "id": "faq-3",
+    "question": "Ada biaya buat jadi member UNIX-TEAM?",
+    "answer": "Gratis. Selamanya gratis. Kita ga minta duit buat gabung. Kalau ada yang minta bayar atas nama UNIX-TEAM, itu bukan kita — itu scammer, laporin ke admin.",
+    "category": "Gabung & Komunitas"
+  },
+  {
+    "id": "faq-4",
+    "question": "UNIX-TEAM komunitas apa sebenernya?",
+    "answer": "Komunitas gaming dan teknologi yang fokus ke Roblox dan hal-hal sekitarnya. Tapi pada prakteknya, kita lebih sering ngobrol hal random, debat ga penting, dan saling bully dengan penuh kasih sayang.",
+    "category": "Gabung & Komunitas"
+  },
+  {
+    "id": "faq-5",
+    "question": "Aturan di server Discord ada apa aja?",
+    "answer": "Simpel: jangan spam berlebihan, jangan NSFW, jangan rasis/diskriminasi, dan jangan doxxing siapapun. Sisanya cukup pakai akal sehat. Admin bakal kick kalau lu udah kebangetan.",
+    "category": "Discord & Server"
+  },
+  {
+    "id": "faq-6",
+    "question": "Gimana cara dapat role di Discord?",
+    "answer": "Ada beberapa role yang bisa didapat otomatis berdasarkan aktivitas, dan ada yang dikasih manual sama admin. Rajin aktif di channel, bantu orang lain, dan jangan ghosting — ntar keliatan sendiri.",
+    "category": "Discord & Server"
+  },
+  {
+    "id": "faq-7",
+    "question": "Server Discord sering down ga?",
+    "answer": "Kalau Discord-nya yang down, itu urusan Discord, bukan kita. Kalau server kita yang sepi, itu bukan down — itu semua lagi AFK bareng. Cek halaman Server Status buat lihat kondisi layanan kita.",
+    "category": "Discord & Server"
+  },
+  {
+    "id": "faq-8",
+    "question": "Boleh promote server atau komunitas lain?",
+    "answer": "Ga boleh sembarangan. Kalau mau collab atau promote sesuatu, hubungi admin dulu. Kalau langsung spam invite link di channel, langsung ban tanpa peringatan.",
+    "category": "Discord & Server"
+  },
+  {
+    "id": "faq-9",
+    "question": "Ada event atau kegiatan rutin di UNIX-TEAM?",
+    "answer": "Ada, tapi jadwalnya sering menyesuaikan mood anggota. Biasanya ada game bareng, giveaway random, dan kadang-kadang kompetisi kecil-kecilan. Pantau channel #announcements biar ga ketinggalan.",
+    "category": "Kegiatan & Event"
+  },
+  {
+    "id": "faq-10",
+    "question": "Bisa usul kegiatan atau event baru ga?",
+    "answer": "Bisa banget. Sampaikan idemu di channel yang relevan atau langsung DM admin. Kalau idenya bagus dan realistis buat dilaksanain, kita pertimbangin. Kalau aneh tapi seru, mungkin juga kita jalanin.",
+    "category": "Kegiatan & Event"
+  },
+  {
+    "id": "faq-11",
+    "question": "Gimana cara ikut proyek yang lagi jalan?",
+    "answer": "Cek channel #projects di Discord untuk info proyek yang lagi aktif. Kalau tertarik, langsung mention atau DM yang pegang proyeknya. Kita terbuka buat kolaborasi selama lu serius dan ga ghosting di tengah jalan.",
+    "category": "Kegiatan & Event"
+  },
+  {
+    "id": "faq-12",
+    "question": "Kalau ada masalah di komunitas, lapor ke siapa?",
+    "answer": "Langsung DM salah satu admin atau moderator yang aktif. Atau bisa juga pakai channel #support kalau ga mau DM. Kita usahain respons cepat, kecuali semua lagi tidur atau AFK.",
+    "category": "Lain-lain"
+  },
+  {
+    "id": "faq-13",
+    "question": "UNIX-TEAM punya media sosial lain selain Discord?",
+    "answer": "Ada Twitter/X dan GitHub. Linknya ada di footer website ini. Tapi pusat aktivitas utama kita tetap di Discord — media sosial lain lebih ke pengumuman atau update sesekali.",
+    "category": "Lain-lain"
+  },
+  {
+    "id": "faq-14",
+    "question": "Bisa leave server kapan aja?",
+    "answer": "Tentu. Ga ada yang bakal nahan. Silent leave is our culture — ga perlu drama, ga perlu pamit panjang-panjang. Tapi kalau balik lagi, pintunya selalu terbuka.",
+    "category": "Lain-lain"
+  }
+]
