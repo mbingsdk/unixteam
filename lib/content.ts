@@ -197,7 +197,7 @@ export const teamMembers = [
     id: '13',
     name: 'Lilaccc',
     role: 'Real Dwonsol',
-    tags: [],
+    tags: ['ADVANCED BEGINNER'],
     bio: 'Cewe stecu , baik hati , lembut , yg paling penting cantip',
     image: '/images/team/lilac.jpg',
     social: {

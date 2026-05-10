@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     'help',
     'Discord',
     'komunitas',
+    'teknologi',
+    'gaming',
+    'Roblox',
   ],
   openGraph: {
     title: 'FAQ | UNIX-TEAM',

@@ -17,6 +17,12 @@ export const metadata: Metadata = {
     'tools',
     'libraries',
     'open source',
+    'teknologi',
+    'gaming',
+    'Roblox',
+    'innovation',
+    'Komunitas gaming Indonesia',
+    'Komunitas teknologi Indonesia',
   ],
   openGraph: {
     title: 'Projects | UNIX-TEAM',
