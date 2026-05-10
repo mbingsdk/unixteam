@@ -1,14 +1,10 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
 import Navigation from '@/components/Navigation'
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import Footer from '@/components/Footer'
 import StructuredData, { generateOrganizationSchema, generateWebSiteSchema } from '@/components/StructuredData'
 import { Toaster } from '@/components/ui/sonner'
 import './globals.css'
-
-const _geist = Geist({ subsets: ["latin"], variable: '--font-sans' });
-const _geistMono = Geist_Mono({ subsets: ["latin"], variable: '--font-mono' });
 
 const BASE_URL = 'https://unixteam.my.id';
 
@@ -101,7 +97,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="id" className={`${_geist.variable} ${_geistMono.variable}`} suppressHydrationWarning>
+    <html lang="id" suppressHydrationWarning>
       <head>
         <StructuredData data={generateOrganizationSchema()} />
         <StructuredData data={generateWebSiteSchema()} />

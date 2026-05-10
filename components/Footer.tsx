@@ -1,8 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { MessageCircle } from 'lucide-react';
-import { RobloxIcon, InstagramIcon } from '@/components/ui/SocialIcons';
+import { RobloxIcon, InstagramIcon, DiscordIcon } from '@/components/ui/SocialIcons';
 import { motion } from 'framer-motion';
 
 const footerLinks = [
@@ -44,7 +43,7 @@ const socialLinks = [
     label: 'Instagram',
   },
   {
-    icon: MessageCircle,
+    icon: DiscordIcon,
     href: 'https://discord.gg/unix-team',
     label: 'Discord',
   },

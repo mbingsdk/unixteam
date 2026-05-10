@@ -15,6 +15,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
+export const dynamic = 'force-static';
+
 // Blokir di production
 if (process.env.NODE_ENV === 'production') {
   // Tidak bisa throw di module level, jadi handle di handler
@@ -22,6 +24,10 @@ if (process.env.NODE_ENV === 'production') {
 
 const VALID_ENTITIES = ['team', 'blog', 'docs', 'projects', 'faq'] as const;
 type Entity = (typeof VALID_ENTITIES)[number];
+
+export function generateStaticParams() {
+  return VALID_ENTITIES.map((entity) => ({ entity }));
+}
 
 function getDataPath(entity: Entity) {
   return path.join(process.cwd(), 'data', `${entity}.json`);

@@ -4,16 +4,20 @@ import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/effects/ScrollReveal';
 import { teamMembers } from '@/lib/data';
-import { MessageCircle, Loader2 } from 'lucide-react';
-import { RobloxIcon, InstagramIcon, TikTokIcon } from '@/components/ui/SocialIcons';
+import { Loader2, CreditCard } from 'lucide-react';
+import { RobloxIcon, InstagramIcon, TikTokIcon, DiscordIcon } from '@/components/ui/SocialIcons';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
 import { toast } from 'sonner';
 import { useInfiniteScroll } from '@/hooks/use-infinite-scroll';
+import KTPModal from './KTPModal';
+import { TeamMember } from '@/types/index';
 
 export default function TeamGallery() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [expandedBio, setExpandedBio] = useState<Set<string>>(new Set());
+  const [ktpMember, setKtpMember] = useState<TeamMember | null>(null);
+  const [isKtpOpen, setIsKtpOpen] = useState(false);
 
   const allTags = [...new Set(teamMembers.flatMap((member) => member.tags ?? []))];
 
@@ -59,6 +63,16 @@ export default function TeamGallery() {
     }
   };
 
+  const handleOpenKTP = (member: TeamMember) => {
+    setKtpMember(member);
+    setIsKtpOpen(true);
+  };
+
+  const handleCloseKTP = () => {
+    setIsKtpOpen(false);
+    setTimeout(() => setKtpMember(null), 300);
+  };
+
   const getSocialIcon = (type: string) => {
     switch (type) {
       case 'roblox':
@@ -68,7 +82,7 @@ export default function TeamGallery() {
       case 'tiktok':
         return TikTokIcon;
       case 'discord':
-        return MessageCircle;
+        return DiscordIcon;
       default:
         return null;
     }
@@ -215,45 +229,54 @@ export default function TeamGallery() {
                     </div>
                   </div>
 
-                  {/* Social Links */}
-                  {member.social && (
-                    <div className="flex gap-1.5 pt-3 border-t border-border/50">
-                      {Object.entries(member.social).map(([type, handle]) => {
-                        const Icon = getSocialIcon(type);
-                        if (!Icon) return null;
+                  {/* Social Links + KTP Button */}
+                  <div className="flex items-center gap-2 pt-3 border-t border-border/50">
+                    <button
+                      onClick={() => handleOpenKTP(member)}
+                      className="flex-1 px-3 py-2 rounded-lg bg-accent/10 border border-accent/50 hover:bg-accent hover:text-brand-dark text-accent text-sm font-semibold transition-all duration-200 flex items-center justify-center gap-2"
+                    >
+                      <CreditCard size={16} />
+                      KTP
+                    </button>
+                    {member.social && (
+                      <div className="flex gap-1.5">
+                        {Object.entries(member.social).map(([type, handle]) => {
+                          const Icon = getSocialIcon(type);
+                          if (!Icon) return null;
 
-                        if (type === 'discord') {
+                          if (type === 'discord') {
+                            return (
+                              <motion.button
+                                key={type}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() => handleCopyDiscord(handle)}
+                                className="p-2 rounded-lg hover:bg-accent/10 text-foreground/60 hover:text-accent transition-all duration-200"
+                                title={`Salin username Discord: ${handle}`}
+                              >
+                                <Icon size={18} />
+                              </motion.button>
+                            );
+                          }
+
                           return (
-                            <motion.button
+                            <motion.a
                               key={type}
+                              href={handle}
+                              target="_blank"
+                              rel="noopener noreferrer"
                               whileHover={{ scale: 1.1 }}
                               whileTap={{ scale: 0.95 }}
-                              onClick={() => handleCopyDiscord(handle)}
                               className="p-2 rounded-lg hover:bg-accent/10 text-foreground/60 hover:text-accent transition-all duration-200"
-                              title={`Salin username Discord: ${handle}`}
+                              title={`${type}: ${handle}`}
                             >
                               <Icon size={18} />
-                            </motion.button>
+                            </motion.a>
                           );
-                        }
-
-                        return (
-                          <motion.a
-                            key={type}
-                            href={handle}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="p-2 rounded-lg hover:bg-accent/10 text-foreground/60 hover:text-accent transition-all duration-200"
-                            title={`${type}: ${handle}`}
-                          >
-                            <Icon size={18} />
-                          </motion.a>
-                        );
-                      })}
-                    </div>
-                  )}
+                        })}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </motion.div>
             </ScrollReveal>
@@ -280,6 +303,9 @@ export default function TeamGallery() {
           )}
         </div>
       </div>
+
+      {/* KTP Modal */}
+      <KTPModal member={ktpMember} isOpen={isKtpOpen} onClose={handleCloseKTP} />
     </section>
   );
 }
