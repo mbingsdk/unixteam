@@ -1,0 +1,210 @@
+UNIX PUBLIC LICENSE
+Versi 1.0, Tanggal Tidak Jelas
+
+Copyright (c) [tahun yang kita semua sudah lupa] UNIX-TEAM
+Semua hak yang relevan dipegang erat-erat, sisanya dibiarkan tercecer.
+
+---
+
+SYARAT DAN KETENTUAN PENGGUNAAN, REPRODUKSI, DAN DISTRIBUSI
+
+Pasal 1 — Definisi
+
+"Lisensi" mengacu pada dokumen ini, yang ditulis dengan serius tapi
+tidak perlu dibaca terlalu serius.
+
+"Licensor" mengacu pada UNIX-TEAM, sebuah entitas kolektif yang secara
+resmi tidak punya ketua tapi secara tidak resmi semua orang adalah ketua.
+
+"Anda" mengacu pada siapapun yang membaca ini. Selamat datang.
+Atau turut berduka. Tergantung perspektif.
+
+"Karya" mengacu pada kode, konten, aset, dan hal-hal lain dalam
+repositori ini yang dibuat dengan keringat, copium, dan koneksi
+internet yang tidak stabil.
+
+"Kontributor" mengacu pada siapapun yang pernah commit sesuatu,
+termasuk yang commit-nya cuma "fix typo" tapi sebenernya ngubah
+logic yang kritikal.
+
+"AFK" mengacu pada kondisi dimana maintainer ada tapi tidak bisa
+dihubungi. Ini kondisi default, bukan pengecualian.
+
+---
+
+Pasal 2 — Pemberian Lisensi
+
+Dengan syarat dan ketentuan yang tertuang dalam dokumen ini, setiap
+Kontributor dengan ini memberikan kepada Anda lisensi yang:
+
+  a) Permanen — selama repositori ini masih ada dan GitHub belum
+     di-shutdown oleh Microsoft
+
+  b) Worldwide — termasuk di daerah yang internetnya jelek
+
+  c) Non-exclusive — orang lain boleh pakai juga, kita bukan posesif
+
+  d) Bebas royalti — karena kita juga tidak punya uang
+
+  e) Tidak bisa dicabut — kecuali Anda melakukan hal-hal yang disebutkan
+     di Pasal 4, atau kalau maintainer sedang emosi
+
+untuk mereproduksi, menyiapkan Karya Turunan, menampilkan secara publik,
+mendistribusikan, dan sublisensikan Karya ini dalam bentuk Sumber atau
+Objek, dengan atau tanpa modifikasi.
+
+---
+
+Pasal 3 — Redistribusi
+
+Anda boleh mereproduksi dan mendistribusikan salinan Karya ini atau
+Karya Turunannya dalam media apapun, dengan atau tanpa modifikasi,
+dengan syarat Anda memenuhi kondisi berikut:
+
+  a) Anda harus menyertakan salinan Lisensi ini di setiap distribusi.
+     Tidak perlu dibaca. Cukup ada saja.
+
+  b) Anda harus mempertahankan, dalam bentuk Sumber Karya Turunan yang
+     Anda distribusikan, semua pemberitahuan hak cipta, paten, merek
+     dagang, dan atribusi dari bentuk Sumber Karya.
+
+  c) Anda harus menyertakan file NOTICE yang berisi: "Ini dibangun di
+     atas Karya UNIX-TEAM, komunitas yang absurd tapi entah kenapa
+     fungsional."
+
+  d) Anda TIDAK BOLEH menggunakan nama UNIX-TEAM untuk mengklaim bahwa
+     produk Anda didukung atau disetujui oleh kami, kecuali Anda sudah
+     minta izin, dan kami sedang tidak AFK saat Anda minta.
+
+  e) Kalau produk Anda ternyata lebih sukses dari website aslinya,
+     tolong jangan kasih tahu kami. Itu menyakitkan.
+
+---
+
+Pasal 4 — Larangan
+
+Lisensi ini secara tegas TIDAK memberikan izin untuk:
+
+  a) Menggunakan Karya ini untuk membuat sesuatu yang lebih jelek dari
+     aslinya. Standar minimum sudah cukup rendah, tolong jangan lebih.
+
+  b) Mengklaim bahwa Anda yang bikin ini dari nol saat Anda jelas-jelas
+     copy-paste seluruh repository. Kita tau. GitHub tau. Tuhan tau.
+
+  c) Menjual lisensi ini kepada pihak ketiga, karena Anda tidak beli
+     apa-apa dari kami, jadi tidak ada yang bisa dijual.
+
+  d) Mengubah nama "UNIX-TEAM" menjadi nama komunitas Anda sendiri
+     tanpa izin tertulis dari setidaknya tiga member aktif yang tidak
+     sedang AFK secara bersamaan. Kondisi ini mungkin tidak pernah
+     terpenuhi dan kami tau itu.
+
+  e) Menghapus komentar sarkastis dalam kode. Itu bukan clutter,
+     itu dokumentasi bernyawa.
+
+---
+
+Pasal 5 — Pengiriman Kontribusi
+
+Kecuali Anda secara eksplisit menyatakan sebaliknya, setiap kontribusi
+yang Anda kirimkan untuk dimasukkan ke dalam Karya ini akan berada di
+bawah syarat dan ketentuan Lisensi ini, tanpa syarat tambahan.
+
+Dengan kata lain: kalau PR-nya di-merge, kode itu jadi milik kolektif
+komunitas ini. Bukan milik Anda, bukan milik maintainer, tapi milik
+entitas abstrak bernama UNIX-TEAM yang bahkan tidak punya badan hukum.
+
+---
+
+Pasal 6 — Merek Dagang
+
+Lisensi ini tidak memberikan izin untuk menggunakan nama dagang, merek
+dagang, merek layanan, atau nama produk Licensor.
+
+Nama "UNIX-TEAM", "Popol", "katspoll", "CEO Diks", dan semua julukan
+absurd lainnya adalah milik komunitas yang bersangkutan dan tidak boleh
+digunakan tanpa izin, yang kemungkinan besar tidak akan Anda dapatkan
+karena tidak ada yang tahu siapa yang berhak memberinya.
+
+---
+
+Pasal 7 — Penafian Garansi
+
+KARYA INI DISEDIAKAN "APA ADANYA", TANPA GARANSI DALAM BENTUK APAPUN,
+BAIK TERSURAT MAUPUN TERSIRAT.
+
+Lebih spesifiknya:
+
+  - Kami tidak menjamin website ini akan selalu online
+  - Kami tidak menjamin kode ini bebas bug (itu pasti ada)
+  - Kami tidak menjamin ada yang akan merespons Issue Anda
+  - Kami tidak menjamin dokumentasinya akurat (bahkan yang ini)
+  - Kami tidak menjamin maintainer tidak sedang AFK saat Anda butuh bantuan
+
+Kalau ada yang tidak beres, itu bukan tanggung jawab kami.
+Tapi kalau ada yang beres, itu juga bukan keberuntungan — itu memang
+by design. Mungkin.
+
+---
+
+Pasal 8 — Batasan Tanggung Jawab
+
+Dalam kondisi apapun dan dalam teori hukum apapun, baik perbuatan
+melawan hukum (termasuk kelalaian), kontrak, atau lainnya, kecuali
+diwajibkan oleh hukum yang berlaku atau disetujui secara tertulis,
+tidak ada Kontributor yang bertanggung jawab kepada Anda atas:
+
+  a) Kerusakan langsung, tidak langsung, insidental, khusus, atau
+     konsekuensial dari penggunaan Karya ini
+
+  b) Waktu yang Anda habiskan mencoba memahami kode ini
+
+  c) Kopi yang tumpah saat Anda debugging sampai jam 3 pagi
+
+  d) Hubungan yang renggang karena terlalu lama di server Discord
+
+  e) Eksistensial kritis yang muncul setelah membaca dokumentasi ini
+
+Batas tanggung jawab kami adalah nol rupiah (Rp0,00), karena memang
+begitu kemampuan finansial komunitas ini.
+
+---
+
+Pasal 9 — Hal-hal Lain
+
+  a) Kalau ada pasal dalam Lisensi ini yang tidak valid secara hukum
+     di yurisdiksi Anda, pasal tersebut dianggap tidak ada. Sisanya
+     tetap berlaku.
+
+  b) Kegagalan kami untuk menegakkan ketentuan Lisensi ini bukan berarti
+     kami melepaskan hak tersebut. Bisa jadi kami hanya sedang AFK.
+
+  c) Lisensi ini bisa berubah kapan saja tanpa pemberitahuan, seperti
+     jadwal mabar UNIX-TEAM yang tidak pernah fix.
+
+  d) Dalam hal konflik antara Lisensi ini dengan logika umum, logika
+     umum yang harus mengalah. Ini adalah zona UNIX.
+
+---
+
+AKHIR DARI SYARAT DAN KETENTUAN
+
+---
+
+CATATAN TAMBAHAN YANG TIDAK PERLU TAPI TETAP ADA
+
+Repository ini dibangun di atas:
+- Banyak Stack Overflow
+- Beberapa GPT session yang jawabnya perlu dikoreksi
+- Satu sesi pair programming yang tidak produktif tapi menyenangkan
+- Koneksi internet yang putus-putus di momen paling krusial
+- Harapan yang entah kenapa terus ada
+
+Untuk pertanyaan tentang Lisensi ini, hubungi kami di Discord.
+Kami akan balas. Ntar.
+
+---
+
+"Hak cipta diabaikan bersama."
+
+                                           — UNIX-TEAM, tahun yang lupa
