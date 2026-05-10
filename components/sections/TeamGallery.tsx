@@ -7,7 +7,6 @@ import { teamMembers } from '@/lib/content';
 import { MessageCircle, Loader2 } from 'lucide-react';
 import { RobloxIcon, InstagramIcon, TikTokIcon } from '@/components/ui/SocialIcons';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
-import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
 import { useInfiniteScroll } from '@/hooks/use-infinite-scroll';
 
@@ -142,13 +141,14 @@ export default function TeamGallery() {
                 whileHover={{ y: -8 }}
                 layout
               >
-                {/* Avatar */}
-                <div className="relative aspect-square bg-gradient-to-br from-accent/20 to-accent/5 overflow-hidden">
+                {/* Avatar — tags overlay top-right */}
+                <div className="relative aspect-[4/3] bg-gradient-to-br from-accent/20 to-accent/5 overflow-hidden">
                   <ImageWithFallback
                     src={member.image}
                     alt={member.name}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     className="object-cover"
+                    loading={index === 0 ? 'eager' : 'lazy'}
                     fallback={
                       <div className="w-full h-full flex items-center justify-center">
                         <div className="text-6xl group-hover:scale-110 transition-transform duration-300">
@@ -157,35 +157,39 @@ export default function TeamGallery() {
                       </div>
                     }
                   />
+
+                  {/* Tags — pojok kanan atas */}
+                  {member.tags && member.tags.length > 0 && (
+                    <div className="absolute top-2 right-2 flex flex-col items-end gap-1">
+                      {member.tags.map((tag) => (
+                        <button
+                          key={tag}
+                          onClick={() =>
+                            setSelectedTag(selectedTag === tag ? null : tag)
+                          }
+                          className={`text-[10px] font-semibold px-2 py-0.5 rounded backdrop-blur-sm border transition-all duration-200 leading-tight
+                            ${selectedTag === tag
+                              ? 'bg-accent border-accent text-brand-dark'
+                              : 'bg-accent/25 border-accent/50 text-accent hover:bg-accent/50 hover:border-accent hover:text-accent'
+                            }`}
+                        >
+                          {tag}
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 {/* Info */}
-                <div className="p-6">
-                  <h3 className="text-lg font-bold text-foreground mb-1">
+                <div className="p-4">
+                  <h3 className="text-lg font-bold text-foreground mb-0.5">
                     {member.name}
                   </h3>
                   <p className="text-sm text-accent font-medium mb-2">
                     {member.role}
                   </p>
 
-                  {member.tags && member.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-1 mb-3">
-                      {member.tags.map((tag) => (
-                        <Badge
-                          key={tag}
-                          variant="secondary"
-                          className="text-xs cursor-pointer hover:bg-accent/20 hover:text-accent transition-colors"
-                          onClick={() =>
-                            setSelectedTag(selectedTag === tag ? null : tag)
-                          }
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                  )}
-
-                  <div className="mb-4">
+                  <div className="mb-2">
                     <div
                       className={
                         expandedBio.has(member.id) ? '' : 'h-[42px] overflow-hidden'
@@ -197,7 +201,7 @@ export default function TeamGallery() {
                           : member.bio.slice(0, 65) + '...'}
                       </p>
                     </div>
-                    <div className="h-5 mt-1">
+                    <div className="h-4 mt-0.5">
                       {isBioLong(member.bio) && (
                         <button
                           onClick={() => toggleBio(member.id)}
@@ -213,7 +217,7 @@ export default function TeamGallery() {
 
                   {/* Social Links */}
                   {member.social && (
-                    <div className="flex gap-2 pt-4 border-t border-border/50">
+                    <div className="flex gap-1.5 pt-3 border-t border-border/50">
                       {Object.entries(member.social).map(([type, handle]) => {
                         const Icon = getSocialIcon(type);
                         if (!Icon) return null;

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '@/components/effects/ScrollReveal';
 import { projects } from '@/lib/content';
-import { ArrowRight, Loader2 } from 'lucide-react';
+import { ExternalLink, Info, Loader2 } from 'lucide-react';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
 import { useInfiniteScroll } from '@/hooks/use-infinite-scroll';
 
@@ -14,7 +14,6 @@ export default function ProjectsGrid() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
 
-  // ✅ Generate categories & statuses dynamically from data (no more hardcoded lowercase)
   const categories = useMemo(() => {
     const unique = [...new Set(projects.map((p) => p.category))].sort();
     return ['all', ...unique];
@@ -33,7 +32,6 @@ export default function ProjectsGrid() {
         project.tags.some((tag) =>
           tag.toLowerCase().includes(searchQuery.toLowerCase()),
         );
-      // ✅ Direct string comparison — category & status values from data match filter values
       const matchesCategory =
         selectedCategory === 'all' || project.category === selectedCategory;
       const matchesStatus =
@@ -76,7 +74,6 @@ export default function ProjectsGrid() {
         {/* Filters */}
         <ScrollReveal delay={0.1} className="mb-12">
           <div className="space-y-6">
-            {/* Search */}
             <div className="relative">
               <input
                 type="text"
@@ -90,7 +87,6 @@ export default function ProjectsGrid() {
               </span>
             </div>
 
-            {/* Category Filter — dynamically generated */}
             <div>
               <p className="text-sm font-semibold text-foreground mb-3">Category</p>
               <div className="flex flex-wrap gap-2">
@@ -110,7 +106,6 @@ export default function ProjectsGrid() {
               </div>
             </div>
 
-            {/* Status Filter — dynamically generated */}
             <div>
               <p className="text-sm font-semibold text-foreground mb-3">Status</p>
               <div className="flex flex-wrap gap-2">
@@ -170,10 +165,23 @@ export default function ProjectsGrid() {
                         {project.title[0]}
                       </div>
                     )}
+
+                    {/* Status badge — overlay top-left */}
+                    <span
+                      className={`absolute top-2 left-2 text-xs font-semibold px-2 py-0.5 rounded backdrop-blur-sm border border-white/10 ${getStatusColor(project.status)}`}
+                    >
+                      {project.status}
+                    </span>
                   </div>
 
                   {/* Content */}
                   <div className="p-6 flex-1 flex flex-col">
+                    <div className="mb-1 flex items-center gap-2">
+                      <span className="text-xs font-semibold text-foreground/40 uppercase tracking-wide">
+                        {project.category}
+                      </span>
+                    </div>
+
                     <h3 className="text-xl font-bold text-foreground mb-2">
                       {project.title}
                     </h3>
@@ -182,7 +190,7 @@ export default function ProjectsGrid() {
                     </p>
 
                     {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-2 mb-5">
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
@@ -193,42 +201,32 @@ export default function ProjectsGrid() {
                       ))}
                     </div>
 
-                    {/* Footer */}
-                    <div className="flex items-center justify-between pt-4 border-t border-border/50 gap-2">
-                      <span
-                        className={`text-xs font-semibold px-2 py-1 rounded shrink-0 ${getStatusColor(project.status)}`}
+                    {/* CTA buttons */}
+                    <div className="flex gap-2 pt-4 border-t border-border/50">
+                      <Link
+                        href={`/projects/${project.slug}`}
+                        className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg border border-border text-foreground/70 hover:border-accent hover:text-accent text-sm font-medium transition-all duration-200"
                       >
-                        {project.status}
-                      </span>
+                        <Info size={14} />
+                        Detail
+                      </Link>
 
-                      <div className="flex items-center gap-3">
-                        {/* ✅ Tombol ke detail page slug */}
-                        <Link
-                          href={`/projects/${project.slug}`}
-                          className="text-foreground/60 hover:text-accent transition-colors text-sm font-medium flex items-center gap-1 group/link"
+                      {project.demoUrl ? (
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg bg-accent/10 border border-accent/30 text-accent hover:bg-accent/20 text-sm font-medium transition-all duration-200"
                         >
-                          Detail
-                          <ArrowRight
-                            size={14}
-                            className="group-hover/link:translate-x-0.5 transition-transform"
-                          />
-                        </Link>
-
-                        {project.demoUrl && (
-                          <a
-                            href={project.demoUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-accent hover:text-accent/80 transition-colors text-sm font-medium flex items-center gap-1 group/demo"
-                          >
-                            Demo
-                            <ArrowRight
-                              size={14}
-                              className="group-hover/demo:translate-x-0.5 transition-transform"
-                            />
-                          </a>
-                        )}
-                      </div>
+                          <ExternalLink size={14} />
+                          Demo
+                        </a>
+                      ) : (
+                        <span className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg border border-border/40 text-foreground/30 text-sm font-medium cursor-not-allowed select-none">
+                          <ExternalLink size={14} />
+                          Demo
+                        </span>
+                      )}
                     </div>
                   </div>
                 </motion.div>

@@ -4,11 +4,24 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/effects/ScrollReveal';
 import { projects } from '@/lib/content';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ExternalLink, Info } from 'lucide-react';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
 
 export default function ProjectsPreview() {
   const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'Active':
+        return 'bg-green-500/10 text-green-400';
+      case 'In Development':
+        return 'bg-yellow-500/10 text-yellow-400';
+      case 'Archived':
+        return 'bg-gray-500/10 text-gray-400';
+      default:
+        return 'bg-gray-500/10 text-gray-400';
+    }
+  };
 
   return (
     <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-border">
@@ -69,16 +82,29 @@ export default function ProjectsPreview() {
                       </div>
                     </div>
                   )}
+
+                  {/* Status badge overlay — top-left, konsisten sama ProjectsGrid */}
+                  <span
+                    className={`absolute top-2 left-2 text-xs font-semibold px-2 py-0.5 rounded backdrop-blur-sm border border-white/10 ${getStatusColor(project.status)}`}
+                  >
+                    {project.status}
+                  </span>
                 </div>
 
                 {/* Content */}
                 <div className="p-6 flex-1 flex flex-col">
+                  <div className="mb-1">
+                    <span className="text-xs font-semibold text-foreground/40 uppercase tracking-wide">
+                      {project.category}
+                    </span>
+                  </div>
+
                   <h3 className="text-xl font-bold text-foreground mb-2">{project.title}</h3>
                   <p className="text-foreground/60 text-sm mb-4 flex-1">{project.description}</p>
 
                   {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.slice(0, 2).map((tag) => (
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {project.tags.map((tag) => (
                       <span
                         key={tag}
                         className="px-2 py-1 rounded text-xs font-medium bg-accent/10 text-accent"
@@ -88,26 +114,31 @@ export default function ProjectsPreview() {
                     ))}
                   </div>
 
-                  {/* Status */}
-                  <div className="flex items-center justify-between pt-4 border-t border-border/50">
-                    <span className={`text-xs font-semibold px-2 py-1 rounded ${
-                      project.status === 'active'
-                        ? 'bg-green-500/10 text-green-400'
-                        : project.status === 'in-development'
-                          ? 'bg-yellow-500/10 text-yellow-400'
-                          : 'bg-gray-500/10 text-gray-400'
-                    }`}>
-                      {project.status === 'in-development' ? 'In Development' : project.status === 'active' ? 'Active' : 'Archived'}
-                    </span>
-                    {project.demoUrl && (
+                  {/* CTA buttons — konsisten sama ProjectsGrid */}
+                  <div className="flex gap-2 pt-4 border-t border-border/50">
+                    <Link
+                      href={`/projects/${project.slug}`}
+                      className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg border border-border text-foreground/70 hover:border-accent hover:text-accent text-sm font-medium transition-all duration-200"
+                    >
+                      <Info size={14} />
+                      Detail
+                    </Link>
+
+                    {project.demoUrl ? (
                       <a
                         href={project.demoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-accent hover:text-accent/80 transition-colors text-sm font-medium"
+                        className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg bg-accent/10 border border-accent/30 text-accent hover:bg-accent/20 text-sm font-medium transition-all duration-200"
                       >
-                        Demo →
+                        <ExternalLink size={14} />
+                        Demo
                       </a>
+                    ) : (
+                      <span className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg border border-border/40 text-foreground/30 text-sm font-medium cursor-not-allowed select-none">
+                        <ExternalLink size={14} />
+                        Demo
+                      </span>
                     )}
                   </div>
                 </div>
