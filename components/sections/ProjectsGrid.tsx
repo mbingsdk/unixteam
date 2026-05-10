@@ -4,7 +4,7 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '@/components/effects/ScrollReveal';
-import { projects } from '@/lib/content';
+import { projects } from '@/lib/data';
 import { ExternalLink, Info, Loader2 } from 'lucide-react';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
 import { useInfiniteScroll } from '@/hooks/use-infinite-scroll';

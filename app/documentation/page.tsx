@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import ScrollReveal from '@/components/effects/ScrollReveal';
 import { ArrowRight, BookOpen } from 'lucide-react';
 import Link from 'next/link';
-import { docPages } from '@/lib/docPages';
+import { docPages } from '@/lib/data';
 
 const BASE_URL = 'https://unixteam.my.id';
 

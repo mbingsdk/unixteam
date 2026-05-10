@@ -1,7 +1,5 @@
 import { MetadataRoute } from 'next';
-import { blogPosts } from '@/lib/blogPosts';
-import { docPages } from '@/lib/docPages';
-import { projects } from '@/lib/content';
+import { blogPosts, docPages, projects } from '@/lib/data';
 
 const BASE_URL = 'https://unixteam.my.id';
 

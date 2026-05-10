@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/effects/ScrollReveal';
-import { teamMembers } from '@/lib/content';
+import { teamMembers } from '@/lib/data';
 import { MessageCircle, Loader2 } from 'lucide-react';
 import { RobloxIcon, InstagramIcon, TikTokIcon } from '@/components/ui/SocialIcons';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';

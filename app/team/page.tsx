@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import TeamGallery from '@/components/sections/TeamGallery';
 import StructuredData, { generatePersonSchema, generateBreadcrumbSchema } from '@/components/StructuredData';
-import { teamMembers } from '@/lib/content';
+import { teamMembers } from '@/lib/data';
 
 const BASE_URL = 'https://unixteam.my.id';
 

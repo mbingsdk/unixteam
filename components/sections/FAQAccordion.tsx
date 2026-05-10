@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/effects/ScrollReveal';
-import { faqItems } from '@/lib/content';
+import { faqItems } from '@/lib/data';
 import { ChevronDown } from 'lucide-react';
 
 export default function FAQAccordion() {

@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "deploy": "gh-pages -d out",
-    "build-and-deploy": "cross-env NEXT_EXPORT=1 next build && pnpm run deploy"
+    "build-and-deploy": "node scripts/export-build.mjs && pnpm run deploy"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

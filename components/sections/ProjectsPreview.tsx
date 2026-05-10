@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/effects/ScrollReveal';
-import { projects } from '@/lib/content';
+import { projects } from '@/lib/data';
 import { ArrowRight, ExternalLink, Info } from 'lucide-react';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
 

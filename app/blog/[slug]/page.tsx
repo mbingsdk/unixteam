@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight, Calendar, Clock, User } from 'lucide-react';
 import ScrollReveal from '@/components/effects/ScrollReveal';
 import ReadingProgress from '@/components/effects/ReadingProgress';
 import { SectionsRenderer, HtmlContentRenderer } from '@/components/blog/BlogContentRenderer';
-import { blogPosts } from '@/lib/blogPosts';
+import { blogPosts } from '@/lib/data';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
 import { formatDateFull } from '@/lib/date';
 import StructuredData, {

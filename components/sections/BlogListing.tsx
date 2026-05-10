@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/effects/ScrollReveal';
 import { ArrowRight, Loader2 } from 'lucide-react';
-import { blogPosts } from '@/lib/blogPosts';
+import { blogPosts } from '@/lib/data';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
 import { formatDate } from '@/lib/date';
 import { useInfiniteScroll } from '@/hooks/use-infinite-scroll';

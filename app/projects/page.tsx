@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import ProjectsGrid from '@/components/sections/ProjectsGrid';
 import StructuredData, { generateProjectSchema, generateBreadcrumbSchema } from '@/components/StructuredData';
-import { projects } from '@/lib/content';
+import { projects } from '@/lib/data';
 
 const BASE_URL = 'https://unixteam.my.id';
 

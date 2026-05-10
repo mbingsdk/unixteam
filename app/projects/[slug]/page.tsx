@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, ExternalLink, Tag } from 'lucide-react';
 import ScrollReveal from '@/components/effects/ScrollReveal';
-import { projects } from '@/lib/content';
+import { projects } from '@/lib/data';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
 import StructuredData, {
   generateBreadcrumbSchema,
