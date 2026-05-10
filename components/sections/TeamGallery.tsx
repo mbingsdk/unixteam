@@ -162,7 +162,7 @@ export default function TeamGallery() {
                     alt={member.name}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     className="object-cover"
-                    loading={index === 0 ? 'eager' : 'lazy'}
+                    loading={index < 4 ? 'eager' : 'lazy'}
                     fallback={
                       <div className="w-full h-full flex items-center justify-center">
                         <div className="text-6xl group-hover:scale-110 transition-transform duration-300">
