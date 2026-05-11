@@ -107,7 +107,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         ])}
       />
 
-      {/* Reading progress — client component */}
+      {/* Reading progress  client component */}
       <ReadingProgress />
 
       <main className="min-h-screen py-20 px-4">

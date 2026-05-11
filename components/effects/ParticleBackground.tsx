@@ -25,7 +25,7 @@ export default function ParticleBackground() {
       className="absolute inset-0 overflow-hidden pointer-events-none"
       style={{ '--mouse-x': '0px', '--mouse-y': '0px' } as React.CSSProperties}
     >
-      {/* Glow orbs — framer-motion ok karena cuma 2 */}
+      {/* Glow orbs  framer-motion ok karena cuma 2 */}
       <motion.div
         className="absolute w-96 h-96 bg-accent rounded-full blur-3xl opacity-5"
         animate={{ x: ['-25%', '25%', '-25%'], y: ['-25%', '25%', '-25%'] }}
@@ -39,7 +39,7 @@ export default function ParticleBackground() {
         style={{ bottom: '10%', right: '10%' }}
       />
 
-      {/* CSS-only particles — zero JS per frame */}
+      {/* CSS-only particles  zero JS per frame */}
       <style>{`
         @keyframes floatUp {
           0%   { transform: translateY(0);    opacity: 0.3; }
@@ -54,7 +54,7 @@ export default function ParticleBackground() {
         }
       `}</style>
 
-      {/* 20 partikel CSS — cukup visually, jauh lebih hemat dari 50 */}
+      {/* 20 partikel CSS  cukup visually, jauh lebih hemat dari 50 */}
       {Array.from({ length: 20 }).map((_, i) => (
         <div
           key={i}

@@ -41,7 +41,7 @@ function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] active:bg-white/[0.08] transition-all duration-200 text-foreground/70 hover:text-foreground flex-shrink-0 cursor-pointer"
+      className="flex items-center justify-center w-8 h-8 rounded-lg hover:bg-white/[0.06] active:bg-white/[0.06] transition-all duration-200 text-foreground/70 hover:text-foreground flex-shrink-0 cursor-pointer"
       aria-label="Toggle theme"
     >
       <AnimatePresence mode="wait" initial={false}>
@@ -107,18 +107,18 @@ export default function Navigation() {
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-2 px-2 py-1 rounded-xl hover:bg-white/[0.06] active:bg-white/[0.08] transition-all duration-200 mr-1"
+          className="group flex items-center gap-2 px-2 py-1 rounded-full hover:bg-accent active:bg-white/[0.08] transition-all duration-200 mr-1"
         >
-          <div className="relative h-7 w-7 rounded-lg overflow-hidden flex-shrink-0 ring-1 ring-white/10">
+          <div className="relative h-8 w-8 rounded-full overflow-hidden flex-shrink-0 ring-1 ring-white/10 bg-accent-foreground">
             <Image
               src="/apple-icon.png"
               alt="UNIX-TEAM"
               fill
-              className="object-cover p-0.5"
+              className="object-cover p-1"
               priority
             />
           </div>
-          <span className="font-semibold text-[13px] text-foreground whitespace-nowrap tracking-tight">
+          <span className="font-semibold text-[13px] text-foreground group-hover:text-accent-foreground whitespace-nowrap tracking-tight">
             UNIX-TEAM
           </span>
         </Link>
@@ -126,7 +126,7 @@ export default function Navigation() {
         {/* Divider */}
         <div className="hidden md:block w-px h-4 bg-white/[0.08] mx-1 flex-shrink-0" />
 
-        {/* Nav links — desktop */}
+        {/* Nav links  desktop */}
         <div className="hidden md:flex items-center gap-0.5">
           {navLinks.map((link) => (
             <Link
@@ -173,7 +173,7 @@ export default function Navigation() {
           <ThemeToggle />
           <button
             onClick={() => setDrawerOpen((v) => !v)}
-            className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/[0.06] hover:bg-white/[0.1] active:bg-white/[0.12] transition-all duration-200 text-foreground/70 flex-shrink-0"
+            className="flex items-center justify-center w-8 h-8 rounded-lg hover:bg-white/[0.06] active:bg-white/[0.12] transition-all duration-200 text-foreground/70 flex-shrink-0"
             aria-label="Toggle menu"
           >
             <AnimatePresence mode="wait" initial={false}>
@@ -242,7 +242,7 @@ export default function Navigation() {
                           <Link
                             href={link.href}
                             className={[
-                              'flex items-center gap-2.5 px-3 py-3 rounded-2xl',
+                              'flex items-center gap-2.5 px-3 py-2 rounded-3xl',
                               'text-[14px] font-medium transition-all duration-200',
                               active
                                 ? 'bg-accent/15 text-accent'
@@ -266,7 +266,7 @@ export default function Navigation() {
                     href="https://discord.gg/unix-team"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl bg-accent text-accent-foreground font-semibold text-[14px] hover:bg-accent/90 active:scale-[0.98] transition-all duration-200 shadow-lg shadow-accent/20"
+                    className="flex items-center justify-center gap-2 w-full py-3 rounded-3xl bg-accent text-accent-foreground font-semibold text-[14px] hover:bg-accent/90 active:scale-[0.98] transition-all duration-200 shadow-lg shadow-accent/20"
                   >
                     <DiscordIcon size={16} />
                     Join Discord Buat Ribut

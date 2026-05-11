@@ -49,7 +49,7 @@ export default function ContactForm() {
     setStatus('loading');
     setErrorMsg('');
 
-    // ✅ Kalau Formspree belum di-setup, arahkan ke Discord/email — jangan fake success
+    // ✅ Kalau Formspree belum di-setup, arahkan ke Discord/email  jangan fake success
     if (!FORMSPREE_ENDPOINT) {
       setStatus('error');
       setErrorMsg(

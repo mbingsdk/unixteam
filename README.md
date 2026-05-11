@@ -12,7 +12,7 @@
 
 ## Apa Ini?
 
-Website resmi UNIX-TEAM. Dibuat dengan serius tapi tujuannya tidak jelas. Kalau kamu nyasar ke sini dan bingung, itu bukan bug — itu memang kondisi default semua orang yang pertama kali ketemu UNIX.
+Website resmi UNIX-TEAM. Dibuat dengan serius tapi tujuannya tidak jelas. Kalau kamu nyasar ke sini dan bingung, itu bukan bug itu memang kondisi default semua orang yang pertama kali ketemu UNIX.
 
 ---
 
@@ -38,7 +38,7 @@ Website resmi UNIX-TEAM. Dibuat dengan serius tapi tujuannya tidak jelas. Kalau 
 - ✅ Admin panel yang cuma bisa diakses pas `next dev` karena kita ga mampu bayar server
 - ✅ Dark mode (hanya dark mode, karena light mode adalah musuh)
 - ✅ SEO yang kata GPT sudah bagus
-- ⏳ Fitur lain — **ntar**
+- ⏳ Fitur lain **ntar**
 
 ---
 
@@ -124,7 +124,7 @@ pnpm build-and-deploy
 3. Commit perubahan (`git commit -m 'tambah sesuatu yang mungkin berguna'`)
 4. Push ke branch (`git push origin fitur/ide-gila-lu`)
 5. Buat Pull Request
-6. Tunggu di-review — **ntar**
+6. Tunggu di-review **ntar**
 
 Kalau PR kamu di-ignore selama lebih dari seminggu, itu bukan penolakan. Maintainer-nya lagi AFK. Coba ping di Discord.
 
@@ -143,16 +143,16 @@ Kalau nemuin bug:
 
 ## Pertanyaan Umum
 
-**Q: Kenapa websitenya begini?**  
+**Q: Kenapa websitenya begini?**
 A: Karena yang bikinnya juga begini.
 
-**Q: Kapan fitur X ditambahkan?**  
+**Q: Kapan fitur X ditambahkan?**
 A: Ntar.
 
-**Q: Siapa yang maintain website ini?**  
+**Q: Siapa yang maintain website ini?**
 A: Secara teknis ada orangnya. Secara praktis, tanya Discord.
 
-**Q: Boleh saya pakai kode ini?**  
+**Q: Boleh saya pakai kode ini?**
 A: Baca LICENSE. Singkatnya: boleh, tapi konsekuensinya tanggung sendiri.
 
 ---
@@ -173,7 +173,7 @@ Terima kasih kepada:
 
 ## License
 
-[UNIX Public License (UPL-1.0)](./LICENSE) — Intinya: Hak cipta diabaikan bersama, bebas pakai, tapi jangan salahkan kami.
+[UNIX Public License (UPL-1.0)](./LICENSE) Intinya: Hak cipta diabaikan bersama, bebas pakai, tapi jangan salahkan kami.
 
 ---
 

@@ -311,7 +311,7 @@ export const stats = [
 //     id: 'faq-3',
 //     question: 'Ada biaya buat jadi member UNIX-TEAM?',
 //     answer:
-//       'Gratis. Selamanya gratis. Kita ga minta duit buat gabung. Kalau ada yang minta bayar atas nama UNIX-TEAM, itu bukan kita — itu scammer, laporin ke admin.',
+//       'Gratis. Selamanya gratis. Kita ga minta duit buat gabung. Kalau ada yang minta bayar atas nama UNIX-TEAM, itu bukan kita itu scammer, laporin ke admin.',
 //     category: 'Gabung & Komunitas',
 //   },
 //   {
@@ -334,14 +334,14 @@ export const stats = [
 //     id: 'faq-6',
 //     question: 'Gimana cara dapat role di Discord?',
 //     answer:
-//       'Ada beberapa role yang bisa didapat otomatis berdasarkan aktivitas, dan ada yang dikasih manual sama admin. Rajin aktif di channel, bantu orang lain, dan jangan ghosting — ntar keliatan sendiri.',
+//       'Ada beberapa role yang bisa didapat otomatis berdasarkan aktivitas, dan ada yang dikasih manual sama admin. Rajin aktif di channel, bantu orang lain, dan jangan ghosting ntar keliatan sendiri.',
 //     category: 'Discord & Server',
 //   },
 //   {
 //     id: 'faq-7',
 //     question: 'Server Discord sering down ga?',
 //     answer:
-//       'Kalau Discord-nya yang down, itu urusan Discord, bukan kita. Kalau server kita yang sepi, itu bukan down — itu semua lagi AFK bareng. Cek halaman Server Status buat lihat kondisi layanan kita.',
+//       'Kalau Discord-nya yang down, itu urusan Discord, bukan kita. Kalau server kita yang sepi, itu bukan down itu semua lagi AFK bareng. Cek halaman Server Status buat lihat kondisi layanan kita.',
 //     category: 'Discord & Server',
 //   },
 //   {
@@ -387,14 +387,14 @@ export const stats = [
 //     id: 'faq-13',
 //     question: 'UNIX-TEAM punya media sosial lain selain Discord?',
 //     answer:
-//       'Ada Twitter/X dan GitHub. Linknya ada di footer website ini. Tapi pusat aktivitas utama kita tetap di Discord — media sosial lain lebih ke pengumuman atau update sesekali.',
+//       'Ada Twitter/X dan GitHub. Linknya ada di footer website ini. Tapi pusat aktivitas utama kita tetap di Discord media sosial lain lebih ke pengumuman atau update sesekali.',
 //     category: 'Lain-lain',
 //   },
 //   {
 //     id: 'faq-14',
 //     question: 'Bisa leave server kapan aja?',
 //     answer:
-//       'Tentu. Ga ada yang bakal nahan. Silent leave is our culture — ga perlu drama, ga perlu pamit panjang-panjang. Tapi kalau balik lagi, pintunya selalu terbuka.',
+//       'Tentu. Ga ada yang bakal nahan. Silent leave is our culture ga perlu drama, ga perlu pamit panjang-panjang. Tapi kalau balik lagi, pintunya selalu terbuka.',
 //     category: 'Lain-lain',
 //   },
 // ];

@@ -5,7 +5,7 @@ import ScrollToTop from '@/components/ui/ScrollToTop';
 import Footer from '@/components/Footer'
 import StructuredData, { generateOrganizationSchema, generateWebSiteSchema } from '@/components/StructuredData'
 import { Toaster } from '@/components/ui/sonner'
-import { ThemeProvider } from '@/components/theme-provider'
+import { ThemeProvider } from '@/components/Theme-provider'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"], variable: '--font-sans' });

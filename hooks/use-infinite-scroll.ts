@@ -26,7 +26,7 @@ export function useInfiniteScroll<T>(items: T[], pageSize = 8) {
           setVisibleCount((prev) => Math.min(prev + pageSize, items.length));
         }
       },
-      // Trigger 300px sebelum sentinel kelihatan — lebih smooth
+      // Trigger 300px sebelum sentinel kelihatan lebih smooth
       { rootMargin: '300px' }
     );
 

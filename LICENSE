@@ -8,7 +8,7 @@ Semua hak yang relevan dipegang erat-erat, sisanya dibiarkan tercecer.
 
 SYARAT DAN KETENTUAN PENGGUNAAN, REPRODUKSI, DAN DISTRIBUSI
 
-Pasal 1 — Definisi
+Pasal 1 Definisi
 
 "Lisensi" mengacu pada dokumen ini, yang ditulis dengan serius tapi
 tidak perlu dibaca terlalu serius.
@@ -32,21 +32,21 @@ dihubungi. Ini kondisi default, bukan pengecualian.
 
 ---
 
-Pasal 2 — Pemberian Lisensi
+Pasal 2 Pemberian Lisensi
 
 Dengan syarat dan ketentuan yang tertuang dalam dokumen ini, setiap
 Kontributor dengan ini memberikan kepada Anda lisensi yang:
 
-  a) Permanen — selama repositori ini masih ada dan GitHub belum
+  a) Permanen selama repositori ini masih ada dan GitHub belum
      di-shutdown oleh Microsoft
 
-  b) Worldwide — termasuk di daerah yang internetnya jelek
+  b) Worldwide termasuk di daerah yang internetnya jelek
 
-  c) Non-exclusive — orang lain boleh pakai juga, kita bukan posesif
+  c) Non-exclusive orang lain boleh pakai juga, kita bukan posesif
 
-  d) Bebas royalti — karena kita juga tidak punya uang
+  d) Bebas royalti karena kita juga tidak punya uang
 
-  e) Tidak bisa dicabut — kecuali Anda melakukan hal-hal yang disebutkan
+  e) Tidak bisa dicabut kecuali Anda melakukan hal-hal yang disebutkan
      di Pasal 4, atau kalau maintainer sedang emosi
 
 untuk mereproduksi, menyiapkan Karya Turunan, menampilkan secara publik,
@@ -55,7 +55,7 @@ Objek, dengan atau tanpa modifikasi.
 
 ---
 
-Pasal 3 — Redistribusi
+Pasal 3 Redistribusi
 
 Anda boleh mereproduksi dan mendistribusikan salinan Karya ini atau
 Karya Turunannya dalam media apapun, dengan atau tanpa modifikasi,
@@ -81,7 +81,7 @@ dengan syarat Anda memenuhi kondisi berikut:
 
 ---
 
-Pasal 4 — Larangan
+Pasal 4 Larangan
 
 Lisensi ini secara tegas TIDAK memberikan izin untuk:
 
@@ -104,7 +104,7 @@ Lisensi ini secara tegas TIDAK memberikan izin untuk:
 
 ---
 
-Pasal 5 — Pengiriman Kontribusi
+Pasal 5 Pengiriman Kontribusi
 
 Kecuali Anda secara eksplisit menyatakan sebaliknya, setiap kontribusi
 yang Anda kirimkan untuk dimasukkan ke dalam Karya ini akan berada di
@@ -116,7 +116,7 @@ entitas abstrak bernama UNIX-TEAM yang bahkan tidak punya badan hukum.
 
 ---
 
-Pasal 6 — Merek Dagang
+Pasal 6 Merek Dagang
 
 Lisensi ini tidak memberikan izin untuk menggunakan nama dagang, merek
 dagang, merek layanan, atau nama produk Licensor.
@@ -128,7 +128,7 @@ karena tidak ada yang tahu siapa yang berhak memberinya.
 
 ---
 
-Pasal 7 — Penafian Garansi
+Pasal 7 Penafian Garansi
 
 KARYA INI DISEDIAKAN "APA ADANYA", TANPA GARANSI DALAM BENTUK APAPUN,
 BAIK TERSURAT MAUPUN TERSIRAT.
@@ -142,12 +142,12 @@ Lebih spesifiknya:
   - Kami tidak menjamin maintainer tidak sedang AFK saat Anda butuh bantuan
 
 Kalau ada yang tidak beres, itu bukan tanggung jawab kami.
-Tapi kalau ada yang beres, itu juga bukan keberuntungan — itu memang
+Tapi kalau ada yang beres, itu juga bukan keberuntungan  itu memang
 by design. Mungkin.
 
 ---
 
-Pasal 8 — Batasan Tanggung Jawab
+Pasal 8 Batasan Tanggung Jawab
 
 Dalam kondisi apapun dan dalam teori hukum apapun, baik perbuatan
 melawan hukum (termasuk kelalaian), kontrak, atau lainnya, kecuali
@@ -170,7 +170,7 @@ begitu kemampuan finansial komunitas ini.
 
 ---
 
-Pasal 9 — Hal-hal Lain
+Pasal 9 Hal-hal Lain
 
   a) Kalau ada pasal dalam Lisensi ini yang tidak valid secara hukum
      di yurisdiksi Anda, pasal tersebut dianggap tidak ada. Sisanya
@@ -207,4 +207,4 @@ Kami akan balas. Ntar.
 
 "Hak cipta diabaikan bersama."
 
-                                           — UNIX-TEAM, tahun yang lupa
+                                            UNIX-TEAM, tahun yang lupa

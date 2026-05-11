@@ -77,11 +77,11 @@ export interface BlogPost {
 //       },
 //       {
 //         title: 'Soal Bully: Filosofi dan Praktik',
-//         content: 'Di UNIX, bully bukan tanda kebencian. Justru sebaliknya. Kalau sudah dibulli berarti kamu sudah dianggap eksis. Yang paling bahaya adalah kalau tidak ada yang ngomong ke kamu sama sekali — itu artinya kamu benar-benar tidak ada di mata komunitas.',
+//         content: 'Di UNIX, bully bukan tanda kebencian. Justru sebaliknya. Kalau sudah dibulli berarti kamu sudah dianggap eksis. Yang paling bahaya adalah kalau tidak ada yang ngomong ke kamu sama sekali itu artinya kamu benar-benar tidak ada di mata komunitas.',
 //       },
 //       {
 //         title: 'Kapan dan Bagaimana Cara Leave',
-//         content: 'Kalau sudah bosan, boleh leave kapanpun. Ga perlu pamit, ga perlu announcement, ga perlu drama. Silent leave adalah budaya, bukan pengkhianatan. Yang tidak diperbolehkan secara kultural adalah leave dengan fanfare — bilang mau inactive, minta perhatian, atau menunggu orang-orang merayu untuk tetap tinggal. Itu terlalu formal untuk UNIX.',
+//         content: 'Kalau sudah bosan, boleh leave kapanpun. Ga perlu pamit, ga perlu announcement, ga perlu drama. Silent leave adalah budaya, bukan pengkhianatan. Yang tidak diperbolehkan secara kultural adalah leave dengan fanfare bilang mau inactive, minta perhatian, atau menunggu orang-orang merayu untuk tetap tinggal. Itu terlalu formal untuk UNIX.',
 //       },
 //     ],
 //   }),
@@ -98,7 +98,7 @@ export interface BlogPost {
 //     sections: [
 //       {
 //         title: 'Kenapa AFK Legend Bisa Eksis?',
-//         content: 'Di UNIX, ada paradoks sosial yang unik. Semakin sering kamu online, semakin kamu dianggap biasa. Semakin jarang kamu muncul, semakin aura misteriusmu terbentuk. AFK Legend adalah puncak dari paradoks ini — mereka hampir tidak pernah ada, tapi selalu terasa ada.',
+//         content: 'Di UNIX, ada paradoks sosial yang unik. Semakin sering kamu online, semakin kamu dianggap biasa. Semakin jarang kamu muncul, semakin aura misteriusmu terbentuk. AFK Legend adalah puncak dari paradoks ini mereka hampir tidak pernah ada, tapi selalu terasa ada.',
 //         subsections: [
 //           {
 //             title: 'Teori Kelangkaan',
@@ -112,7 +112,7 @@ export interface BlogPost {
 //       },
 //       {
 //         title: 'Langkah-Langkah Menjadi AFK Legend',
-//         content: 'Perlu dicatat: ini bukan sesuatu yang bisa dipaksakan. AFK Legend sejati tidak sedang menjalankan strategi — mereka memang natural seperti ini. Tapi kalau kamu mau mencoba, ini polanya.',
+//         content: 'Perlu dicatat: ini bukan sesuatu yang bisa dipaksakan. AFK Legend sejati tidak sedang menjalankan strategi mereka memang natural seperti ini. Tapi kalau kamu mau mencoba, ini polanya.',
 //         subsections: [
 //           {
 //             title: 'Kurangi Frekuensi Online Secara Gradual',
@@ -124,7 +124,7 @@ export interface BlogPost {
 //           },
 //           {
 //             title: 'AFK di Momen yang Paling Dibutuhkan',
-//             content: 'Ini teknik paling advance. Ketika semua orang menunggumu — saat ada keputusan penting, debat yang menggantung, atau pertanyaan yang hanya kamu bisa jawab — itulah saat yang tepat untuk offline. Biarkan notifikasi menumpuk. Kemunculanmu berikutnya akan terasa seperti kedatangan seseorang yang sangat dinantikan.',
+//             content: 'Ini teknik paling advance. Ketika semua orang menunggumu saat ada keputusan penting, debat yang menggantung, atau pertanyaan yang hanya kamu bisa jawab itulah saat yang tepat untuk offline. Biarkan notifikasi menumpuk. Kemunculanmu berikutnya akan terasa seperti kedatangan seseorang yang sangat dinantikan.',
 //           },
 //         ],
 //       },
@@ -163,11 +163,11 @@ export interface BlogPost {
 //           },
 //           {
 //             title: 'Gabut',
-//             content: 'Kondisi default semua member UNIX. Bukan alasan untuk tidak produktif — ini identitas. Orang yang mengaku tidak pernah gabut di UNIX dicurigai adalah bot atau salah masuk server.',
+//             content: 'Kondisi default semua member UNIX. Bukan alasan untuk tidak produktif ini identitas. Orang yang mengaku tidak pernah gabut di UNIX dicurigai adalah bot atau salah masuk server.',
 //           },
 //           {
 //             title: 'Nyawit',
-//             content: 'Kondisi psikologis di mana seseorang terus menunggu sesuatu yang jelas tidak akan datang, tapi tetap menunggu dengan tenang dan penuh keyakinan. Berbeda dari hopium karena nyawit lebih pasif — tidak aktif berharap, hanya diam menunggu takdir.',
+//             content: 'Kondisi psikologis di mana seseorang terus menunggu sesuatu yang jelas tidak akan datang, tapi tetap menunggu dengan tenang dan penuh keyakinan. Berbeda dari hopium karena nyawit lebih pasif tidak aktif berharap, hanya diam menunggu takdir.',
 //           },
 //         ],
 //       },
@@ -222,7 +222,7 @@ export interface BlogPost {
 //       },
 //       {
 //         title: 'Evolusi Status: Dari Korban ke Legenda',
-//         content: 'Yang menarik dari kisah @katspoll bukan bullying-nya — itu hal biasa. Yang menarik adalah bagaimana dia berevolusi dari target menjadi karakter sentral komunitas.',
+//         content: 'Yang menarik dari kisah @katspoll bukan bullying-nya itu hal biasa. Yang menarik adalah bagaimana dia berevolusi dari target menjadi karakter sentral komunitas.',
 //         subsections: [
 //           {
 //             title: 'Fase 1: Korban Biasa',
@@ -240,7 +240,7 @@ export interface BlogPost {
 //       },
 //       {
 //         title: 'Status Terkini dan Proyeksi Masa Depan',
-//         content: 'Tradisi masih berlanjut, @katspoll masih ada, dan tidak ada tanda-tanda perubahan dalam waktu dekat. Ini mungkin adalah hubungan paling konsisten yang pernah ada di UNIX — di antara semua hal yang tidak pernah selesai dan tidak pernah jelas, setidaknya ini stabil.',
+//         content: 'Tradisi masih berlanjut, @katspoll masih ada, dan tidak ada tanda-tanda perubahan dalam waktu dekat. Ini mungkin adalah hubungan paling konsisten yang pernah ada di UNIX di antara semua hal yang tidak pernah selesai dan tidak pernah jelas, setidaknya ini stabil.',
 //       },
 //     ],
 //   }),
@@ -265,7 +265,7 @@ export interface BlogPost {
 //         subsections: [
 //           {
 //             title: 'Korban Jaringan Berikutnya',
-//             content: 'Empat menit setelah insiden petir, dua member lain disconnect tanpa sebab yang jelas. Tidak ada petir di lokasi mereka. Tidak ada gangguan listrik. Sinyalnya hanya memutus sendiri karena memang begitulah sifatnya — tidak butuh alasan, tidak butuh momen dramatis, cukup pergi begitu saja seperti mantan yang ga ada chemistry-nya.',
+//             content: 'Empat menit setelah insiden petir, dua member lain disconnect tanpa sebab yang jelas. Tidak ada petir di lokasi mereka. Tidak ada gangguan listrik. Sinyalnya hanya memutus sendiri karena memang begitulah sifatnya tidak butuh alasan, tidak butuh momen dramatis, cukup pergi begitu saja seperti mantan yang ga ada chemistry-nya.',
 //           },
 //           {
 //             title: 'Proses Reconnect yang Berlangsung 47 Menit',

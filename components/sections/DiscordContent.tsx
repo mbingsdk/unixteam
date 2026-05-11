@@ -18,7 +18,7 @@ const features = [
   {
     icon: Zap,
     title: 'Update Real-time',
-    description: 'Tau info terbaru kapanpun — kecuali pas semua lagi AFK, yang sering banget terjadi',
+    description: 'Tau info terbaru kapanpun kecuali pas semua lagi AFK, yang sering banget terjadi',
   },
 ];
 

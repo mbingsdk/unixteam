@@ -9,7 +9,7 @@ import { type Transition, type Variants } from 'framer-motion';
 
 // ── Spring presets ─────────────────────────────────────────────────────────
 
-/** Snappy — untuk UI elements (button, badge, tag) */
+/** Snappy untuk UI elements (button, badge, tag) */
 export const springSnappy: Transition = {
   type: 'spring',
   stiffness: 500,
@@ -17,7 +17,7 @@ export const springSnappy: Transition = {
   mass: 0.6,
 };
 
-/** Smooth — untuk cards, panels */
+/** Smooth untuk cards, panels */
 export const springSmooth: Transition = {
   type: 'spring',
   stiffness: 350,
@@ -25,7 +25,7 @@ export const springSmooth: Transition = {
   mass: 0.8,
 };
 
-/** Gentle — untuk page sections, large elements */
+/** Gentle untuk page sections, large elements */
 export const springGentle: Transition = {
   type: 'spring',
   stiffness: 200,
@@ -33,7 +33,7 @@ export const springGentle: Transition = {
   mass: 1,
 };
 
-/** Bouncy — untuk modals, popovers */
+/** Bouncy untuk modals, popovers */
 export const springBouncy: Transition = {
   type: 'spring',
   stiffness: 450,
@@ -246,7 +246,7 @@ export const windowVariants: Variants = {
   },
 };
 
-// ── Scroll reveal — gunakan sebagai pengganti ScrollReveal.tsx ─────────────
+// ── Scroll reveal gunakan sebagai pengganti ScrollReveal.tsx ─────────────
 
 export const scrollRevealVariants: Variants = {
   offscreen: { opacity: 0, y: 24, filter: 'blur(4px)' },

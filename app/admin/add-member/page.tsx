@@ -74,7 +74,7 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
     setError(false);
 
     try {
-      // bcrypt.compare — lambat by design (cost factor 12), ini yang bikin brute force susah
+      // bcrypt.compare lambat by design (cost factor 12), ini yang bikin brute force susah
       const match = await bcrypt.compare(value, dskkd);
 
       if (match) {

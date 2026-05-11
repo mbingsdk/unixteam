@@ -242,7 +242,7 @@ function JoinForm() {
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-2">Terkirim!</h2>
             <p className="text-foreground/60 text-sm">
-              Data lu udah masuk ke Discord admin. Tunggu review —
+              Data lu udah masuk ke Discord admin. Tunggu review 
               bisa cepet, bisa ntar, bisa ga dibalas. Itu namanya UNIX.
             </p>
           </div>

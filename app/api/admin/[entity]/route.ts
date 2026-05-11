@@ -2,7 +2,7 @@
  * app/api/admin/[entity]/route.ts
  *
  * Dev-only generic CRUD untuk semua entity.
- * API ini HANYA jalan saat `next dev` — tidak ada di static build.
+ * API ini HANYA jalan saat `next dev` tidak ada di static build.
  *
  * Endpoints:
  *   GET    /api/admin/team             → semua items

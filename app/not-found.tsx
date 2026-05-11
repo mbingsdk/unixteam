@@ -22,7 +22,7 @@ export default function NotFound() {
           </h1>
           <p className="text-foreground/50 text-sm leading-relaxed">
             Mungkin lu salah ketik, mungkin halamannya dihapus, atau mungkin
-            emang ga pernah ada. Sama kayak ETA project UNIX — ga jelas
+            emang ga pernah ada. Sama kayak ETA project UNIX ga jelas
             kapannya.
           </p>
         </div>

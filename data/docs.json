@@ -44,14 +44,14 @@
           },
           {
             "title": "Skenario C: Disambut dengan Hangat",
-            "content": "Sangat jarang terjadi tapi pernah ada presedennya. Kalau ini terjadi, jangan terlalu terharu — besoknya kamu tetap akan dibully."
+            "content": "Sangat jarang terjadi tapi pernah ada presedennya. Kalau ini terjadi, jangan terlalu terharu besoknya kamu tetap akan dibully."
           }
         ],
         "tips": "Perkenalan tidak wajib. Tapi kalau mau perkenalan, hindari terlalu formal. \"Halo, nama saya X, saya tertarik bergabung karena...\" akan langsung mendapat reaksi yang tidak ingin kamu terima."
       },
       {
         "title": "Cara Keluar Kalau Sudah Bosan",
-        "content": "Leave saja. Tanpa pamit, tanpa pengumuman, tanpa drama. Silent leave adalah budaya yang dihormati di UNIX. Kalau mau balik lagi, juga tidak perlu announcement — masuk saja seolah tidak pernah pergi. Tidak ada yang akan nanya kemana saja."
+        "content": "Leave saja. Tanpa pamit, tanpa pengumuman, tanpa drama. Silent leave adalah budaya yang dihormati di UNIX. Kalau mau balik lagi, juga tidak perlu announcement masuk saja seolah tidak pernah pergi. Tidak ada yang akan nanya kemana saja."
       }
     ]
   },
@@ -99,11 +99,11 @@
           },
           {
             "title": "CEO Diks",
-            "content": "Jabatan yang terdengar bergengsi tapi secara operasional adalah posisi paling tragis di UNIX. Tugasnya berdagang. Misinya — yang didukung penuh oleh komunitas — adalah terus rugi demi menjaga keseimbangan kosmis ekonomi UNIX. Tidak ada yang benar-benar mengerti kenapa ini harus terjadi, tapi semua sepakat bahwa itu perlu."
+            "content": "Jabatan yang terdengar bergengsi tapi secara operasional adalah posisi paling tragis di UNIX. Tugasnya berdagang. Misinya yang didukung penuh oleh komunitas adalah terus rugi demi menjaga keseimbangan kosmis ekonomi UNIX. Tidak ada yang benar-benar mengerti kenapa ini harus terjadi, tapi semua sepakat bahwa itu perlu."
           },
           {
             "title": "@katspoll: NPC Legendaris",
-            "content": "Bukan member biasa, bukan AFK Legend. @katspoll telah bertransendensi dari kategori member dan menjadi karakter — bagian dari cerita yang tidak bisa dihapus tanpa mengubah identitas komunitas itu sendiri."
+            "content": "Bukan member biasa, bukan AFK Legend. @katspoll telah bertransendensi dari kategori member dan menjadi karakter bagian dari cerita yang tidak bisa dihapus tanpa mengubah identitas komunitas itu sendiri."
           }
         ],
         "tips": "Jangan mencoba merebut posisi-posisi khusus ini. Mereka tidak bisa direbut. Mereka terbentuk secara organik dan waktu yang memutuskan siapa yang mendapatkannya."
@@ -128,11 +128,11 @@
         "subsections": [
           {
             "title": "Silent Leave",
-            "content": "Pergi tanpa pamit. Ini bukan ketidaksopanan — ini efisiensi komunikasi. Tidak ada yang perlu tahu kamu pergi. Kalau kamu kembali, tidak ada yang perlu tahu kamu sudah kembali. Kamu hanya ada atau tidak ada, dan itu cukup."
+            "content": "Pergi tanpa pamit. Ini bukan ketidaksopanan ini efisiensi komunikasi. Tidak ada yang perlu tahu kamu pergi. Kalau kamu kembali, tidak ada yang perlu tahu kamu sudah kembali. Kamu hanya ada atau tidak ada, dan itu cukup."
           },
           {
             "title": "Ritual Bully @katspoll",
-            "content": "Bukan bullying dalam arti negatif — ini lebih ke olahraga komunal. Setiap member, cepat atau lambat, akan ikut berpartisipasi. @katspoll tidak keberatan, atau setidaknya sudah melewati fase keberatan."
+            "content": "Bukan bullying dalam arti negatif ini lebih ke olahraga komunal. Setiap member, cepat atau lambat, akan ikut berpartisipasi. @katspoll tidak keberatan, atau setidaknya sudah melewati fase keberatan."
           },
           {
             "title": "Debat Sidang PBB",
@@ -150,11 +150,11 @@
           },
           {
             "title": "Copium sebagai Bahan Bakar",
-            "content": "UNIX berjalan di atas copium kolektif. Harapan yang secara logis tidak mungkin terwujud tapi tetap dipelihara bersama. Ada yang bilang ini tidak sehat. Tapi tanpa copium, separuh project UNIX tidak akan pernah dimulai — dan meskipun tidak selesai, setidaknya sudah dimulai."
+            "content": "UNIX berjalan di atas copium kolektif. Harapan yang secara logis tidak mungkin terwujud tapi tetap dipelihara bersama. Ada yang bilang ini tidak sehat. Tapi tanpa copium, separuh project UNIX tidak akan pernah dimulai dan meskipun tidak selesai, setidaknya sudah dimulai."
           },
           {
             "title": "Solidaritas yang Kelihatannya Palsu",
-            "content": "Semua orang bilang gas tapi tidak ada yang bergerak. Semua orang bilang ntar tapi tidak ada yang tahu kapan. Tapi ketika ada yang benar-benar butuh sesuatu — ketika situasinya nyata dan mendesak — entah dari mana, orang-orang muncul. Solidaritasnya terlihat palsu di permukaan, tapi strukturnya ada di bawah."
+            "content": "Semua orang bilang gas tapi tidak ada yang bergerak. Semua orang bilang ntar tapi tidak ada yang tahu kapan. Tapi ketika ada yang benar-benar butuh sesuatu ketika situasinya nyata dan mendesak entah dari mana, orang-orang muncul. Solidaritasnya terlihat palsu di permukaan, tapi strukturnya ada di bawah."
           }
         ],
         "tips": "Tidak perlu mencoba memahami semua ini sekaligus. Sebagian besar hal di UNIX baru masuk akal setelah kamu mengalaminya, bukan setelah kamu membacanya."
