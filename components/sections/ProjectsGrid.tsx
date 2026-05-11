@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '@/components/effects/ScrollReveal';
 import { projects } from '@/lib/data';
-import { ExternalLink, Info, Loader2 } from 'lucide-react';
+import { ExternalLink, Info, Loader2, Search } from 'lucide-react';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
 import { useInfiniteScroll } from '@/hooks/use-infinite-scroll';
 
@@ -48,25 +48,25 @@ export default function ProjectsGrid() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Active':
-        return 'bg-green-500/10 text-green-400';
+        return 'bg-green-500/15 text-green-400 border-green-500/30';
       case 'In Development':
-        return 'bg-yellow-500/10 text-yellow-400';
+        return 'bg-amber-500/15 text-amber-400 border-amber-500/30';
       case 'Archived':
-        return 'bg-gray-500/10 text-gray-400';
+        return 'bg-neutral-500/15 text-neutral-400 border-neutral-500/30';
       default:
-        return 'bg-gray-500/10 text-gray-400';
+        return 'bg-neutral-500/15 text-neutral-400 border-neutral-500/30';
     }
   };
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
+    <section className="py-24 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <ScrollReveal className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold text-balance mb-4">
+          <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-balance mb-4">
             Project Aneh Kita
           </h1>
-          <p className="text-foreground/60 text-lg max-w-2xl mx-auto">
+          <p className="text-foreground/50 text-lg max-w-2xl mx-auto font-medium">
             Liat semua game Roblox, tools, scripts, dan library gila kita
           </p>
         </ScrollReveal>
@@ -80,24 +80,28 @@ export default function ProjectsGrid() {
                 placeholder="Cari project aneh..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-6 py-3 rounded-lg bg-card border border-border text-foreground placeholder-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+                className="w-full px-6 py-3.5 rounded-2xl bg-white/[0.04] border border-white/[0.08] text-foreground placeholder-foreground/40 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent/30 transition-all backdrop-blur-xl"
+                style={{
+                  boxShadow: '0 2px 12px -2px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.03)'
+                }}
               />
-              <span className="absolute right-6 top-1/2 -translate-y-1/2 text-foreground/40">
-                🔍
-              </span>
+              <Search
+                size={18}
+                className="absolute right-5 top-1/2 -translate-y-1/2 text-foreground/35 pointer-events-none"
+              />
             </div>
 
             <div>
-              <p className="text-sm font-semibold text-foreground mb-3">Category</p>
+              <p className="text-sm font-semibold text-foreground/70 mb-3">Category</p>
               <div className="flex flex-wrap gap-2">
                 {categories.map((category) => (
                   <button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
-                    className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                    className={`px-4 py-2.5 rounded-xl font-medium transition-all duration-200 ${
                       selectedCategory === category
-                        ? 'bg-accent text-brand-dark'
-                        : 'bg-card border border-border text-foreground hover:border-accent'
+                        ? 'bg-accent text-accent-foreground shadow-lg shadow-accent/25'
+                        : 'bg-white/[0.04] border border-white/[0.08] text-foreground hover:bg-white/[0.08]'
                     }`}
                   >
                     {category === 'all' ? 'All Projects' : category}
@@ -107,16 +111,16 @@ export default function ProjectsGrid() {
             </div>
 
             <div>
-              <p className="text-sm font-semibold text-foreground mb-3">Status</p>
+              <p className="text-sm font-semibold text-foreground/70 mb-3">Status</p>
               <div className="flex flex-wrap gap-2">
                 {statuses.map((status) => (
                   <button
                     key={status}
                     onClick={() => setSelectedStatus(status)}
-                    className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                    className={`px-4 py-2.5 rounded-xl font-medium transition-all duration-200 ${
                       selectedStatus === status
-                        ? 'bg-accent text-brand-dark'
-                        : 'bg-card border border-border text-foreground hover:border-accent'
+                        ? 'bg-accent text-accent-foreground shadow-lg shadow-accent/25'
+                        : 'bg-white/[0.04] border border-white/[0.08] text-foreground hover:bg-white/[0.08]'
                     }`}
                   >
                     {status === 'all' ? 'All Status' : status}
@@ -131,7 +135,7 @@ export default function ProjectsGrid() {
         <AnimatePresence mode="wait">
           <motion.div
             layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
             key={`${selectedCategory}-${selectedStatus}-${searchQuery}`}
           >
             {visibleItems.map((project, index) => (
@@ -144,31 +148,39 @@ export default function ProjectsGrid() {
                 transition={{ delay: (index % 6) * 0.05 }}
               >
                 <motion.div
-                  className="glass-effect rounded-lg overflow-hidden h-full flex flex-col group hover:border-accent/50 transition-all duration-300"
-                  whileHover={{ y: -8 }}
+                  className="rounded-3xl overflow-hidden h-full flex flex-col group transition-all duration-300"
+                  whileHover={{ y: -6 }}
+                  style={{
+                    background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%)',
+                    backdropFilter: 'blur(24px) saturate(180%)',
+                    WebkitBackdropFilter: 'blur(24px) saturate(180%)',
+                    border: '1px solid rgba(255, 255, 255, 0.08)',
+                    boxShadow: '0 8px 32px -8px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
+                  }}
                 >
                   {/* Thumbnail */}
-                  <div className="w-full h-48 bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center overflow-hidden relative">
+                  <div className="w-full h-48 bg-gradient-to-br from-accent/15 to-accent/5 flex items-center justify-center overflow-hidden relative">
                     {project.image ? (
                       <ImageWithFallback
                         src={project.image}
                         alt={project.title}
                         sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
                         fallback={
-                          <div className="text-6xl font-bold text-accent/20 group-hover:scale-110 transition-transform duration-300">
+                          <div className="text-7xl font-bold text-accent/20 group-hover:scale-110 transition-transform duration-500">
                             {project.title[0]}
                           </div>
                         }
                       />
                     ) : (
-                      <div className="text-6xl font-bold text-accent/20 group-hover:scale-110 transition-transform duration-300">
+                      <div className="text-7xl font-bold text-accent/20 group-hover:scale-110 transition-transform duration-500">
                         {project.title[0]}
                       </div>
                     )}
 
-                    {/* Status badge — overlay top-left */}
+                    {/* Status badge */}
                     <span
-                      className={`absolute top-2 left-2 text-xs font-semibold px-2 py-0.5 rounded backdrop-blur-sm border border-white/10 ${getStatusColor(project.status)}`}
+                      className={`absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-lg backdrop-blur-xl border ${getStatusColor(project.status)}`}
                     >
                       {project.status}
                     </span>
@@ -176,16 +188,14 @@ export default function ProjectsGrid() {
 
                   {/* Content */}
                   <div className="p-6 flex-1 flex flex-col">
-                    <div className="mb-1 flex items-center gap-2">
-                      <span className="text-xs font-semibold text-foreground/40 uppercase tracking-wide">
-                        {project.category}
-                      </span>
-                    </div>
+                    <span className="text-xs font-semibold text-foreground/30 uppercase tracking-wider mb-2">
+                      {project.category}
+                    </span>
 
-                    <h3 className="text-xl font-bold text-foreground mb-2">
+                    <h3 className="text-xl font-bold text-foreground mb-2 tracking-tight">
                       {project.title}
                     </h3>
-                    <p className="text-foreground/60 text-sm mb-4 flex-1">
+                    <p className="text-foreground/50 text-sm mb-4 flex-1 leading-relaxed">
                       {project.description}
                     </p>
 
@@ -194,7 +204,7 @@ export default function ProjectsGrid() {
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2 py-1 rounded text-xs font-medium bg-accent/10 text-accent"
+                          className="px-2.5 py-1 rounded-lg text-xs font-medium bg-accent/10 text-accent border border-accent/20"
                         >
                           {tag}
                         </span>
@@ -202,10 +212,10 @@ export default function ProjectsGrid() {
                     </div>
 
                     {/* CTA buttons */}
-                    <div className="flex gap-2 pt-4 border-t border-border/50">
+                    <div className="flex gap-2.5 pt-4 border-t border-white/[0.06]">
                       <Link
                         href={`/projects/${project.slug}`}
-                        className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg border border-border text-foreground/70 hover:border-accent hover:text-accent text-sm font-medium transition-all duration-200"
+                        className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08] text-foreground/70 hover:bg-white/[0.08] hover:text-foreground text-sm font-medium transition-all duration-200"
                       >
                         <Info size={14} />
                         Detail
@@ -216,13 +226,13 @@ export default function ProjectsGrid() {
                           href={project.demoUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg bg-accent/10 border border-accent/30 text-accent hover:bg-accent/20 text-sm font-medium transition-all duration-200"
+                          className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-accent/10 border border-accent/30 text-accent hover:bg-accent/20 text-sm font-medium transition-all duration-200"
                         >
                           <ExternalLink size={14} />
                           Demo
                         </a>
                       ) : (
-                        <span className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg border border-border/40 text-foreground/30 text-sm font-medium cursor-not-allowed select-none">
+                        <span className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl border border-white/[0.04] text-foreground/25 text-sm font-medium cursor-not-allowed select-none">
                           <ExternalLink size={14} />
                           Demo
                         </span>
@@ -242,7 +252,7 @@ export default function ProjectsGrid() {
             animate={{ opacity: 1 }}
             className="text-center py-12"
           >
-            <p className="text-foreground/60 text-lg">
+            <p className="text-foreground/50 text-lg">
               Ga ada project yang cocok sama filter aneh kamu.
             </p>
           </motion.div>

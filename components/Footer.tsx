@@ -51,24 +51,29 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border bg-background">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+    <footer className="relative border-t border-white/[0.06] bg-background/50 backdrop-blur-2xl">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
             viewport={{ once: true }}
           >
-            <div className="flex items-center gap-2 mb-4">
-              <div className="h-8 w-8 rounded bg-accent flex items-center justify-center">
-                <span className="text-brand-dark font-bold text-lg">U</span>
+            <div className="flex items-center gap-2.5 mb-4">
+              <div 
+                className="h-9 w-9 rounded-xl bg-accent flex items-center justify-center"
+                style={{
+                  boxShadow: '0 4px 12px -2px rgba(255, 184, 0, 0.3)'
+                }}
+              >
+                <span className="text-accent-foreground font-bold text-lg">U</span>
               </div>
-              <span className="font-bold text-xl">UNIX-TEAM</span>
+              <span className="font-bold text-xl tracking-tight">UNIX-TEAM</span>
             </div>
-            <p className="text-foreground/60 text-sm">
+            <p className="text-foreground/45 text-sm leading-relaxed">
               Komunitas game tidak sehat dan sangat menyesatkan. Bukan tentang menang, tapi tentang ribut bersama.
             </p>
           </motion.div>
@@ -79,21 +84,30 @@ export default function Footer() {
               key={group.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: (index + 1) * 0.1 }}
+              transition={{ duration: 0.5, delay: (index + 1) * 0.08, ease: [0.25, 0.46, 0.45, 0.94] }}
               viewport={{ once: true }}
             >
-              <h3 className="font-semibold text-foreground mb-4">{group.title}</h3>
-              <ul className="space-y-2">
+              <h3 className="font-semibold text-foreground mb-4 tracking-tight">{group.title}</h3>
+              <ul className="space-y-2.5">
                 {group.links.map((link) => (
                   <li key={link.href}>
-                    <a
-                      href={link.href}
-                      target={link.href.startsWith('http') ? '_blank' : undefined}
-                      rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      className="text-foreground/60 hover:text-accent text-sm transition-colors duration-200"
-                    >
-                      {link.label}
-                    </a>
+                    {link.href.startsWith('http') ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-foreground/45 hover:text-accent text-sm transition-colors duration-200"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-foreground/45 hover:text-accent text-sm transition-colors duration-200"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -102,7 +116,7 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-border my-8" />
+        <div className="border-t border-white/[0.06] my-8" />
 
         {/* Bottom Section */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -112,7 +126,7 @@ export default function Footer() {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-foreground/60 text-sm"
+            className="text-foreground/40 text-sm"
           >
             © {new Date().getFullYear()} UNIX-TEAM. Hak cipta diabaikan bersama.
           </motion.p>
@@ -123,7 +137,7 @@ export default function Footer() {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="flex items-center gap-4"
+            className="flex items-center gap-2"
           >
             {socialLinks.map((social) => {
               const Icon = social.icon;
@@ -133,10 +147,10 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg hover:bg-card transition-colors duration-200 text-foreground/60 hover:text-accent"
+                  className="p-2.5 rounded-xl hover:bg-white/[0.06] transition-all duration-200 text-foreground/50 hover:text-accent"
                   aria-label={social.label}
                 >
-                  <Icon size={20} />
+                  <Icon size={18} />
                 </a>
               );
             })}

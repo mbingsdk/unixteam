@@ -13,27 +13,27 @@ export default function ProjectsPreview() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Active':
-        return 'bg-green-500/10 text-green-400';
+        return 'bg-green-500/15 text-green-400 border-green-500/30';
       case 'In Development':
-        return 'bg-yellow-500/10 text-yellow-400';
+        return 'bg-amber-500/15 text-amber-400 border-amber-500/30';
       case 'Archived':
-        return 'bg-gray-500/10 text-gray-400';
+        return 'bg-neutral-500/15 text-neutral-400 border-neutral-500/30';
       default:
-        return 'bg-gray-500/10 text-gray-400';
+        return 'bg-neutral-500/15 text-neutral-400 border-neutral-500/30';
     }
   };
 
   return (
-    <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-border">
+    <section className="relative py-24 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
-        <div className="flex items-center justify-between mb-16">
+        <div className="flex items-end justify-between mb-12">
           <ScrollReveal>
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-balance">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-balance">
                 Project Aneh
               </h2>
-              <p className="text-foreground/60 text-lg mt-4">
+              <p className="text-foreground/50 text-lg mt-3 font-medium">
                 Liat kreasi aneh dan inovasi gila kita
               </p>
             </div>
@@ -42,34 +42,42 @@ export default function ProjectsPreview() {
           <ScrollReveal delay={0.1}>
             <Link
               href="/projects"
-              className="hidden md:flex items-center gap-2 px-6 py-3 rounded-lg border border-accent/30 text-accent hover:bg-accent/5 transition-all duration-300 group"
+              className="hidden md:flex items-center gap-2 px-5 py-2.5 rounded-xl text-accent hover:bg-accent/10 transition-all duration-300 group font-medium text-sm"
             >
               View All
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
           </ScrollReveal>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {featuredProjects.map((project, index) => (
             <ScrollReveal key={project.id} delay={index * 0.1}>
               <motion.div
-                className="glass-effect rounded-lg overflow-hidden h-full flex flex-col group hover:border-accent/50 transition-all duration-300"
-                whileHover={{ y: -8 }}
+                className="relative rounded-3xl overflow-hidden h-full flex flex-col group"
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+                style={{
+                  background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%)',
+                  backdropFilter: 'blur(24px) saturate(180%)',
+                  WebkitBackdropFilter: 'blur(24px) saturate(180%)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  boxShadow: '0 8px 32px -8px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
+                }}
               >
                 {/* Thumbnail */}
-                <div className="relative w-full h-40 bg-gradient-to-br from-accent/20 to-accent/5 overflow-hidden">
+                <div className="relative w-full h-44 bg-gradient-to-br from-accent/15 to-accent/5 overflow-hidden">
                   {project.image ? (
                     <ImageWithFallback
                       src={project.image}
                       alt={project.title}
                       sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
                       loading="lazy"
                       fallback={
                         <div className="w-full h-full flex items-center justify-center">
-                          <div className="text-6xl font-bold text-accent/20 group-hover:scale-110 transition-transform duration-300">
+                          <div className="text-7xl font-bold text-accent/20 group-hover:scale-110 transition-transform duration-500">
                             {project.title[0]}
                           </div>
                         </div>
@@ -77,15 +85,15 @@ export default function ProjectsPreview() {
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                      <div className="text-6xl font-bold text-accent/20 group-hover:scale-110 transition-transform duration-300">
+                      <div className="text-7xl font-bold text-accent/20 group-hover:scale-110 transition-transform duration-500">
                         {project.title[0]}
                       </div>
                     </div>
                   )}
 
-                  {/* Status badge overlay — top-left, konsisten sama ProjectsGrid */}
+                  {/* Status badge */}
                   <span
-                    className={`absolute top-2 left-2 text-xs font-semibold px-2 py-0.5 rounded backdrop-blur-sm border border-white/10 ${getStatusColor(project.status)}`}
+                    className={`absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-lg backdrop-blur-xl border ${getStatusColor(project.status)}`}
                   >
                     {project.status}
                   </span>
@@ -93,32 +101,30 @@ export default function ProjectsPreview() {
 
                 {/* Content */}
                 <div className="p-6 flex-1 flex flex-col">
-                  <div className="mb-1">
-                    <span className="text-xs font-semibold text-foreground/40 uppercase tracking-wide">
-                      {project.category}
-                    </span>
-                  </div>
+                  <span className="text-xs font-semibold text-foreground/30 uppercase tracking-wider mb-2">
+                    {project.category}
+                  </span>
 
-                  <h3 className="text-xl font-bold text-foreground mb-2">{project.title}</h3>
-                  <p className="text-foreground/60 text-sm mb-4 flex-1">{project.description}</p>
+                  <h3 className="text-xl font-bold text-foreground mb-2 tracking-tight">{project.title}</h3>
+                  <p className="text-foreground/50 text-sm mb-4 flex-1 leading-relaxed">{project.description}</p>
 
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2 mb-5">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2 py-1 rounded text-xs font-medium bg-accent/10 text-accent"
+                        className="px-2.5 py-1 rounded-lg text-xs font-medium bg-accent/10 text-accent border border-accent/20"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  {/* CTA buttons — konsisten sama ProjectsGrid */}
-                  <div className="flex gap-2 pt-4 border-t border-border/50">
+                  {/* CTA buttons */}
+                  <div className="flex gap-2.5 pt-4 border-t border-white/[0.06]">
                     <Link
                       href={`/projects/${project.slug}`}
-                      className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg border border-border text-foreground/70 hover:border-accent hover:text-accent text-sm font-medium transition-all duration-200"
+                      className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08] text-foreground/70 hover:bg-white/[0.08] hover:text-foreground text-sm font-medium transition-all duration-200"
                     >
                       <Info size={14} />
                       Detail
@@ -129,13 +135,13 @@ export default function ProjectsPreview() {
                         href={project.demoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg bg-accent/10 border border-accent/30 text-accent hover:bg-accent/20 text-sm font-medium transition-all duration-200"
+                        className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-accent/10 border border-accent/30 text-accent hover:bg-accent/20 text-sm font-medium transition-all duration-200"
                       >
                         <ExternalLink size={14} />
                         Demo
                       </a>
                     ) : (
-                      <span className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg border border-border/40 text-foreground/30 text-sm font-medium cursor-not-allowed select-none">
+                      <span className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl border border-white/[0.04] text-foreground/25 text-sm font-medium cursor-not-allowed select-none">
                         <ExternalLink size={14} />
                         Demo
                       </span>
@@ -151,10 +157,10 @@ export default function ProjectsPreview() {
         <div className="flex md:hidden justify-center mt-12">
           <Link
             href="/projects"
-            className="flex items-center gap-2 px-6 py-3 rounded-lg border border-accent/30 text-accent hover:bg-accent/5 transition-all duration-300 group"
+            className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white/[0.04] border border-white/[0.08] text-accent hover:bg-white/[0.08] transition-all duration-300 group font-medium"
           >
             View All Projects
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
           </Link>
         </div>
       </div>

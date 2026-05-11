@@ -3,8 +3,47 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* UNIX-TEAM Dark Theme - Default */
+/* UNIX-TEAM Dark Theme - macOS Inspired */
 :root {
+  --background: oklch(0.97 0 0);
+  --foreground: oklch(0.12 0 0);
+  --card: oklch(0.93 0 0);
+  --card-foreground: oklch(0.12 0 0);
+  --popover: oklch(0.95 0 0);
+  --popover-foreground: oklch(0.12 0 0);
+  --primary: oklch(0.55 0.18 45);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.88 0 0);
+  --secondary-foreground: oklch(0.12 0 0);
+  --muted: oklch(0.88 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+  --accent: oklch(0.55 0.18 45);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.82 0 0);
+  --input: oklch(0.88 0 0);
+  --ring: oklch(0.55 0.18 45);
+  --chart-1: oklch(0.55 0.18 45);
+  --chart-2: oklch(0.5 0.15 250);
+  --chart-3: oklch(0.45 0.12 200);
+  --chart-4: oklch(0.5 0.15 30);
+  --chart-5: oklch(0.55 0.18 350);
+  --radius: 0.5rem;
+  --sidebar: oklch(0.92 0 0);
+  --sidebar-foreground: oklch(0.12 0 0);
+  --sidebar-primary: oklch(0.55 0.18 45);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.88 0 0);
+  --sidebar-accent-foreground: oklch(0.12 0 0);
+  --sidebar-border: oklch(0.82 0 0);
+  --sidebar-ring: oklch(0.55 0.18 45);
+  /* brand-dark is always dark for contrast on accent buttons */
+  --brand-dark: oklch(0.05 0 0);
+}
+
+/* ── UNIX-TEAM Dark Mode (original colors) ────────────────────────────── */
+.dark {
   --background: oklch(0.08 0 0);
   --foreground: oklch(0.98 0 0);
   --card: oklch(0.12 0 0);
@@ -38,11 +77,12 @@
   --sidebar-accent-foreground: oklch(0.98 0 0);
   --sidebar-border: oklch(0.2 0 0);
   --sidebar-ring: oklch(0.7 0.2 45);
+  --brand-dark: oklch(0.05 0 0);
 }
 
 @theme inline {
-  --font-sans: 'Segoe UI', 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;
-  --font-mono: 'Cascadia Code', 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif;
+  --font-mono: 'SF Mono', 'JetBrains Mono', 'Fira Code', Menlo, Monaco, monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -67,10 +107,10 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 4px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 8px);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -86,36 +126,177 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-/* Custom animations and effects */
+/* macOS-style utilities */
 @layer utilities {
   .glow-accent {
-    box-shadow: 0 0 20px rgba(255, 184, 0, 0.3);
+    box-shadow: 
+      0 0 20px rgba(255, 184, 0, 0.2),
+      0 0 40px rgba(255, 184, 0, 0.1);
   }
 
+  /* macOS Vibrancy Glass Effect */
   .glass-effect {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(8px);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+      0 4px 24px -1px rgba(0, 0, 0, 0.3),
+      0 1px 3px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  /* macOS Card Style */
+  .macos-card {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.04) 100%
+    );
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 
+      0 8px 32px -8px rgba(0, 0, 0, 0.4),
+      0 2px 8px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  /* macOS Button Style */
+  .macos-button {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.06) 100%
+    );
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 
+      0 2px 8px -2px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .macos-button:hover {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+    box-shadow: 
+      0 4px 12px -2px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
   .text-glow {
-    text-shadow: 0 0 10px rgba(255, 184, 0, 0.3);
+    text-shadow: 0 0 20px rgba(255, 184, 0, 0.4);
   }
 
   .will-change-transform {
     will-change: transform;
+  }
+
+  /* Safe area padding */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* macOS-style subtle gradient overlay */
+  .gradient-overlay {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.4) 100%
+    );
+  }
+
+  /* Noise texture for depth */
+  .noise-texture::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.02;
+    pointer-events: none;
+    mix-blend-mode: overlay;
   }
 }
 
 /* Terminal/code style text */
 @layer utilities {
   .font-terminal {
-    @apply font-mono text-sm tracking-widest;
+    @apply font-mono text-sm tracking-wide;
   }
+}
+
+/* macOS-style scrollbars */
+* {
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 100px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Code blocks and textareas */
+pre::-webkit-scrollbar,
+textarea::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+pre::-webkit-scrollbar-thumb,
+textarea::-webkit-scrollbar-thumb {
+  background: rgba(255, 184, 0, 0.3);
+  border-radius: 100px;
+}
+
+/* macOS-style selection */
+::selection {
+  background: rgba(255, 184, 0, 0.3);
+  color: inherit;
+}
+
+/* Smooth focus transitions */
+*:focus-visible {
+  outline: 2px solid rgba(255, 184, 0, 0.5);
+  outline-offset: 2px;
+  transition: outline-offset 0.15s ease;
 }
 
 /* Firefox */

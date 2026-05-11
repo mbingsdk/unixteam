@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { Download, Loader2 } from 'lucide-react';
+import { Download, Loader2, User } from 'lucide-react';
 import { teamMembers } from '@/lib/data';
 import { TeamMember } from '@/types/index';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
@@ -29,7 +29,7 @@ function extractSocialInfo(social: Record<string, string>): SocialInfo[] {
       socials.push({
         type: 'roblox',
         icon: RobloxIcon,
-        value: match[1], // akan di-fetch
+        value: match[1],
       });
     }
   }
@@ -79,7 +79,6 @@ function IDCard({ member, index }: { member: TeamMemberWithUsername; index: numb
 
   const socials = extractSocialInfo(member.social || {});
 
-  // Set date on client side to avoid hydration mismatch
   useEffect(() => {
     setCurrentDate(
       new Date().toLocaleDateString('id-ID', {
@@ -164,7 +163,7 @@ function IDCard({ member, index }: { member: TeamMemberWithUsername; index: numb
           `,
         }}
       >
-        {/* Header - "KTP" Title with Logo */}
+        {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div>
             <h2 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-300">
@@ -174,7 +173,6 @@ function IDCard({ member, index }: { member: TeamMemberWithUsername; index: numb
               PASIEN UNIX-TEAM
             </p>
           </div>
-          {/* Logo */}
           <div className="relative h-12 w-12 rounded-lg overflow-hidden border border-cyan-400/30 bg-slate-700/50">
             <Image
               src="/apple-icon.png"
@@ -193,13 +191,16 @@ function IDCard({ member, index }: { member: TeamMemberWithUsername; index: numb
         {/* Main Content */}
         <div className="flex gap-4 mb-4">
           <div className="w-20 flex-shrink-0 space-y-2">
-            {/* Photo */}
             <div className="relative h-20 w-20 rounded-lg overflow-hidden border-2 border-cyan-400/40 bg-slate-700/50">
               <ImageWithFallback
                 src={member.image}
                 alt={member.name}
                 className="object-cover"
-                fallback={<div className="text-3xl">👤</div>}
+                fallback={
+                  <div className="w-full h-full flex items-center justify-center bg-slate-700/50">
+                    <User size={36} className="text-cyan-400/40" />
+                  </div>
+                }
               />
             </div>
             {member.tags && member.tags.length > 0 && (
@@ -220,7 +221,6 @@ function IDCard({ member, index }: { member: TeamMemberWithUsername; index: numb
             <p className="text-xs text-cyan-300 font-semibold mb-1">
               {member.role}
             </p>
-
           </div>
         </div>
 
@@ -252,7 +252,7 @@ function IDCard({ member, index }: { member: TeamMemberWithUsername; index: numb
           </div>
         )}
 
-        {/* Footer - ID Number & Date */}
+        {/* Footer */}
         <div className="flex items-center justify-between text-[10px] text-slate-400">
           <span className="font-mono">ID: {member.id.toString().padStart(4, '0')}</span>
           <span className="font-mono">{currentDate || '--/--/----'}</span>
@@ -320,4 +320,3 @@ export default function IDCardGenerator() {
     </section>
   );
 }
-

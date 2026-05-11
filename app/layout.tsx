@@ -1,12 +1,15 @@
 import type { Metadata } from 'next'
-
-import ClarityProvider from "@/components/ClarityProvider"
+import { Geist, Geist_Mono } from 'next/font/google'
 import Navigation from '@/components/Navigation'
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import Footer from '@/components/Footer'
 import StructuredData, { generateOrganizationSchema, generateWebSiteSchema } from '@/components/StructuredData'
 import { Toaster } from '@/components/ui/sonner'
+import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
+
+const _geist = Geist({ subsets: ["latin"], variable: '--font-sans' });
+const _geistMono = Geist_Mono({ subsets: ["latin"], variable: '--font-mono' });
 
 const BASE_URL = 'https://unixteam.my.id';
 
@@ -99,29 +102,35 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="id" suppressHydrationWarning>
+    <html lang="id" className={`${_geist.variable} ${_geistMono.variable}`} suppressHydrationWarning>
       <head>
         <StructuredData data={generateOrganizationSchema()} />
         <StructuredData data={generateWebSiteSchema()} />
       </head>
       <body className="font-sans antialiased bg-background text-foreground flex flex-col min-h-screen">
-        <ClarityProvider />
-        <Navigation />
-        <main className="flex-1">
-          {children}
-        </main>
-        <Footer />
-        <ScrollToTop />
-        <Toaster
-          position="bottom-right"
-          toastOptions={{
-            style: {
-              background: 'var(--card)',
-              border: '1px solid var(--border)',
-              color: 'var(--foreground)',
-            },
-          }}
-        />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navigation />
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer />
+          <ScrollToTop />
+          <Toaster
+            position="bottom-right"
+            toastOptions={{
+              style: {
+                background: 'var(--card)',
+                border: '1px solid var(--border)',
+                color: 'var(--foreground)',
+              },
+            }}
+          />
+        </ThemeProvider>
       </body>
     </html>
   )

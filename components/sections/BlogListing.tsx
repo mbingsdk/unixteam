@@ -4,7 +4,7 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/effects/ScrollReveal';
-import { ArrowRight, Loader2 } from 'lucide-react';
+import { ArrowRight, Loader2, Search } from 'lucide-react';
 import { blogPosts } from '@/lib/data';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
 import { formatDate } from '@/lib/date';
@@ -40,10 +40,10 @@ export default function BlogListing() {
         <div className="mx-auto max-w-6xl">
           {/* Header */}
           <ScrollReveal className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold text-balance mb-4">
+            <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-balance mb-4">
               Blog
             </h1>
-            <p className="text-foreground/60 text-lg max-w-2xl mx-auto">
+            <p className="text-foreground/50 text-lg max-w-2xl mx-auto font-medium">
               Tips, tutorial, dan hal-hal random dari komunitas yang ga jelas
               arahnya
             </p>
@@ -59,21 +59,25 @@ export default function BlogListing() {
                   placeholder="Cari artikel..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-6 py-3 rounded-lg bg-card border border-border text-foreground placeholder-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+                  className="w-full px-6 py-3.5 rounded-2xl bg-white/[0.04] border border-white/[0.08] text-foreground placeholder-foreground/40 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent/30 transition-all backdrop-blur-xl"
+                  style={{
+                    boxShadow: '0 2px 12px -2px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.03)'
+                  }}
                 />
-                <span className="absolute right-6 top-1/2 -translate-y-1/2 text-foreground/40">
-                  🔍
-                </span>
+                <Search
+                  size={18}
+                  className="absolute right-5 top-1/2 -translate-y-1/2 text-foreground/35 pointer-events-none"
+                />
               </div>
 
               {/* Category Filter */}
               <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => setSelectedCategory(null)}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                  className={`px-4 py-2.5 rounded-xl font-medium transition-all duration-200 ${
                     !selectedCategory
-                      ? 'bg-accent text-brand-dark'
-                      : 'bg-card border border-border text-foreground hover:border-accent'
+                      ? 'bg-accent text-accent-foreground shadow-lg shadow-accent/25'
+                      : 'bg-white/[0.04] border border-white/[0.08] text-foreground hover:bg-white/[0.08]'
                   }`}
                 >
                   Semua Kategori
@@ -82,10 +86,10 @@ export default function BlogListing() {
                   <button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
-                    className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                    className={`px-4 py-2.5 rounded-xl font-medium transition-all duration-200 ${
                       selectedCategory === category
-                        ? 'bg-accent text-brand-dark'
-                        : 'bg-card border border-border text-foreground hover:border-accent'
+                        ? 'bg-accent text-accent-foreground shadow-lg shadow-accent/25'
+                        : 'bg-white/[0.04] border border-white/[0.08] text-foreground hover:bg-white/[0.08]'
                     }`}
                   >
                     {category}
@@ -96,21 +100,28 @@ export default function BlogListing() {
           </ScrollReveal>
 
           {/* Blog Posts */}
-          <div className="grid grid-cols-1 gap-8">
+          <div className="grid grid-cols-1 gap-6">
             {visibleItems.map((post, index) => (
               <ScrollReveal key={post.id} delay={index * 0.05}>
                 <motion.div
-                  className="glass-effect rounded-lg overflow-hidden hover:border-accent/50 transition-all duration-300 group"
-                  whileHover={{ x: 5 }}
+                  className="rounded-3xl overflow-hidden transition-all duration-300 group"
+                  whileHover={{ x: 6 }}
+                  style={{
+                    background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%)',
+                    backdropFilter: 'blur(24px) saturate(180%)',
+                    WebkitBackdropFilter: 'blur(24px) saturate(180%)',
+                    border: '1px solid rgba(255, 255, 255, 0.08)',
+                    boxShadow: '0 8px 32px -8px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
+                  }}
                 >
                   {/* Featured Image */}
                   {post.image && (
-                    <div className="relative aspect-[16/9] w-full max-h-64 bg-gradient-to-br from-accent/20 to-accent/5 overflow-hidden">
+                    <div className="relative aspect-[16/9] w-full max-h-64 bg-gradient-to-br from-accent/15 to-accent/5 overflow-hidden">
                       <ImageWithFallback
                         src={post.image}
                         alt={post.title}
                         sizes="(max-width: 768px) 100vw, 50vw"
-                        className="object-cover"
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
                         loading={index === 0 ? 'eager' : 'lazy'}
                         fallback={
                           <div className="w-full h-full flex items-center justify-center">
@@ -127,23 +138,23 @@ export default function BlogListing() {
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
                       <div>
                         <div className="flex items-center gap-3 mb-3">
-                          <span className="px-3 py-1 rounded text-xs font-semibold bg-accent/10 text-accent">
+                          <span className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-accent/10 text-accent border border-accent/20">
                             {post.category}
                           </span>
-                          <span className="text-xs text-foreground/50">
+                          <span className="text-xs text-foreground/40">
                             {post.readingTime}
                           </span>
                         </div>
-                        <h2 className="text-2xl font-bold text-foreground mb-2 group-hover:text-accent transition-colors">
+                        <h2 className="text-2xl font-bold text-foreground mb-2 group-hover:text-accent transition-colors tracking-tight">
                           {post.title}
                         </h2>
                       </div>
-                      <span className="text-sm text-foreground/50 flex-shrink-0">
+                      <span className="text-sm text-foreground/40 flex-shrink-0">
                         {formatDate(post.date)}
                       </span>
                     </div>
 
-                    <p className="text-foreground/60 mb-6 line-clamp-2">
+                    <p className="text-foreground/50 mb-6 line-clamp-2">
                       {post.description}
                     </p>
 
@@ -170,7 +181,7 @@ export default function BlogListing() {
               animate={{ opacity: 1 }}
               className="text-center py-12"
             >
-              <p className="text-foreground/60 text-lg">
+              <p className="text-foreground/50 text-lg">
                 Ga ada artikel yang cocok. Coba cari hal lain, atau emang
                 artikelnya belum dibuat.
               </p>
