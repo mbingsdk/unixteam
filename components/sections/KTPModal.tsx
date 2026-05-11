@@ -8,6 +8,7 @@ import { TeamMember } from '@/types/index';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
 import { RobloxIcon, InstagramIcon, TikTokIcon, DiscordIcon } from '@/components/ui/SocialIcons';
 import html2canvas from 'html2canvas-pro';
+import QRCode from 'qrcode';
 
 interface KTPModalProps {
   member: TeamMember | null;
@@ -82,10 +83,10 @@ export default function KTPModal({ member, isOpen, onClose }: KTPModalProps) {
       }
 
       try {
-        const QRCode = await import('qrcode');
         const dataUrl = await QRCode.toDataURL(robloxProfileUrl, {
           width: 220,
-          margin: 0,
+          quality: 0.3,
+          margin: 2,
           errorCorrectionLevel: 'M',
           color: {
             dark: '#ffb800',
@@ -353,7 +354,7 @@ export default function KTPModal({ member, isOpen, onClose }: KTPModalProps) {
                 <div className="h-px bg-gradient-to-r from-accent/40 to-transparent" />
 
                 <div className="flex items-start gap-3 sm:gap-4">
-                  <div className="relative h-20 w-20 sm:h-24 sm:w-24 rounded-lg overflow-hidden border border-accent/40 bg-slate-900 p-1.5 flex-shrink-0 shadow-[0_0_18px_rgba(255,184,0,0.25)]">
+                  <div className="relative h-18 w-18 sm:h-24 sm:w-24 rounded-lg overflow-hidden border border-accent/40 bg-slate-900 p-1.5 flex-shrink-0 shadow-[0_0_18px_rgba(255,184,0,0.25)]">
                     {qrDataUrl ? (
                       <Image src={qrDataUrl} alt="QR Roblox Profile" fill className="object-cover rounded-sm" sizes="(max-width: 640px) 80px, 96px" unoptimized />
                     ) : (

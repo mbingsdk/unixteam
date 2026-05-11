@@ -222,5 +222,21 @@
       "discord": "flynky."
     },
     "id": 14
+  },
+  {
+    "name": "Unaa Bauu",
+    "role": "Ketua DPR",
+    "tags": [
+      "AMATEUR"
+    ],
+    "bio": "Kadang gini kadang gitu, kadang juga kadang kadang, gitu lah.",
+    "image": "/images/team/unaa-bauu.png",
+    "social": {
+      "roblox": "https://www.roblox.com/users/8913925152/profile",
+      "instagram": "https://www.instagram.com/gloomy_moon____",
+      "tiktok": "https://www.tiktok.com/@pmxunaa_",
+      "discord": "laluna6148"
+    },
+    "id": 15
   }
 ]

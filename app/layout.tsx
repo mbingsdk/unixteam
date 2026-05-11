@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+
+import ClarityProvider from "@/components/ClarityProvider"
 import Navigation from '@/components/Navigation'
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import Footer from '@/components/Footer'
@@ -103,6 +105,7 @@ export default function RootLayout({
         <StructuredData data={generateWebSiteSchema()} />
       </head>
       <body className="font-sans antialiased bg-background text-foreground flex flex-col min-h-screen">
+        <ClarityProvider />
         <Navigation />
         <main className="flex-1">
           {children}
