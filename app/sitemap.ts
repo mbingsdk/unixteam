@@ -52,7 +52,7 @@ const staticRoutes: MetadataRoute.Sitemap = [
     changeFrequency: 'monthly',
     priority: 0.7,
   },
-  // ✅ server-status dihapus dari sitemap — kontennya hardcoded, ga dinamis,
+  // ✅ server-status dihapus dari sitemap  kontennya hardcoded, ga dinamis,
   //    ga perlu diindex mesin pencari
   {
     url: `${BASE_URL}/contact`,

@@ -69,7 +69,7 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
             </div>
           </div>
           <h1 className="text-xl font-bold text-foreground">Admin Area</h1>
-          <p className="text-foreground/50 text-sm">Dev-only — jangan di-deploy ke production</p>
+          <p className="text-foreground/50 text-sm">Dev-only  jangan di-deploy ke production</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">

@@ -1,12 +1,4 @@
-/**
- * lib/data.ts
- *
- * Helper buat baca data JSON.
- * Dipakai oleh halaman Next.js (server component, generateStaticParams, dll).
- *
- * Di static build, ini akan di-bundle saat build time.
- * Di dev, data langsung dibaca dari file JSON (setelah admin save).
- */
+// lib/data.ts — updated agar reading time dihitung dari content HTML juga
 
 import teamData from '@/data/team.json';
 import blogData from '@/data/blog.json';
@@ -25,7 +17,11 @@ export const teamMembers: TeamMember[] = teamData as TeamMember[];
 
 export const blogPosts: BlogPost[] = (blogData as BlogPost[]).map((p) => ({
   ...p,
-  readingTime: p.readingTime ?? calcReadingTime(p.sections),
+  // Kalau readingTime sudah ada di JSON, pakai itu.
+  // Kalau belum, hitung dari sections dan/atau content HTML.
+  readingTime:
+    p.readingTime ??
+    calcReadingTime(p.sections, p.content /* raw HTML string */),
 }));
 
 export const featuredBlogPosts = [...blogPosts]
@@ -50,7 +46,6 @@ export const faqItems: FaqItem[] = faqData as FaqItem[];
 
 // ── Util ──────────────────────────────────────────────────────────────────
 
-/** Ambil semua kategori unik dari array */
 export function uniqueCategories<T extends { category: string }>(items: T[]) {
   return [...new Set(items.map((i) => i.category))].sort();
 }

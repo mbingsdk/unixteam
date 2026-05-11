@@ -11,6 +11,7 @@ import StructuredData, {
   generateBlogPostingSchema,
   generateBreadcrumbSchema,
 } from '@/components/StructuredData';
+import ReadingTimeClient from '@/components/blog/ReadingTimeClient';
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -71,7 +72,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const post = blogPosts.find((p) => p.slug === slug);
 
-  // Prev / Next
   const currentIndex = blogPosts.findIndex((p) => p.slug === slug);
   const prevPost = currentIndex < blogPosts.length - 1 ? blogPosts[currentIndex + 1] : null;
   const nextPost = currentIndex > 0 ? blogPosts[currentIndex - 1] : null;
@@ -107,7 +107,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         ])}
       />
 
-      {/* Reading progress  client component */}
       <ReadingProgress />
 
       <main className="min-h-screen py-20 px-4">
@@ -130,8 +129,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <span className="px-3 py-1 rounded bg-accent/10 text-accent text-sm font-semibold">
                   {post.category}
                 </span>
+                {/* ↓ GANTI 1: badge reading time di atas judul */}
                 <span className="px-3 py-1 rounded bg-card border border-border text-foreground/60 text-sm">
-                  {post.readingTime}
+                  <ReadingTimeClient
+                    selector="article"
+                    fallback={post.readingTime}
+                    showIcon={false}
+                  />
                 </span>
               </div>
 
@@ -144,9 +148,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <Calendar size={18} />
                   <span>{formatDateFull(post.date)}</span>
                 </div>
+                {/* ↓ GANTI 2: reading time di baris meta (tanggal, waktu, author) */}
                 <div className="flex items-center gap-2">
                   <Clock size={18} />
-                  <span>{post.readingTime}</span>
+                  <ReadingTimeClient
+                    selector="article"
+                    fallback={post.readingTime}
+                    showIcon={false}
+                  />
                 </div>
                 {post.author && (
                   <div className="flex items-center gap-2">
