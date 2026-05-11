@@ -51,7 +51,7 @@ export default function BlogListing() {
 
           {/* Filters */}
           <ScrollReveal delay={0.1} className="mb-12">
-            <div className="space-y-6">
+            <div className="space-y-4">
               {/* Search */}
               <div className="relative">
                 <input
@@ -59,14 +59,14 @@ export default function BlogListing() {
                   placeholder="Cari artikel..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-6 py-3.5 rounded-2xl bg-white/[0.04] border border-white/[0.08] text-foreground placeholder-foreground/40 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent/30 transition-all backdrop-blur-xl"
+                  className="w-full px-5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08] text-foreground placeholder-foreground/40 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent/30 transition-all backdrop-blur-xl text-sm"
                   style={{
                     boxShadow: '0 2px 12px -2px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.03)'
                   }}
                 />
                 <Search
-                  size={18}
-                  className="absolute right-5 top-1/2 -translate-y-1/2 text-foreground/35 pointer-events-none"
+                  size={16}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-foreground/35 pointer-events-none"
                 />
               </div>
 
@@ -74,10 +74,10 @@ export default function BlogListing() {
               <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => setSelectedCategory(null)}
-                  className={`px-4 py-2.5 rounded-xl font-medium transition-all duration-200 ${
+                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                     !selectedCategory
-                      ? 'bg-accent text-accent-foreground shadow-lg shadow-accent/25'
-                      : 'bg-white/[0.04] border border-white/[0.08] text-foreground hover:bg-white/[0.08]'
+                      ? 'bg-accent text-accent-foreground shadow-md shadow-accent/20'
+                      : 'bg-white/[0.04] border border-white/[0.08] text-foreground/70 hover:bg-white/[0.08] hover:text-foreground'
                   }`}
                 >
                   Semua Kategori
@@ -86,10 +86,10 @@ export default function BlogListing() {
                   <button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
-                    className={`px-4 py-2.5 rounded-xl font-medium transition-all duration-200 ${
+                    className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                       selectedCategory === category
-                        ? 'bg-accent text-accent-foreground shadow-lg shadow-accent/25'
-                        : 'bg-white/[0.04] border border-white/[0.08] text-foreground hover:bg-white/[0.08]'
+                        ? 'bg-accent text-accent-foreground shadow-md shadow-accent/20'
+                        : 'bg-white/[0.04] border border-white/[0.08] text-foreground/70 hover:bg-white/[0.08] hover:text-foreground'
                     }`}
                   >
                     {category}
@@ -134,18 +134,18 @@ export default function BlogListing() {
                     </div>
                   )}
 
-                  <div className="p-8">
-                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
+                  <div className="p-7">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
                       <div>
-                        <div className="flex items-center gap-3 mb-3">
-                          <span className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-accent/10 text-accent border border-accent/20">
+                        <div className="flex items-center gap-2.5 mb-2.5">
+                          <span className="px-2.5 py-1 rounded-md text-xs font-semibold bg-accent/10 text-accent border border-accent/20">
                             {post.category}
                           </span>
                           <span className="text-xs text-foreground/40">
                             {post.readingTime}
                           </span>
                         </div>
-                        <h2 className="text-2xl font-bold text-foreground mb-2 group-hover:text-accent transition-colors tracking-tight">
+                        <h2 className="text-xl font-bold text-foreground mb-1.5 group-hover:text-accent transition-colors tracking-tight">
                           {post.title}
                         </h2>
                       </div>
@@ -154,17 +154,17 @@ export default function BlogListing() {
                       </span>
                     </div>
 
-                    <p className="text-foreground/50 mb-6 line-clamp-2">
+                    <p className="text-foreground/50 text-sm mb-5 line-clamp-2">
                       {post.description}
                     </p>
 
                     <Link
                       href={`/blog/${post.slug}`}
-                      className="inline-flex items-center gap-2 text-accent hover:text-accent/80 font-medium group/link"
+                      className="inline-flex items-center gap-1.5 text-accent hover:text-accent/80 text-sm font-medium group/link"
                     >
                       Baca Artikel
                       <ArrowRight
-                        size={18}
+                        size={15}
                         className="group-hover/link:translate-x-1 transition-transform"
                       />
                     </Link>
@@ -181,7 +181,7 @@ export default function BlogListing() {
               animate={{ opacity: 1 }}
               className="text-center py-12"
             >
-              <p className="text-foreground/50 text-lg">
+              <p className="text-foreground/50 text-base">
                 Ga ada artikel yang cocok. Coba cari hal lain, atau emang
                 artikelnya belum dibuat.
               </p>
@@ -192,7 +192,7 @@ export default function BlogListing() {
           <div ref={sentinelRef} className="py-8 flex justify-center">
             {hasMore && (
               <Loader2
-                size={24}
+                size={22}
                 className="animate-spin text-accent/50"
               />
             )}

@@ -104,31 +104,31 @@ export default function TeamGallery() {
 
         {/* Filters */}
         <ScrollReveal delay={0.1} className="mb-12">
-          <div className="space-y-6">
+          <div className="space-y-4">
             <div className="relative">
               <input
                 type="text"
                 placeholder="Cari member..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-6 py-3.5 rounded-2xl bg-white/[0.04] border border-white/[0.08] text-foreground placeholder-foreground/40 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent/30 transition-all backdrop-blur-xl"
+                className="w-full px-5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08] text-foreground placeholder-foreground/40 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent/30 transition-all backdrop-blur-xl text-sm"
                 style={{
                   boxShadow: '0 2px 12px -2px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.03)'
                 }}
               />
               <Search
-                size={18}
-                className="absolute right-5 top-1/2 -translate-y-1/2 text-foreground/35 pointer-events-none"
+                size={16}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-foreground/35 pointer-events-none"
               />
             </div>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5">
               <button
                 onClick={() => setSelectedTag(null)}
-                className={`px-4 py-2.5 rounded-xl font-medium transition-all duration-200 ${
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                   !selectedTag
-                    ? 'bg-accent text-accent-foreground shadow-lg shadow-accent/25'
-                    : 'bg-white/[0.04] border border-white/[0.08] text-foreground hover:bg-white/[0.08]'
+                    ? 'bg-accent text-accent-foreground shadow-md shadow-accent/20'
+                    : 'bg-white/[0.04] border border-white/[0.08] text-foreground/70 hover:bg-white/[0.08] hover:text-foreground'
                 }`}
               >
                 Semua
@@ -137,10 +137,10 @@ export default function TeamGallery() {
                 <button
                   key={tag}
                   onClick={() => setSelectedTag(tag)}
-                  className={`px-4 py-2.5 rounded-xl font-medium transition-all duration-200 ${
+                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                     selectedTag === tag
-                      ? 'bg-accent text-accent-foreground shadow-lg shadow-accent/25'
-                      : 'bg-white/[0.04] border border-white/[0.08] text-foreground hover:bg-white/[0.08]'
+                      ? 'bg-accent text-accent-foreground shadow-md shadow-accent/20'
+                      : 'bg-white/[0.04] border border-white/[0.08] text-foreground/70 hover:bg-white/[0.08] hover:text-foreground'
                   }`}
                 >
                   {tag}
@@ -193,7 +193,7 @@ export default function TeamGallery() {
                           onClick={() =>
                             setSelectedTag(selectedTag === tag ? null : tag)
                           }
-                          className={`text-[10px] font-semibold px-2.5 py-1 rounded-lg backdrop-blur-xl border transition-all duration-200 leading-tight
+                          className={`text-[10px] font-semibold px-2 py-0.5 rounded-md backdrop-blur-xl border transition-all duration-200 leading-tight
                             ${selectedTag === tag
                               ? 'bg-accent border-accent text-accent-foreground'
                               : 'bg-accent/20 border-accent/40 text-accent hover:bg-accent/40 hover:border-accent'
@@ -207,27 +207,27 @@ export default function TeamGallery() {
                 </div>
 
                 {/* Info */}
-                <div className="p-5">
-                  <h3 className="text-lg font-bold text-foreground mb-0.5 tracking-tight">
+                <div className="p-4">
+                  <h3 className="text-base font-bold text-foreground mb-0.5 tracking-tight">
                     {member.name}
                   </h3>
-                  <p className="text-sm text-accent font-medium mb-2">
+                  <p className="text-xs text-accent font-semibold mb-2">
                     {member.role}
                   </p>
 
                   <div className="mb-3">
                     <div
                       className={
-                        expandedBio.has(member.id) ? '' : 'h-[42px] overflow-hidden'
+                        expandedBio.has(member.id) ? '' : 'h-[40px] overflow-hidden'
                       }
                     >
-                      <p className="text-foreground/50 text-sm leading-[21px]">
+                      <p className="text-foreground/50 text-xs leading-[20px]">
                         {expandedBio.has(member.id) || !isBioLong(member.bio)
                           ? member.bio
                           : member.bio.slice(0, 65) + '...'}
                       </p>
                     </div>
-                    <div className="h-4 mt-1">
+                    <div className="h-4 mt-0.5">
                       {isBioLong(member.bio) && (
                         <button
                           onClick={() => toggleBio(member.id)}
@@ -242,16 +242,16 @@ export default function TeamGallery() {
                   </div>
 
                   {/* Social Links + KTP Button */}
-                  <div className="flex items-center gap-2 pt-4 border-t border-white/[0.06]">
+                  <div className="flex items-center gap-1.5 pt-3 border-t border-white/[0.06]">
                     <button
                       onClick={() => handleOpenKTP(member)}
-                      className="flex-1 px-3 py-2.5 rounded-xl bg-accent/10 border border-accent/30 hover:bg-accent hover:text-accent-foreground text-accent text-sm font-semibold transition-all duration-200 flex items-center justify-center gap-2"
+                      className="flex-1 px-2 py-1.5 rounded-lg bg-accent/10 border border-accent/30 hover:bg-accent hover:text-accent-foreground text-accent text-xs font-semibold transition-all duration-200 flex items-center justify-center gap-1.5"
                     >
-                      <CreditCard size={16} />
+                      <CreditCard size={13} />
                       KTP
                     </button>
                     {member.social && (
-                      <div className="flex gap-1">
+                      <div className="flex gap-0.5">
                         {Object.entries(member.social).map(([type, handle]) => {
                           const Icon = getSocialIcon(type);
                           if (!Icon) return null;
@@ -263,10 +263,10 @@ export default function TeamGallery() {
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => handleCopyDiscord(handle)}
-                                className="p-2.5 rounded-xl hover:bg-white/[0.06] text-foreground/50 hover:text-accent transition-all duration-200"
+                                className="p-2 rounded-lg hover:bg-white/[0.06] text-foreground/50 hover:text-accent transition-all duration-200"
                                 title={`Salin username Discord: ${handle}`}
                               >
-                                <Icon size={18} />
+                                <Icon size={15} />
                               </motion.button>
                             );
                           }
@@ -279,10 +279,10 @@ export default function TeamGallery() {
                               rel="noopener noreferrer"
                               whileHover={{ scale: 1.1 }}
                               whileTap={{ scale: 0.95 }}
-                              className="p-2.5 rounded-xl hover:bg-white/[0.06] text-foreground/50 hover:text-accent transition-all duration-200"
+                              className="p-2 rounded-lg hover:bg-white/[0.06] text-foreground/50 hover:text-accent transition-all duration-200"
                               title={`${type}: ${handle}`}
                             >
-                              <Icon size={18} />
+                              <Icon size={15} />
                             </motion.a>
                           );
                         })}
@@ -302,7 +302,7 @@ export default function TeamGallery() {
             animate={{ opacity: 1 }}
             className="text-center py-12"
           >
-            <p className="text-foreground/50 text-lg">
+            <p className="text-foreground/50 text-base">
               Ga ada orang aneh yang cocok sama filter lu.
             </p>
           </motion.div>
@@ -311,7 +311,7 @@ export default function TeamGallery() {
         {/* Sentinel + loading spinner */}
         <div ref={sentinelRef} className="py-8 flex justify-center">
           {hasMore && (
-            <Loader2 size={24} className="animate-spin text-accent/50" />
+            <Loader2 size={22} className="animate-spin text-accent/50" />
           )}
         </div>
       </div>

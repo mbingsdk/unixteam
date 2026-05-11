@@ -90,7 +90,7 @@ export default function Navigation() {
         className={[
           'fixed top-3 left-1/2 -translate-x-1/2 z-50',
           'flex items-center',
-          'rounded-2xl',
+          'rounded-4xl',
           'transition-all duration-500 ease-out',
           scrolled
             ? 'bg-background/80 backdrop-blur-2xl shadow-2xl shadow-black/30 border border-white/[0.08]'
