@@ -7,6 +7,29 @@ export interface SocialLinks {
   discord?: string;
 }
 
+export interface ProfilePageLink {
+  platform: string;
+  value: string;
+  label?: string;
+}
+
+export interface ProfilePageCloudflare {
+  workerScriptName?: string;
+  workerDomainId?: string;
+  syncedAt?: string;
+  status?: 'idle' | 'synced' | 'skipped' | 'error';
+  message?: string;
+}
+
+export interface TeamProfilePage {
+  enabled: boolean;
+  subdomain: string;
+  displayName: string;
+  bio: string;
+  links: ProfilePageLink[];
+  cloudflare?: ProfilePageCloudflare;
+}
+
 export interface TeamMember {
   id: number;
   name: string;
@@ -15,6 +38,7 @@ export interface TeamMember {
   bio: string;
   image: string;            // e.g. '/images/team/mbing-sdk.png'
   social: SocialLinks;
+  profilePage?: TeamProfilePage;
 }
 
 // ─── Blog ──────────────────────────────────────────────────────────────────

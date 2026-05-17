@@ -14,7 +14,7 @@ export function useAdminData<T extends { id: number }>(entity: Entity) {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const url = `/api/admin/${entity}`;
+  const url = `/api/admin/${entity}/`;
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -69,7 +69,7 @@ export function useAdminData<T extends { id: number }>(entity: Entity) {
         });
         const json = await res.json();
         if (json.ok) {
-          setItems((prev) => prev.map((i) => (i.id === id ? { ...i, ...data, id } as T : i)));
+          setItems((prev) => prev.map((item) => (item.id === id ? json.data as T : item)));
           return true;
         }
         setError(json.error);

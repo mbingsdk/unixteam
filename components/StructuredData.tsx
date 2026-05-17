@@ -29,7 +29,7 @@ export function generateOrganizationSchema() {
     name: 'UNIX-TEAM',
     url: BASE_URL,
     logo: `${BASE_URL}/apple-icon.png`,
-    description: 'UNIX-TEAM adalah komunitas gaming dan teknologi yang membangun pengalaman Roblox, tools, dan script inovatif.',
+    description: 'UNIX-TEAM adalah komunitas game di Roblox, agak absurd dan sedikit tertarik dengan teknologi yang membangun pengalaman Roblox, tools, dan script inovatif.',
     sameAs: [
       'https://discord.gg/unix-team',
       'https://twitter.com/unixteam',
@@ -162,7 +162,7 @@ export function generateWebSiteSchema() {
     '@type': 'WebSite',
     name: 'UNIX-TEAM',
     url: BASE_URL,
-    description: 'UNIX-TEAM adalah komunitas gaming dan teknologi yang membangun pengalaman Roblox, tools, dan script inovatif.',
+    description: 'UNIX-TEAM adalah komunitas game di Roblox, agak absurd dan sedikit tertarik dengan teknologi yang membangun pengalaman Roblox, tools, dan script inovatif.',
     potentialAction: {
       '@type': 'SearchAction',
       target: `${BASE_URL}/blog?search={search_term_string}`,

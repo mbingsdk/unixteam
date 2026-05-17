@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: '%s | UNIX-TEAM',
   },
   description:
-    'UNIX-TEAM adalah komunitas gaming dan teknologi yang membangun pengalaman Roblox, tools, dan script inovatif.',
+    'UNIX-TEAM adalah komunitas game di Roblox, agak absurd dan sedikit tertarik dengan teknologi yang membangun pengalaman Roblox, tools, dan script inovatif.',
   keywords: [
     'UNIX-TEAM',
     'gaming community',
@@ -34,6 +34,11 @@ export const metadata: Metadata = {
     'Lua script',
     'Komunitas gaming Indonesia',
     'Komunitas teknologi Indonesia',
+    'unix team',
+    'unix team roblox',
+    'unix team discord',
+    'unixteam roblox',
+    'unixteam discord',
   ],
   authors: [{ name: 'UNIX-TEAM', url: BASE_URL }],
   creator: 'UNIX-TEAM',
@@ -56,7 +61,7 @@ export const metadata: Metadata = {
     siteName: 'UNIX-TEAM',
     title: 'UNIX-TEAM | Gaming-Tech Community',
     description:
-      'UNIX-TEAM adalah komunitas gaming dan teknologi yang membangun pengalaman Roblox, tools, dan script inovatif.',
+      'UNIX-TEAM adalah komunitas game di Roblox, agak absurd dan sedikit tertarik dengan teknologi yang membangun pengalaman Roblox, tools, dan script inovatif.',
     images: [
       {
         url: `${BASE_URL}/og-image.png`,

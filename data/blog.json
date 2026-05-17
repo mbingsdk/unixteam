@@ -60,7 +60,7 @@
     "date": "2026-03-10",
     "category": "Strategi",
     "author": "UNIX-TEAM",
-    "featured": true,
+    "featured": false,
     "image": "/images/blog/cara-jadi-afk-legend.png",
     "sections": [
       {
@@ -109,7 +109,7 @@
     "date": "2026-02-05",
     "category": "Community",
     "author": "UNIX-TEAM",
-    "featured": true,
+    "featured": false,
     "image": "/images/blog/kamus-bahasa-unix.png",
     "sections": [
       {
@@ -271,6 +271,134 @@
       {
         "title": "Akhir yang Tidak Dramatis Sama Sekali",
         "content": "Jam 3 pagi, setelah kurang lebih enam jam, foto bareng resmi dinyatakan belum selesai dan ditunda tanpa tanggal yang jelas. Bukan karena menyerah, tapi karena ada yang harus bangun jam 6. Yang tersisa dari seluruh sesi ini adalah 47 screenshot gagal, beberapa rekaman layar yang blur di bagian paling penting, dan satu foto di mana hanya dua dari dua belas orang yang seharusnya ada bisa terlihat. Sisanya tidak ada di frame, tidak ada penjelasan kenapa, dan tidak ada yang cukup peduli untuk menyelidikinya lebih lanjut. Foto finalnya belum ada sampai artikel ini ditulis. Kemungkinan besar tidak akan pernah ada."
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "slug": "mabar-hajatan-expedisi-mount-sumbing-minje-miuu-luth",
+    "title": "Mabar Hajatan Minje, Miuu, dan Luth Expedisi Mount Sumbing: Semua Hadir, Sebagian Hanya Secara Teoritis",
+    "description": "Catatan absurd perayaan Promote Title Expedisi di Mount Sumbing Roblox, tempat semangat kolektif bertemu AFK massal dan jasa gendong darurat.",
+    "date": "2026-05-15",
+    "category": "Chaos",
+    "author": "UNIX-TEAM",
+    "featured": true,
+    "image": "/images/blog/mabar-hajatan-expedisi-mount-sumbing-minje-miuu-luth.png",
+    "sections": [
+      {
+        "title": "Undangan Resmi untuk Ketidaksiapan Nasional",
+        "content": "Pada suatu malam yang harusnya biasa saja, UNIX kembali melakukan kegiatan yang terlihat sederhana kalau dibaca di pengumuman: mabar Hajatan Expedisi Mount Sumbing di Roblox. Tujuan utamanya mulia, yaitu merayakan [[Minje]], [[Miuu]], dan [[Luth]] yang berhasil Promote Title Expedisi. Tujuan sampingannya tidak kalah penting, yaitu membuktikan bahwa sebuah komunitas tetap bisa terlihat ramai meskipun separuh pesertanya sedang menatap layar dengan jiwa yang sudah logout.",
+        "subsections": [
+          {
+            "title": "Tiga Tokoh Hajatan",
+            "content": "[[Minje]], [[Miuu]], dan [[Luth]] hadir sebagai pusat acara, simbol perjuangan, dan alasan kenapa semua orang tiba-tiba dipanggil naik gunung virtual. Nama mereka secara resmi mendapat perlakuan khusus karena kalau cuma ditulis tebal rasanya kurang menggambarkan beban sejarah dan tekanan sosial yang sedang berlangsung."
+          },
+          {
+            "title": "Para Hadirin yang Tergerak oleh Paksaan Halus",
+            "content": "Peserta lain hadir dengan energi yang bervariasi. Ada yang benar-benar ikut merayakan, ada yang ikut karena takut disebut tidak solid, dan ada yang muncul lima menit lalu AFK dengan posisi karakter masih berdiri seolah sedang merenungkan masa depan server."
+          }
+        ]
+      },
+      {
+        "title": "Fenomena AFK yang Terlalu Konsisten",
+        "content": "Seperti biasa, begitu acara dimulai, muncullah golongan peserta yang secara teknis online tapi secara spiritual sudah berada di tempat lain. Mereka diam di jalur, tidak merespons chat, tidak bergerak, tapi kalau ditinggal langsung protes lima menit kemudian. Ini bukan bug. Ini adalah gaya hidup.",
+        "subsections": [
+          {
+            "title": "AFK Sibuk atau AFK Strategis",
+            "content": "Beberapa mengaku sibuk, beberapa tidak mengaku apa-apa karena memang tidak ada. Teori yang beredar menyebutkan bahwa sebagian dari mereka sengaja AFK agar bisa digendong tanpa harus melewati penderitaan berjalan sendiri. Ini tuduhan serius, tapi bukti lapangannya terlalu meyakinkan untuk diabaikan."
+          },
+          {
+            "title": "Pura-Pura Heboh sebagai Kontribusi Minimal",
+            "content": "Ada juga tipe peserta yang sesekali muncul hanya untuk mengetik kalimat pendek seperti gas, anjay, atau wah, lalu hilang lagi selama dua belas menit. Secara administratif mereka ikut meramaikan. Secara moral, masih dalam proses penyelidikan."
+          }
+        ]
+      },
+      {
+        "title": "Divisi Teleport dan Gendong Darurat",
+        "content": "Sementara sebagian hadirin sibuk menjadi pajangan ekspedisi, beberapa orang lainnya justru bekerja seperti layanan evakuasi non-profit. Mereka teleport, balik, gendong, jemput yang telat join, lalu teleport lagi demi memastikan tidak ada peserta yang tertinggal terlalu jauh dari rombongan, kecuali yang memang dari awal tertinggal niat.",
+        "subsections": [
+          {
+            "title": "Telat Join atau Males Aja",
+            "content": "Penyebab keterlambatan tidak pernah benar-benar jelas. Ada yang baru sadar acaranya sudah mulai, ada yang loading terlalu lama, ada yang salah server, dan ada yang kemungkinan besar sudah tahu tapi menunggu dijemput karena hidup akan selalu lebih nyaman kalau ada yang menanggung konsekuensi."
+          },
+          {
+            "title": "Gendong sebagai Infrastruktur Sosial",
+            "content": "Dalam acara ini, gendong bukan sekadar fitur. Gendong adalah kebijakan publik, sistem transportasi, dan bentuk kasih sayang yang dilakukan sambil mengeluh. Tanpa jasa gendong, hajatan mungkin tetap jalan, tapi jumlah korban mental akan meningkat secara tidak perlu."
+          }
+        ]
+      },
+      {
+        "title": "Puncak Acara yang Berjalan karena Sudah Terlanjur",
+        "content": "Dengan segala bentuk keterpaksaan, dorongan sosial, dan pura-pura antusias yang cukup meyakinkan dari kejauhan, acara hajatan tetap berjalan lancar. [[Minje]], [[Miuu]], dan [[Luth]] berhasil dirayakan, para peserta berhasil terlihat hadir, dan dokumentasi berhasil mengabadikan momen yang sebagian besar orangnya mungkin tidak sepenuhnya sadar sedang berada di sana.",
+        "subsections": [
+          {
+            "title": "Tidak Ada Penyesalan, Hanya Riwayat Chat",
+            "content": "Setelah acara selesai, tidak ada yang benar-benar menyesal. Yang aktif merasa sudah berjasa. Yang AFK merasa sudah ikut. Yang digendong merasa itu memang sudah takdir. Semuanya pulang dengan versi kebenaran masing-masing, dan anehnya semua versi itu bisa benar secara bersamaan."
+          },
+          {
+            "title": "Kesimpulan Resmi",
+            "content": "Hajatan Expedisi Mount Sumbing ini membuktikan bahwa komunitas tidak harus kompak dalam arti tradisional. Cukup hadir, setengah sadar, kadang bergerak, dan sesekali mengetik heboh. Sisanya bisa ditangani oleh teleport, gendong, dan satu dua orang yang masih punya niat hidup."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "slug": "budhe-open-trip-900-summit",
+    "title": "Budhe Open Trip 900 Summit: Sangat Disayangkan, Semua Orang Malah Lolos",
+    "description": "Laporan penuh kekesalan dari Budhe Open Trip 900 Summit, sebuah perjalanan yang entah bagaimana berhasil selesai terlalu mulus, terlalu aman, dan tanpa tumbal resmi sama sekali.",
+    "date": "2026-05-16",
+    "category": "Chaos",
+    "author": "UNIX-TEAM",
+    "featured": true,
+    "image": "/images/blog/budhe-open-trip-900-summit.png",
+    "sections": [
+      {
+        "title": "Pembukaan yang Sarat Kekesalan",
+        "content": "Budhe Open Trip 900 Summit sejak awal diposisikan sebagai salah satu agenda yang paling ditunggu. Ekspektasi publik sudah dibangun dengan benar: harusnya ada minimal satu drama jaringan, satu peserta drop FPS di momen penting, atau paling tidak satu keluhan panjang yang bisa dipakai buat bahan omongan berhari-hari. Tapi tidak. Acara ini dengan sangat tidak tahu diri malah berjalan lancar, rapi, dan nyaris tanpa cela, seolah-olah tidak paham kenapa orang-orang datang sejak awal."
+      },
+      {
+        "title": "Tidak Ada Kendala, dan Itu Masalahnya",
+        "content": "Sepanjang perjalanan, tidak ada satu pun peserta yang mengalami kendala jaringan layak dokumentasi. Tidak ada disconnect massal. Tidak ada suara putus-putus. Tidak ada yang tiba-tiba menghilang lalu balik lima belas menit kemudian sambil bilang WiFi-nya ngambek. Bahkan drop FPS yang biasanya muncul sebagai ritual wajib juga ikut-ikutan absen. Jujur saja, ini keterlaluan.",
+        "subsections": [
+          {
+            "title": "Sunyi dari Keluhan",
+            "content": "Yang paling bikin emosi justru suasananya terlalu sehat. Tidak ada orang ngeluh, tidak ada yang menyalahkan device, tidak ada yang baru jalan tiga langkah lalu mengumumkan bahwa gamenya berat. Semua peserta bergerak dengan kompeten, tenang, dan fungsional, yang jelas-jelas bukan atmosfer yang selama ini susah payah dibangun oleh komunitas."
+          },
+          {
+            "title": "Ketiadaan Bencana Teknis",
+            "content": "Panitia sudah sangat siap secara mental menghadapi segala kemungkinan, mulai dari lag kolektif sampai frame rate yang berubah jadi slideshow. Sayangnya seluruh kesiapan itu dibuang percuma. Sistem bekerja. Peserta stabil. Keadaan terlalu profesional untuk ukuran acara yang seharusnya setidaknya memberi sedikit penderitaan simbolis agar terasa niat."
+          }
+        ]
+      },
+      {
+        "title": "Tragedi yang Gagal Terjadi",
+        "content": "Bukan cuma kendala teknis yang absen. Tidak ada peserta yang mati kesamber petir. Tidak ada yang NT atau mati cuma gara-gara tombolnya tidak kepencet di saat paling menentukan. Tidak ada insiden absurd yang cukup tragis untuk dijadikan legenda. Padahal panggungnya sudah ada, momennya sudah matang, tinggal semesta kerja sedikit saja. Tapi rupanya itu pun terlalu banyak diminta.",
+        "subsections": [
+          {
+            "title": "Petir yang Tidak Menjalankan Tugasnya",
+            "content": "Langit sudah diberi kesempatan penuh untuk berkontribusi pada sejarah acara ini, tetapi memilih pasif dan tidak kooperatif. Tidak satu pun sambaran datang menjemput peserta. Dalam konteks keselamatan, mungkin ini kabar baik. Dalam konteks lore UNIX, ini jelas pengkhianatan."
+          },
+          {
+            "title": "Tombol yang Ternyata Berfungsi",
+            "content": "Seluruh input rupanya terbaca dengan benar. Tidak ada satu pun tragedi klasik berupa karakter gugur karena tombol penting tidak kepencet, telat kepencet, atau diyakini sudah kepencet padahal yang ditekan tombol lain. Entah kenapa, semua orang mendadak bisa bermain dengan benar tepat di acara yang seharusnya menyediakan bahan evaluasi."
+          }
+        ]
+      },
+      {
+        "title": "Kenyataan Pahit: Semua Lolos",
+        "content": "Dengan sangat berat hati, dan sedikit rasa kesal yang wajar, kami harus menerima kenyataan bahwa Budhe Open Trip 900 Summit berhasil lolos tanpa menumbalkan satu pun peserta. Semua sampai. Semua selamat. Semua terlalu baik-baik saja. Untuk sebuah acara yang paling ditunggu, hasil ini terasa nyaris tidak sopan karena sama sekali tidak menyediakan bahan yang layak untuk disesali, diperdebatkan, atau minimal dilebih-lebihkan bersama.",
+        "subsections": [
+          {
+            "title": "Satu-Satunya Catatan yang Masih Bisa Diselamatkan",
+            "content": "Di tengah minimnya tragedi, hanya ada satu hal yang masih bisa diselamatkan dari kehampaan ini: si bang [[Day]] ketempelan Bambu Kering. Tidak fatal, tidak mengubah jalannya acara, bahkan jujur saja terlalu kecil untuk disebut insiden besar. Tapi karena seluruh peserta lain kompak mengecewakan dengan cara tetap hidup dan berfungsi normal, ya sudah, ini yang kita punya."
+          },
+          {
+            "title": "Kesimpulan Resmi",
+            "content": "Budhe Open Trip 900 Summit akan dikenang sebagai keberhasilan logistik dan kegagalan dramatis yang menjengkelkan. Tidak ada korban, tidak ada komplain, tidak ada bencana, cuma satu bambu kering yang akhirnya terpaksa diangkat jadi sorotan karena seluruh kemungkinan menarik lainnya memilih tidak datang."
+          }
+        ]
       }
     ]
   }

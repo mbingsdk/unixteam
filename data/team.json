@@ -13,6 +13,49 @@
       "instagram": "https://instagram.com/mbingsdk",
       "tiktok": "https://www.tiktok.com/@penguinantarctica_",
       "discord": "mbingsdk"
+    },
+    "profilePage": {
+      "enabled": true,
+      "subdomain": "mbing",
+      "displayName": "Mbing SDK",
+      "bio": "Orang yang bikin komunitas ini jadi tempat ribut, kacau, dan sangat menyesatkan. Orang yang bikin komunitas ini jadi tempat ribut, kacau, dan sangat menyesatkan. Orang yang bikin komunitas ini jadi tempat ribut, kacau, dan sangat menyesatkan.",
+      "links": [
+        {
+          "platform": "instagram",
+          "value": "mbingsdk"
+        },
+        {
+          "platform": "tiktok",
+          "value": "@penguinantarctica_"
+        },
+        {
+          "platform": "discord",
+          "value": "mbingsdk"
+        },
+        {
+          "platform": "roblox",
+          "value": "mbingsdk"
+        },
+        {
+          "platform": "mobile-legends",
+          "value": "1029441337"
+        },
+        {
+          "platform": "saweria",
+          "value": "mbingsdk"
+        },
+        {
+          "platform": "sociabuzz",
+          "value": "mbingsdk"
+        }
+      ],
+      "cloudflare": {
+        "workerScriptName": "unix-profile-mbing",
+        "workerDomainId": "020e6a16da9351e3b800cf444cfab2f112b7ed4a",
+        "status": "synced",
+        "message": "unix-profile-mbing aktif di https://mbing.unixteam.my.id",
+        "syncedAt": "2026-05-17T00:42:57.911Z"
+      }
     }
   },
   {
@@ -29,6 +72,25 @@
       "instagram": "https://instagram.com",
       "tiktok": "https://www.tiktok.com",
       "discord": "levioss8313"
+    },
+    "profilePage": {
+      "enabled": true,
+      "subdomain": "diks",
+      "displayName": "Diks",
+      "bio": "Ahli dalam bikin kekacauan dan debat hal sepele kayak sidang PBB",
+      "links": [
+        {
+          "platform": "roblox",
+          "value": "Dikss27"
+        }
+      ],
+      "cloudflare": {
+        "workerScriptName": "unix-profile-diks",
+        "workerDomainId": "dc05aea9ddee590d9dfa0c87490fab5582a76e79",
+        "status": "synced",
+        "message": "unix-profile-diks aktif di https://diks.unixteam.my.id",
+        "syncedAt": "2026-05-15T15:50:07.372Z"
+      }
     }
   },
   {
@@ -45,6 +107,29 @@
       "instagram": "https://www.instagram.com/_dewokk2",
       "tiktok": "https://www.tiktok.com",
       "discord": "dewutut"
+    },
+    "profilePage": {
+      "enabled": true,
+      "subdomain": "dewut",
+      "displayName": "Dewut",
+      "bio": "Anak ganteng, anak bagus, anak sholeh, anak mama, anak papa, anak rajin, anak masjd, anak ganteng, balik lagi. Gajelas paling juga ANAKONDA",
+      "links": [
+        {
+          "platform": "roblox",
+          "value": "oweddd2"
+        },
+        {
+          "platform": "tiktok",
+          "value": "_dewokk2"
+        }
+      ],
+      "cloudflare": {
+        "workerScriptName": "unix-profile-dewut",
+        "workerDomainId": "21ba562a506ca2957ca70ef8d2e1296f9c68b512",
+        "status": "synced",
+        "message": "unix-profile-dewut aktif di https://dewut.unixteam.my.id",
+        "syncedAt": "2026-05-15T15:49:59.845Z"
+      }
     }
   },
   {
@@ -61,6 +146,33 @@
       "instagram": "https://www.instagram.com/bodiekats.poll",
       "tiktok": "https://www.tiktok.com/@qpollwin",
       "discord": "katspoll"
+    },
+    "profilePage": {
+      "enabled": true,
+      "subdomain": "popol",
+      "displayName": "Popol",
+      "bio": "Anak baik didikan mama papa, semua orang juga tau kalo bintang nya ada di sini, lebih cocok kepiting sih ga bintang deh",
+      "links": [
+        {
+          "platform": "roblox",
+          "value": "kapolp0ll"
+        },
+        {
+          "platform": "tiktok",
+          "value": "@qpollwin"
+        },
+        {
+          "platform": "instagram",
+          "value": "bodiekats.poll"
+        }
+      ],
+      "cloudflare": {
+        "workerScriptName": "unix-profile-popol",
+        "workerDomainId": "88ddd9b38177ba337c5504d76524b6bda84e3475",
+        "status": "synced",
+        "message": "unix-profile-popol aktif di https://popol.unixteam.my.id",
+        "syncedAt": "2026-05-15T15:49:39.000Z"
+      }
     }
   },
   {
@@ -77,6 +189,25 @@
       "instagram": "https://instagram.com",
       "tiktok": "https://www.tiktok.com",
       "discord": "callmevitaaa"
+    },
+    "profilePage": {
+      "enabled": true,
+      "subdomain": "budhe",
+      "displayName": "Budhe",
+      "bio": "Profesional dalam memperpanjang obrolan, karena komunikasi adalah kontribusi. Kalau diem berarti lagi tidur. Yap yap yap no cooldown",
+      "links": [
+        {
+          "platform": "roblox",
+          "value": "LagiMudik"
+        }
+      ],
+      "cloudflare": {
+        "workerScriptName": "unix-profile-budhe",
+        "workerDomainId": "b03bcda878f3e6eab9954f872d04a709d423517b",
+        "status": "synced",
+        "message": "unix-profile-budhe aktif di https://budhe.unixteam.my.id",
+        "syncedAt": "2026-05-15T15:49:29.497Z"
+      }
     }
   },
   {
@@ -93,6 +224,25 @@
       "instagram": "https://instagram.com",
       "tiktok": "https://www.tiktok.com",
       "discord": "kayfa_12"
+    },
+    "profilePage": {
+      "enabled": true,
+      "subdomain": "abubu",
+      "displayName": "Abubu is not abubu",
+      "bio": "Penjaga pois yg tidak on mic. Diam bukan berarti afk, karena dimana ada drama disitu ada saya",
+      "links": [
+        {
+          "platform": "roblox",
+          "value": "vaxeii0"
+        }
+      ],
+      "cloudflare": {
+        "workerScriptName": "unix-profile-abubu",
+        "workerDomainId": "24793c11be58844b141fa9c8937632df1d1595f2",
+        "status": "synced",
+        "message": "unix-profile-abubu aktif di https://abubu.unixteam.my.id",
+        "syncedAt": "2026-05-15T15:49:20.040Z"
+      }
     }
   },
   {
@@ -109,6 +259,25 @@
       "instagram": "https://instagram.com",
       "tiktok": "https://www.tiktok.com",
       "discord": "lovellme2"
+    },
+    "profilePage": {
+      "enabled": true,
+      "subdomain": "lovell",
+      "displayName": "Lovell",
+      "bio": "kadang suara kayak robot karena jaringan bapuk (seperti suara rakyat yang terbungkam)",
+      "links": [
+        {
+          "platform": "roblox",
+          "value": "ratupempek"
+        }
+      ],
+      "cloudflare": {
+        "workerScriptName": "unix-profile-lovell",
+        "workerDomainId": "215ad1a361bb22a3ccd8879c0f3dbcce6d4c43a9",
+        "status": "synced",
+        "message": "unix-profile-lovell aktif di https://lovell.unixteam.my.id",
+        "syncedAt": "2026-05-15T15:49:11.456Z"
+      }
     }
   },
   {
@@ -125,6 +294,25 @@
       "instagram": "https://instagram.com",
       "tiktok": "https://www.tiktok.com",
       "discord": "inanotherday"
+    },
+    "profilePage": {
+      "enabled": true,
+      "subdomain": "day",
+      "displayName": "Day",
+      "bio": "Diem bukan berarti netral tapi sedang mengamati masalah sambil menyiapkan materi supaya masalahnya makin besar",
+      "links": [
+        {
+          "platform": "roblox",
+          "value": "xxchntrz"
+        }
+      ],
+      "cloudflare": {
+        "workerScriptName": "unix-profile-day",
+        "workerDomainId": "250b6f84344c4666a0cfa5d721afe81ef5d64cc5",
+        "status": "synced",
+        "message": "unix-profile-day aktif di https://day.unixteam.my.id",
+        "syncedAt": "2026-05-15T15:48:40.837Z"
+      }
     }
   },
   {
@@ -141,6 +329,25 @@
       "instagram": "https://instagram.com",
       "tiktok": "https://www.tiktok.com",
       "discord": "kottliin"
+    },
+    "profilePage": {
+      "enabled": true,
+      "subdomain": "kotlin",
+      "displayName": "Kotlin",
+      "bio": "Ahli menjalin relasi di berbagai circle dan \"kalkulator\" andalan untuk prediksi cuaca ekstrem di Gunung Sumbing",
+      "links": [
+        {
+          "platform": "roblox",
+          "value": "kottliin"
+        }
+      ],
+      "cloudflare": {
+        "workerScriptName": "unix-profile-kotlin",
+        "workerDomainId": "5a4be569ff8cba18f8310acec0a265225b21d7db",
+        "status": "synced",
+        "message": "unix-profile-kotlin aktif di https://kotlin.unixteam.my.id",
+        "syncedAt": "2026-05-15T15:48:30.432Z"
+      }
     }
   },
   {
@@ -157,6 +364,25 @@
       "instagram": "https://instagram.com",
       "tiktok": "https://www.tiktok.com",
       "discord": "muzanlur"
+    },
+    "profilePage": {
+      "enabled": true,
+      "subdomain": "maez",
+      "displayName": "Maez",
+      "bio": "Jago summit (tapi ke BC 🗿)",
+      "links": [
+        {
+          "platform": "roblox",
+          "value": "MuzanLur"
+        }
+      ],
+      "cloudflare": {
+        "workerScriptName": "unix-profile-maez",
+        "workerDomainId": "efc58dd15ba420e3ae0e6ed7e2081275e367aef7",
+        "status": "synced",
+        "message": "unix-profile-maez aktif di https://maez.unixteam.my.id",
+        "syncedAt": "2026-05-15T15:48:21.100Z"
+      }
     }
   },
   {
@@ -173,6 +399,29 @@
       "instagram": "https://instagram.com",
       "tiktok": "https://www.tiktok.com/@glbtr",
       "discord": "jal_0569"
+    },
+    "profilePage": {
+      "enabled": true,
+      "subdomain": "minjek",
+      "displayName": "Minjekk",
+      "bio": "Klo mau tau lebih jauh bisa langsung call ya cantik <3",
+      "links": [
+        {
+          "platform": "roblox",
+          "value": "xycvgs"
+        },
+        {
+          "platform": "tiktok",
+          "value": "@glbtr"
+        }
+      ],
+      "cloudflare": {
+        "workerScriptName": "unix-profile-minjek",
+        "workerDomainId": "7cdb5ff6cf60fdf6bb820f9c9d0c3c9e8dda3f2c",
+        "status": "synced",
+        "message": "unix-profile-minjek aktif di https://minjek.unixteam.my.id",
+        "syncedAt": "2026-05-15T15:47:57.779Z"
+      }
     }
   },
   {
@@ -189,6 +438,29 @@
       "instagram": "https://www.instagram.com/irwankurniawann_",
       "tiktok": "https://www.tiktok.com",
       "discord": "wan7799"
+    },
+    "profilePage": {
+      "enabled": true,
+      "subdomain": "wan",
+      "displayName": "Wan",
+      "bio": "Kadang jago kadang anu",
+      "links": [
+        {
+          "platform": "roblox",
+          "value": "wanMGS"
+        },
+        {
+          "platform": "instagram",
+          "value": "irwankurniawann_"
+        }
+      ],
+      "cloudflare": {
+        "workerScriptName": "unix-profile-wan",
+        "workerDomainId": "d13a216728e4897ef0389b6a201f7670c1924973",
+        "status": "synced",
+        "message": "unix-profile-wan aktif di https://wan.unixteam.my.id",
+        "syncedAt": "2026-05-15T15:47:35.010Z"
+      }
     }
   },
   {
@@ -205,6 +477,29 @@
       "instagram": "https://www.instagram.com/vanyyy_25",
       "tiktok": "https://www.tiktok.com",
       "discord": "lilacccc.__41251"
+    },
+    "profilePage": {
+      "enabled": true,
+      "subdomain": "lilaccc",
+      "displayName": "Lilaccc",
+      "bio": "Cewe stecu , baik hati , lembut , yg paling penting cantip",
+      "links": [
+        {
+          "platform": "roblox",
+          "value": "lilacccc25"
+        },
+        {
+          "platform": "instagram",
+          "value": "vanyyy_25"
+        }
+      ],
+      "cloudflare": {
+        "workerScriptName": "unix-profile-lilaccc",
+        "workerDomainId": "bdbbc58c9240c0a772192f978f5160a5cdc34dfa",
+        "status": "synced",
+        "message": "unix-profile-lilaccc aktif di https://lilaccc.unixteam.my.id",
+        "syncedAt": "2026-05-15T15:47:15.279Z"
+      }
     }
   },
   {
@@ -221,7 +516,38 @@
       "tiktok": "https://www.tiktok.com/@flynkyy",
       "discord": "flynky."
     },
-    "id": 14
+    "id": 14,
+    "profilePage": {
+      "enabled": true,
+      "subdomain": "ciya",
+      "displayName": "Ciya or City",
+      "bio": "Terlihat seperti makhluk manis dan kalem aslinya nya reog mania. Di counter ping merah ya wasallam. Sabarnya bukan karna iman tapi karna gada pilihan aja sih wkwk",
+      "links": [
+        {
+          "platform": "roblox",
+          "value": "flynkky"
+        },
+        {
+          "platform": "instagram",
+          "value": "siciyaa_"
+        },
+        {
+          "platform": "tiktok",
+          "value": "@flynkyy"
+        },
+        {
+          "platform": "mobile-legends",
+          "value": "1109005172"
+        }
+      ],
+      "cloudflare": {
+        "workerScriptName": "unix-profile-ciya",
+        "workerDomainId": "a8fae131a3300cc6867bf90819e3f2bb74813d82",
+        "status": "synced",
+        "message": "unix-profile-ciya aktif di https://ciya.unixteam.my.id",
+        "syncedAt": "2026-05-16T04:31:10.368Z"
+      }
+    }
   },
   {
     "name": "Unaa Bauu",
@@ -237,6 +563,33 @@
       "tiktok": "https://www.tiktok.com/@pmxunaa_",
       "discord": "laluna6148"
     },
-    "id": 15
+    "id": 15,
+    "profilePage": {
+      "enabled": true,
+      "subdomain": "unaa",
+      "displayName": "Unaa Bauu",
+      "bio": "Kadang gini kadang gitu, kadang juga kadang kadang, gitu lah.",
+      "links": [
+        {
+          "platform": "roblox",
+          "value": "wa1ters5"
+        },
+        {
+          "platform": "instagram",
+          "value": "gloomy_moon____"
+        },
+        {
+          "platform": "tiktok",
+          "value": "@pmxunaa_"
+        }
+      ],
+      "cloudflare": {
+        "workerScriptName": "unix-profile-unaa",
+        "workerDomainId": "74cd5db4c86f12d96ea24dfa9e1433b7c7192629",
+        "status": "synced",
+        "message": "unix-profile-unaa aktif di https://unaa.unixteam.my.id",
+        "syncedAt": "2026-05-15T15:46:39.704Z"
+      }
+    }
   }
 ]

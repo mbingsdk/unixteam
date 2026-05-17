@@ -36,6 +36,43 @@ interface Section {
   subsections?: Array<{ title: string; content: string; code?: string }>;
 }
 
+const celebrantNameClasses = [
+  'bg-cyan-400/10 border-cyan-300/35 text-cyan-100 shadow-[0_0_18px_rgba(34,211,238,0.16)]',
+  'bg-rose-400/10 border-rose-300/35 text-rose-100 shadow-[0_0_18px_rgba(251,113,133,0.16)]',
+  'bg-amber-400/10 border-amber-300/35 text-amber-100 shadow-[0_0_18px_rgba(251,191,36,0.16)]',
+  'bg-emerald-400/10 border-emerald-300/35 text-emerald-100 shadow-[0_0_18px_rgba(52,211,153,0.16)]',
+  'bg-violet-400/10 border-violet-300/35 text-violet-100 shadow-[0_0_18px_rgba(167,139,250,0.16)]',
+  'bg-sky-400/10 border-sky-300/35 text-sky-100 shadow-[0_0_18px_rgba(56,189,248,0.16)]',
+] as const;
+
+function getCelebrantNameClass(name: string) {
+  const hash = [...name].reduce(
+    (total, char) => total + char.charCodeAt(0),
+    0,
+  );
+
+  return celebrantNameClasses[hash % celebrantNameClasses.length];
+}
+
+function renderInlineContent(text: string) {
+  return text.split(/(\[\[[^\[\]]+\]\])/g).map((part, index) => {
+    const match = part.match(/^\[\[([^\[\]]+)\]\]$/);
+
+    if (!match) return part;
+
+    const name = match[1].trim();
+
+    return (
+      <span
+        key={`${name}-${index}`}
+        className={`relative -top-px mx-0.5 inline-flex items-center rounded-md border px-1.5 py-0.5 align-baseline text-[0.85em] font-black tracking-normal ${getCelebrantNameClass(name)}`}
+      >
+        {name}
+      </span>
+    );
+  });
+}
+
 export function SectionsRenderer({ sections }: { sections: Section[] }) {
   return (
     <div className="space-y-8 text-foreground/80">
@@ -45,7 +82,7 @@ export function SectionsRenderer({ sections }: { sections: Section[] }) {
             {section.title}
           </h2>
           <p className="text-foreground/70 mb-3 leading-relaxed">
-            {section.content}
+            {renderInlineContent(section.content)}
           </p>
 
           {section.code && !section.subsections && (
@@ -66,7 +103,9 @@ export function SectionsRenderer({ sections }: { sections: Section[] }) {
                   <h3 className="text-lg font-semibold text-foreground mb-2">
                     {sub.title}
                   </h3>
-                  <p className="text-foreground/70 mb-3">{sub.content}</p>
+                  <p className="text-foreground/70 mb-3 leading-relaxed">
+                    {renderInlineContent(sub.content)}
+                  </p>
                   {sub.code && (
                     <div className="relative group my-4">
                       <pre className="bg-card border border-border rounded-lg p-4 overflow-x-auto">

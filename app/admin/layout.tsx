@@ -11,7 +11,18 @@
 import { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Lock, Eye, EyeOff, Loader2, ShieldCheck } from 'lucide-react';
+import {
+  BookOpen,
+  Eye,
+  EyeOff,
+  FileText,
+  FolderGit2,
+  HelpCircle,
+  Loader2,
+  Lock,
+  ShieldCheck,
+  Users,
+} from 'lucide-react';
 import Link from 'next/link';
 import bcrypt from 'bcryptjs';
 
@@ -21,11 +32,11 @@ const ADMIN_HASH = '$2b$12$XoKRU2s8/88lyinG8exq1eTIxaSCsSGIKxEXRRbv.YuJJVCZbKVNC
 const SESSION_KEY = 'unix_admin_unlocked_45456546';
 
 const navItems = [
-  { href: '/admin/team',     label: 'Team' },
-  { href: '/admin/blog',     label: 'Blog' },
-  { href: '/admin/docs',     label: 'Docs' },
-  { href: '/admin/projects', label: 'Projects' },
-  { href: '/admin/faq',      label: 'FAQ' },
+  { href: '/admin/team',     label: 'Team',     icon: Users },
+  { href: '/admin/blog',     label: 'Blog',     icon: FileText },
+  { href: '/admin/docs',     label: 'Docs',     icon: BookOpen },
+  { href: '/admin/projects', label: 'Projects', icon: FolderGit2 },
+  { href: '/admin/faq',      label: 'FAQ',      icon: HelpCircle },
 ];
 
 function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
@@ -136,35 +147,66 @@ function AdminShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen">
-      {/* Top bar */}
-      <div className="sticky top-16 z-40 border-b border-border bg-background/80 backdrop-blur-md">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-6 h-12">
-            <span className="flex items-center gap-1.5 text-xs font-semibold text-accent">
-              <ShieldCheck size={14} />
-              Admin
-            </span>
-            <div className="flex items-center gap-1">
-              {navItems.map((item) => (
+      <aside className="hidden md:block fixed left-4 top-24 z-30 w-52">
+        <div className="glass-effect rounded-lg p-3">
+          <div className="flex items-center gap-2 px-2 py-2 border-b border-white/[0.06]">
+            <ShieldCheck size={15} className="text-accent" />
+            <span className="text-xs font-semibold text-accent">Admin Area</span>
+          </div>
+
+          <nav className="pt-3 space-y-1">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              const active = pathname.startsWith(item.href);
+              return (
                 <Link
                   key={item.href}
                   href={item.href}
                   className={[
-                    'px-3 py-1.5 rounded-md text-xs font-medium transition-colors',
-                    pathname.startsWith(item.href)
+                    'flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors',
+                    active
                       ? 'bg-accent/10 text-accent'
                       : 'text-foreground/60 hover:text-foreground hover:bg-card',
                   ].join(' ')}
                 >
+                  <Icon size={15} />
                   {item.label}
                 </Link>
-              ))}
-            </div>
+              );
+            })}
+          </nav>
+        </div>
+      </aside>
+
+      <div className="md:pl-60">
+        <div className="md:hidden px-4 sm:px-6 lg:px-8 pt-4">
+          <div className="glass-effect rounded-lg p-2 overflow-x-auto">
+            <nav className="flex min-w-max gap-1">
+              {navItems.map((item) => {
+                const Icon = item.icon;
+                const active = pathname.startsWith(item.href);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={[
+                      'inline-flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium transition-colors',
+                      active
+                        ? 'bg-accent/10 text-accent'
+                        : 'text-foreground/60 hover:text-foreground hover:bg-card',
+                    ].join(' ')}
+                  >
+                    <Icon size={14} />
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </nav>
           </div>
         </div>
-      </div>
 
-      {children}
+        {children}
+      </div>
     </div>
   );
 }

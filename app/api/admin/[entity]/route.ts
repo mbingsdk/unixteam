@@ -14,8 +14,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
-
-export const dynamic = 'force-static';
+import { syncTeamProfilePage } from '@/lib/cloudflare-profiles';
+import type { TeamMember } from '@/types';
 
 // Blokir di production
 if (process.env.NODE_ENV === 'production') {
@@ -47,9 +47,45 @@ function writeData<T>(entity: Entity, data: T[]) {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
 }
 
-function nextId<T extends { id: number }>(items: T[]): number {
+type ItemId = string | number;
+
+function nextId<T extends { id?: ItemId }>(items: T[]): ItemId {
   if (items.length === 0) return 1;
-  return Math.max(...items.map((i) => i.id)) + 1;
+
+  const ids = items
+    .map((item) => item.id)
+    .filter((id): id is ItemId => typeof id === 'string' || typeof id === 'number');
+
+  const numericIds = ids
+    .map((id) => typeof id === 'number' || /^\d+$/.test(id) ? Number(id) : Number.NaN)
+    .filter(Number.isFinite);
+
+  if (numericIds.length === ids.length && numericIds.length > 0) {
+    return Math.max(...numericIds) + 1;
+  }
+
+  const prefixedIds = ids
+    .filter((id): id is string => typeof id === 'string')
+    .map((id) => id.match(/^(.*?)(\d+)$/))
+    .filter((match): match is RegExpMatchArray => Boolean(match));
+
+  if (prefixedIds.length === ids.length && prefixedIds.length > 0) {
+    const prefix = prefixedIds[0][1];
+    if (prefixedIds.every((match) => match[1] === prefix)) {
+      const maxSuffix = Math.max(...prefixedIds.map((match) => Number(match[2])));
+      return `${prefix}${maxSuffix + 1}`;
+    }
+  }
+
+  return ids.length + 1;
+}
+
+function requestId(req: NextRequest) {
+  return req.nextUrl.searchParams.get('id')?.trim() ?? '';
+}
+
+function matchesId(item: Record<string, unknown>, id: string) {
+  return String(item.id) === id;
 }
 
 function guard(entity: string): entity is Entity {
@@ -85,7 +121,10 @@ export async function POST(
 
   const body = await req.json();
   const items = readData<Record<string, unknown>>(entity);
-  const newItem = { ...body, id: nextId(items) };
+  let newItem = { ...body, id: nextId(items as { id?: ItemId }[]) };
+  if (entity === 'team') {
+    newItem = await syncTeamProfilePage(undefined, newItem as TeamMember) as unknown as Record<string, unknown>;
+  }
   items.push(newItem);
   writeData(entity, items);
 
@@ -103,15 +142,19 @@ export async function PUT(
   if (!guard(entity))
     return NextResponse.json({ ok: false, error: 'Unknown entity' }, { status: 400 });
 
-  const id = Number(req.nextUrl.searchParams.get('id'));
+  const id = requestId(req);
   if (!id) return NextResponse.json({ ok: false, error: 'ID required' }, { status: 400 });
 
   const body = await req.json();
   const items = readData<Record<string, unknown>>(entity);
-  const idx = items.findIndex((i) => i.id === id);
+  const idx = items.findIndex((item) => matchesId(item, id));
   if (idx === -1) return NextResponse.json({ ok: false, error: 'Not found' }, { status: 404 });
 
-  items[idx] = { ...items[idx], ...body, id };
+  let updated = { ...items[idx], ...body, id: items[idx].id };
+  if (entity === 'team') {
+    updated = await syncTeamProfilePage(items[idx] as unknown as TeamMember, updated as TeamMember) as unknown as Record<string, unknown>;
+  }
+  items[idx] = updated;
   writeData(entity, items);
 
   return NextResponse.json({ ok: true, data: items[idx] });
@@ -128,13 +171,31 @@ export async function DELETE(
   if (!guard(entity))
     return NextResponse.json({ ok: false, error: 'Unknown entity' }, { status: 400 });
 
-  const id = Number(req.nextUrl.searchParams.get('id'));
+  const id = requestId(req);
   if (!id) return NextResponse.json({ ok: false, error: 'ID required' }, { status: 400 });
 
   const items = readData<Record<string, unknown>>(entity);
-  const filtered = items.filter((i) => i.id !== id);
+  const existing = items.find((item) => matchesId(item, id));
+  const filtered = items.filter((item) => !matchesId(item, id));
   if (filtered.length === items.length)
     return NextResponse.json({ ok: false, error: 'Not found' }, { status: 404 });
+
+  if (entity === 'team' && existing) {
+    await syncTeamProfilePage(
+      existing as unknown as TeamMember,
+      {
+        ...(existing as unknown as TeamMember),
+        profilePage: {
+          ...(existing as unknown as TeamMember).profilePage,
+          enabled: false,
+          subdomain: (existing as unknown as TeamMember).profilePage?.subdomain ?? '',
+          displayName: (existing as unknown as TeamMember).profilePage?.displayName ?? '',
+          bio: (existing as unknown as TeamMember).profilePage?.bio ?? '',
+          links: (existing as unknown as TeamMember).profilePage?.links ?? [],
+        },
+      },
+    );
+  }
 
   writeData(entity, filtered);
   return NextResponse.json({ ok: true });

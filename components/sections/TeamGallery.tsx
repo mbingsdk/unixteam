@@ -4,7 +4,7 @@ import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/effects/ScrollReveal';
 import { teamMembers } from '@/lib/data';
-import { Loader2, CreditCard, Search, User } from 'lucide-react';
+import { Loader2, CreditCard, Search, User, ExternalLink } from 'lucide-react';
 import { RobloxIcon, InstagramIcon, TikTokIcon, DiscordIcon } from '@/components/ui/SocialIcons';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
 import { toast } from 'sonner';
@@ -87,6 +87,14 @@ export default function TeamGallery() {
         return null;
     }
   };
+
+  const profileSlug = (member: TeamMember) =>
+    (member.profilePage?.subdomain || member.name)
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8">
@@ -218,11 +226,11 @@ export default function TeamGallery() {
                   <div className="mb-3">
                     <div
                       className={
-                        expandedBio.has(member.id) ? '' : 'h-[40px] overflow-hidden'
+                        expandedBio.has(String(member.id)) ? '' : 'h-[40px] overflow-hidden'
                       }
                     >
                       <p className="text-foreground/50 text-xs leading-[20px]">
-                        {expandedBio.has(member.id) || !isBioLong(member.bio)
+                        {expandedBio.has(String(member.id)) || !isBioLong(member.bio)
                           ? member.bio
                           : member.bio.slice(0, 65) + '...'}
                       </p>
@@ -230,10 +238,10 @@ export default function TeamGallery() {
                     <div className="h-4 mt-0.5">
                       {isBioLong(member.bio) && (
                         <button
-                          onClick={() => toggleBio(member.id)}
+                          onClick={() => toggleBio(String(member.id))}
                           className="text-accent text-xs font-medium hover:underline"
                         >
-                          {expandedBio.has(member.id)
+                          {expandedBio.has(String(member.id))
                             ? 'Tutup'
                             : 'Lihat lebih'}
                         </button>
@@ -250,6 +258,17 @@ export default function TeamGallery() {
                       <CreditCard size={13} />
                       KTP
                     </button>
+                    {member.profilePage?.enabled && (
+                      <a
+                        href={`https://${profileSlug(member)}.unixteam.my.id`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 px-2 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] text-foreground/70 hover:text-accent text-xs font-semibold transition-all duration-200 flex items-center justify-center gap-1.5"
+                      >
+                        <ExternalLink size={13} />
+                        Profile
+                      </a>
+                    )}
                     {member.social && (
                       <div className="flex gap-0.5">
                         {Object.entries(member.social).map(([type, handle]) => {
