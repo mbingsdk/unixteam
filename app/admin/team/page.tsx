@@ -185,11 +185,14 @@ function MemberForm({
     setProfile({ links: [...links, { platform: platformId, value: '' }] });
   };
 
-  const setProfileLink = (platformId: string, value: string) => {
+  const setProfileLink = (
+    platformId: string,
+    patch: Partial<Pick<ProfilePageLink, 'value' | 'zoneId'>>,
+  ) => {
     const links = form.profilePage?.links ?? [];
     const nextLinks = links.some((link) => link.platform === platformId)
-      ? links.map((link) => link.platform === platformId ? { ...link, value } : link)
-      : [...links, { platform: platformId, value }];
+      ? links.map((link) => link.platform === platformId ? { ...link, ...patch } : link)
+      : [...links, { platform: platformId, value: '', ...patch }];
     setProfile({ links: nextLinks });
   };
 
@@ -205,6 +208,7 @@ function MemberForm({
         .map((link): ProfilePageLink => ({
           platform: link.platform,
           value: link.value.trim(),
+          zoneId: link.zoneId?.trim() || undefined,
           label: link.label?.trim() || undefined,
         }))
         .filter((link) => link.value),
@@ -442,18 +446,37 @@ function MemberForm({
                         {form.profilePage.links.map((link) => {
                           const platform = getProfilePlatform(link.platform);
                           if (!platform) return null;
+                          const profileLink = profileLinkFor(form.profilePage, platform.id);
+                          const isMobileLegends = platform.id === 'mobile-legends';
                           return (
-                            <div key={link.platform} className="flex items-center gap-2">
+                            <div key={link.platform} className="flex items-start gap-2">
                               <span className="w-36 shrink-0 flex items-center gap-2 text-xs text-foreground/65">
                                 <PlatformMark platform={platform} size="xs" />
                                 {platform.name}
                               </span>
-                              <input
-                                className={`${input} flex-1`}
-                                placeholder={platform.placeholder}
-                                value={profileLinkFor(form.profilePage, platform.id)?.value ?? ''}
-                                onChange={(e) => setProfileLink(platform.id, e.target.value)}
-                              />
+                              {isMobileLegends ? (
+                                <div className="grid flex-1 grid-cols-1 sm:grid-cols-2 gap-2">
+                                  <input
+                                    className={input}
+                                    placeholder="User ID"
+                                    value={profileLink?.value ?? ''}
+                                    onChange={(e) => setProfileLink(platform.id, { value: e.target.value })}
+                                  />
+                                  <input
+                                    className={input}
+                                    placeholder="Zone ID"
+                                    value={profileLink?.zoneId ?? ''}
+                                    onChange={(e) => setProfileLink(platform.id, { zoneId: e.target.value })}
+                                  />
+                                </div>
+                              ) : (
+                                <input
+                                  className={`${input} flex-1`}
+                                  placeholder={platform.placeholder}
+                                  value={profileLink?.value ?? ''}
+                                  onChange={(e) => setProfileLink(platform.id, { value: e.target.value })}
+                                />
+                              )}
                               <button
                                 type="button"
                                 onClick={() => toggleProfilePlatform(platform.id)}

@@ -38,7 +38,8 @@
         },
         {
           "platform": "mobile-legends",
-          "value": "1029441337"
+          "value": "1029441337",
+          "zoneId": "13135"
         },
         {
           "platform": "saweria",
@@ -54,7 +55,7 @@
         "workerDomainId": "020e6a16da9351e3b800cf444cfab2f112b7ed4a",
         "status": "synced",
         "message": "unix-profile-mbing aktif di https://mbing.unixteam.my.id",
-        "syncedAt": "2026-05-17T00:42:57.911Z"
+        "syncedAt": "2026-05-19T19:32:11.883Z"
       }
     }
   },
@@ -164,6 +165,14 @@
         {
           "platform": "instagram",
           "value": "bodiekats.poll"
+        },
+        {
+          "platform": "discord",
+          "value": "katspoll"
+        },
+        {
+          "platform": "sociabuzz",
+          "value": "kapolp0ll"
         }
       ],
       "cloudflare": {
@@ -171,7 +180,7 @@
         "workerDomainId": "88ddd9b38177ba337c5504d76524b6bda84e3475",
         "status": "synced",
         "message": "unix-profile-popol aktif di https://popol.unixteam.my.id",
-        "syncedAt": "2026-05-15T15:49:39.000Z"
+        "syncedAt": "2026-05-19T19:35:20.228Z"
       }
     }
   },
@@ -537,7 +546,8 @@
         },
         {
           "platform": "mobile-legends",
-          "value": "1109005172"
+          "value": "1109005172",
+          "zoneId": "13455"
         }
       ],
       "cloudflare": {
@@ -545,7 +555,7 @@
         "workerDomainId": "a8fae131a3300cc6867bf90819e3f2bb74813d82",
         "status": "synced",
         "message": "unix-profile-ciya aktif di https://ciya.unixteam.my.id",
-        "syncedAt": "2026-05-16T04:31:10.368Z"
+        "syncedAt": "2026-05-17T03:01:34.235Z"
       }
     }
   },

@@ -20,7 +20,7 @@ export function useAdminData<T extends { id: number }>(entity: Entity) {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(url);
+      const res = await fetch(url, { cache: 'no-store' });
       const json = await res.json();
       if (json.ok) setItems(json.data);
       else setError(json.error);

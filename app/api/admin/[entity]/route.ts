@@ -105,7 +105,10 @@ export async function GET(
   if (!guard(entity))
     return NextResponse.json({ ok: false, error: 'Unknown entity' }, { status: 400 });
 
-  return NextResponse.json({ ok: true, data: readData(entity) });
+  return NextResponse.json(
+    { ok: true, data: readData(entity) },
+    { headers: { 'Cache-Control': 'no-store' } },
+  );
 }
 
 export async function POST(

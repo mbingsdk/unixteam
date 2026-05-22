@@ -9,17 +9,17 @@ export default function DiscordSection() {
     {
       icon: Users,
       title: '120+ Member Ribut',
-      description: 'Join komunitas developer yang gila dan absurd',
+      description: 'Join komunitas aneh sampai ketularan anehnya, dan temukan teman baru yang aneh juga',
     },
     {
       icon: MessageSquare,
       title: 'Komunitas Aktif',
-      description: 'Dapat bantuan, share ide, dan debat hal sepele kayak sidang PBB',
+      description: 'Dapat bulliyan, share keluhan, dan debat kalo ga ngegibah',
     },
     {
       icon: Zap,
       title: 'Update Real-time',
-      description: 'Tetap informasi tentang project aneh dan pengumuman random',
+      description: 'Informasi update tentang drama terbaru, event, dan inisiatif gila',
     },
   ];
 
@@ -35,7 +35,7 @@ export default function DiscordSection() {
                   Join Discord Buat Ribut
                 </h2>
                 <p className="text-foreground/50 text-lg font-medium leading-relaxed">
-                  Connect dengan developer, share project aneh, dapat feedback, dan ribut di inisiatif gila baru.
+                  Sini ribut bareng kita, jadi bagian orang aneh yang konsisten, menjaga kesalah pahaman bersama, dan saling berprasangka buruk terhadap sesama anggota.
                 </p>
               </div>
 

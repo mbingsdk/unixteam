@@ -116,6 +116,19 @@ interface RobloxUsernameLookupResponse {
   }>;
 }
 
+interface MobileLegendsLookupResponse {
+  success?: boolean;
+  id?: string | number;
+  server?: string | number;
+  name?: string;
+}
+
+interface MobileLegendsProfile {
+  userId: string;
+  zoneId: string;
+  name: string | null;
+}
+
 async function resolveRobloxUserId(value: string) {
   const trimmed = value.trim();
   if (/^https?:\/\//i.test(trimmed)) {
@@ -160,8 +173,45 @@ async function resolveRobloxUserId(value: string) {
   return null;
 }
 
+function safeDecodeURIComponent(value: string) {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
+}
+
+async function resolveMobileLegendsProfile(value: string, zoneId?: string): Promise<MobileLegendsProfile | null> {
+  const userId = value.trim();
+  const cleanZoneId = zoneId?.trim() ?? '';
+  if (!userId || !cleanZoneId) return null;
+
+  try {
+    const response = await fetch(
+      `https://api.isan.eu.org/nickname/ml?id=${encodeURIComponent(userId)}&server=${encodeURIComponent(cleanZoneId)}&decode=false`,
+    );
+
+    if (!response.ok) {
+      throw new Error(`Mobile Legends HTTP ${response.status}`);
+    }
+
+    const json = (await response.json()) as MobileLegendsLookupResponse;
+    return {
+      userId: String(json.id ?? userId),
+      zoneId: String(json.server ?? cleanZoneId),
+      name: json.success && json.name ? safeDecodeURIComponent(json.name) : null,
+    };
+  } catch {
+    return {
+      userId,
+      zoneId: cleanZoneId,
+      name: null,
+    };
+  }
+}
+
 async function buildWorkerLinkTarget(platformId: string, value: string, robloxUserId?: string | null) {
-  if (platformId === 'discord' || platformId === 'mobile-legends') {
+  if (platformId === 'discord') {
     return {
       copyValue: value.trim(),
     };
@@ -388,12 +438,29 @@ async function renderWorkerHtml(
       const platform = getProfilePlatform(link.platform);
       if (!platform || !link.value.trim()) return null;
 
-      const target = await buildWorkerLinkTarget(platform.id, link.value, platform.id === 'roblox' ? robloxUserId : null);
-      const href = 'href' in target ? escapeHtml(target.href) : '';
-      const fallbackHref = target.fallbackHref ? escapeHtml(target.fallbackHref) : '';
-      const copyValue = target.copyValue ? escapeHtml(target.copyValue) : '';
-      const name = escapeHtml(link.label || platform.name);
+      const isMobileLegends = platform.id === 'mobile-legends';
+      const mobileLegendsProfile = isMobileLegends
+        ? await resolveMobileLegendsProfile(link.value, link.zoneId)
+        : null;
+      const target = isMobileLegends
+        ? null
+        : await buildWorkerLinkTarget(platform.id, link.value, platform.id === 'roblox' ? robloxUserId : null);
+      const href = target && 'href' in target ? escapeHtml(target.href) : '';
+      const fallbackHref = target && 'fallbackHref' in target && target.fallbackHref
+        ? escapeHtml(target.fallbackHref)
+        : '';
+      const copyValue = target && 'copyValue' in target && target.copyValue
+        ? escapeHtml(target.copyValue)
+        : '';
+      const name = escapeHtml(
+        isMobileLegends
+          ? mobileLegendsProfile?.name || link.label || platform.name
+          : link.label || platform.name,
+      );
       const value = escapeHtml(link.value);
+      const mobileLegendsUserId = escapeHtml(mobileLegendsProfile?.userId ?? link.value.trim());
+      const mobileLegendsZoneId = escapeHtml(mobileLegendsProfile?.zoneId ?? link.zoneId?.trim() ?? '');
+      const mobileLegendsName = escapeHtml(mobileLegendsProfile?.name ?? 'Nickname belum tersedia');
       const mark = escapeHtml(platform.mark);
       const assetUrl = platform.assetPath
         ? `https://${rootDomain}${platform.assetPath}`
@@ -413,7 +480,9 @@ async function renderWorkerHtml(
 
       return {
         category: platform.category,
-        item: `${copyValue
+        item: `${isMobileLegends
+          ? `<button class="link link-${platform.category}" style="--i:${index}" type="button" data-ml-open data-ml-name="${mobileLegendsName}" data-ml-user-id="${mobileLegendsUserId}" data-ml-zone-id="${mobileLegendsZoneId}" aria-label="Buka detail Mobile Legends">`
+          : copyValue
           ? `<button class="link link-${platform.category}" style="--i:${index}" type="button" data-copy="${copyValue}" aria-label="Salin ${name}">`
           : `<a class="link link-${platform.category}" style="--i:${index}" href="${href}"${fallbackHref ? ` data-fallback="${fallbackHref}" data-deeplink="true"` : ' target="_blank" rel="noopener noreferrer"'}>`}
           <span class="slot">${String(index + 1).padStart(2, '0')}</span>
@@ -421,12 +490,14 @@ async function renderWorkerHtml(
           <span class="icon">${icon}</span>
           <span class="copy">
             <strong>${name}</strong>
-            ${copyValue
-              ? `<span class="copy-row"><small>${value}</small><span class="hint">Salin</span></span>`
-              : `<small>${value}</small>`}
+            ${isMobileLegends
+              ? '<span class="copy-row"><small>Mobile Legends</small><span class="hint">Detail</span></span>'
+              : copyValue
+                ? `<span class="copy-row"><small>${value}</small><span class="hint">Salin</span></span>`
+                : `<small>${value}</small>`}
           </span>
           ${copyValue ? '<span class="hint">Salin</span>' : '<span class="arrow">↗</span>'}
-        ${copyValue ? '</button>' : '</a>'}`,
+        ${isMobileLegends || copyValue ? '</button>' : '</a>'}`,
       };
     }),
   );
@@ -588,6 +659,18 @@ async function renderWorkerHtml(
     .link>.hint{display:none}
     .link.copied{animation:copy-pulse .65s ease}
     .empty{display:grid;place-items:center;min-height:220px;color:rgba(246,243,238,.45);border:1px dashed rgba(255,255,255,.12);border-radius:14px}
+    .modal{position:fixed;inset:0;z-index:20;display:none;place-items:center;padding:18px;background:rgba(0,0,0,.68);backdrop-filter:blur(10px)}
+    .modal.open{display:grid}
+    .modal-card{width:min(100%,420px);border:1px solid rgba(255,255,255,.11);border-radius:18px;background:linear-gradient(180deg,rgba(22,16,12,.98),rgba(8,8,8,.98));box-shadow:0 24px 80px rgba(0,0,0,.48);overflow:hidden}
+    .modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:18px 18px 14px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .modal-head small{display:block;color:var(--accent-strong);font-size:11px;font-weight:800;text-transform:uppercase}
+    .modal-head strong{display:block;margin-top:4px;font-size:22px}
+    .modal-close{appearance:none;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);color:#f6f3ee;border-radius:10px;width:34px;height:34px;font:inherit;font-size:18px;cursor:pointer}
+    .modal-body{display:grid;gap:12px;padding:18px}
+    .detail{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 14px;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(255,255,255,.035)}
+    .detail span{display:block;color:rgba(246,243,238,.42);font-size:11px;font-weight:700;text-transform:uppercase}
+    .detail strong{display:block;margin-top:4px;font-size:15px}
+    .detail-copy{appearance:none;border:1px solid var(--accent-border);background:var(--accent-soft);color:var(--accent-strong);border-radius:10px;padding:8px 10px;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
     @keyframes sweep{
       from{transform:translateX(-34%)}
       to{transform:translateX(34%)}
@@ -711,6 +794,33 @@ async function renderWorkerHtml(
       </section>
     </div>
   </main>
+  <div class="modal" data-ml-modal aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="ml-title">
+      <div class="modal-head">
+        <div>
+          <small>Mobile Legends</small>
+          <strong id="ml-title" data-ml-field="name">Nickname belum tersedia</strong>
+        </div>
+        <button class="modal-close" type="button" data-ml-close aria-label="Tutup">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail">
+          <div>
+            <span>User ID</span>
+            <strong data-ml-field="userId">-</strong>
+          </div>
+          <button class="detail-copy" type="button" data-ml-copy>Salin</button>
+        </div>
+        <div class="detail">
+          <div>
+            <span>Zone ID</span>
+            <strong data-ml-field="zoneId">-</strong>
+          </div>
+          <button class="detail-copy" type="button" data-ml-copy-field="zoneId">Salin</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <script>
     for (const link of document.querySelectorAll('[data-deeplink="true"]')) {
       link.addEventListener('click', (event) => {
@@ -761,6 +871,64 @@ async function renderWorkerHtml(
         }
       });
     }
+
+    const mobileLegendsModal = document.querySelector('[data-ml-modal]');
+    const mobileLegendsName = document.querySelector('[data-ml-field="name"]');
+    const mobileLegendsUserId = document.querySelector('[data-ml-field="userId"]');
+    const mobileLegendsZoneId = document.querySelector('[data-ml-field="zoneId"]');
+    const mobileLegendsCopy = document.querySelector('[data-ml-copy]');
+    for (const button of document.querySelectorAll('[data-ml-open]')) {
+      button.addEventListener('click', () => {
+        if (!mobileLegendsModal || !mobileLegendsName || !mobileLegendsUserId || !mobileLegendsZoneId) return;
+        mobileLegendsName.textContent = button.dataset.mlName || 'Nickname belum tersedia';
+        mobileLegendsUserId.textContent = button.dataset.mlUserId || '-';
+        mobileLegendsZoneId.textContent = button.dataset.mlZoneId || '-';
+        mobileLegendsModal.classList.add('open');
+        mobileLegendsModal.setAttribute('aria-hidden', 'false');
+      });
+    }
+
+    const closeMobileLegendsModal = () => {
+      if (!mobileLegendsModal) return;
+      mobileLegendsModal.classList.remove('open');
+      mobileLegendsModal.setAttribute('aria-hidden', 'true');
+    };
+
+    document.querySelector('[data-ml-close]')?.addEventListener('click', closeMobileLegendsModal);
+    mobileLegendsModal?.addEventListener('click', (event) => {
+      if (event.target === mobileLegendsModal) closeMobileLegendsModal();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeMobileLegendsModal();
+    });
+    const copyMobileLegendsField = async (value, button, promptLabel) => {
+      if (!value || value === '-') return;
+      try {
+        await navigator.clipboard.writeText(value);
+        const previous = button.textContent;
+        button.textContent = 'Tersalin';
+        window.setTimeout(() => {
+          button.textContent = previous;
+        }, 1200);
+      } catch {
+        window.prompt(promptLabel, value);
+      }
+    };
+
+    mobileLegendsCopy?.addEventListener('click', async () => {
+      await copyMobileLegendsField(
+        mobileLegendsUserId?.textContent,
+        mobileLegendsCopy,
+        'Salin User ID Mobile Legends:',
+      );
+    });
+    document.querySelector('[data-ml-copy-field="zoneId"]')?.addEventListener('click', async (event) => {
+      await copyMobileLegendsField(
+        mobileLegendsZoneId?.textContent,
+        event.currentTarget,
+        'Salin Zone ID Mobile Legends:',
+      );
+    });
 
     for (const button of document.querySelectorAll('[data-share]')) {
       button.addEventListener('click', async () => {

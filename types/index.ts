@@ -10,6 +10,7 @@ export interface SocialLinks {
 export interface ProfilePageLink {
   platform: string;
   value: string;
+  zoneId?: string;
   label?: string;
 }
 

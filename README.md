@@ -166,7 +166,7 @@ Terima kasih kepada:
 - **Popol** yang sudah mencapai level disembah
 - **CEO Diks** yang dengan setia terus rugi demi komunitas
 - **Stack Overflow** atas jawaban-jawaban yang tidak selalu relevan tapi tetap dicoba
-- **GPT** atas kode yang kadang works
+- **GPT** dan **CLAUDE** atas kode yang kadang works
 - **Kopi** atas eksistensinya
 
 ---
