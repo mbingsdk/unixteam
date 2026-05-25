@@ -402,7 +402,7 @@ export const stats = [
 export const socialLinks = [
   {
     name: 'Discord',
-    url: 'https://discord.gg/unix-team',
+    url: 'https://https://discord.gg/Jdqhnyu2dw',
     icon: 'discord',
   },
   {

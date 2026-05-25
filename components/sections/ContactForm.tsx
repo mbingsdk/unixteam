@@ -21,7 +21,7 @@ const contacts = [
     icon: MessageSquare,
     label: 'Discord',
     value: 'Join Discord buat ribut langsung',
-    href: 'https://discord.gg/unix-team',
+    href: 'https://https://discord.gg/Jdqhnyu2dw',
   },
   {
     icon: RobloxIcon,

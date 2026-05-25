@@ -31,7 +31,7 @@ export function generateOrganizationSchema() {
     logo: `${BASE_URL}/apple-icon.png`,
     description: 'UNIX-TEAM adalah komunitas game di Roblox, agak absurd dan sedikit tertarik dengan teknologi yang membangun pengalaman Roblox, tools, dan script inovatif.',
     sameAs: [
-      'https://discord.gg/unix-team',
+      'https://https://discord.gg/Jdqhnyu2dw',
       'https://twitter.com/unixteam',
       'https://github.com/unix-team',
     ],

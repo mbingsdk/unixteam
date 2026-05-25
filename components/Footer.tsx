@@ -8,7 +8,7 @@ const footerLinks = [
   {
     title: 'Komunitas',
     links: [
-      { label: 'Discord', href: 'https://discord.gg/unix-team' },
+      { label: 'Discord', href: 'https://https://discord.gg/Jdqhnyu2dw' },
       { label: 'Roblox', href: 'https://www.roblox.com/communities/unix-team' },
       { label: 'Instagram', href: 'https://instagram.com/mbingsdk' },
     ],
@@ -44,7 +44,7 @@ const socialLinks = [
   },
   {
     icon: DiscordIcon,
-    href: 'https://discord.gg/unix-team',
+    href: 'https://https://discord.gg/Jdqhnyu2dw',
     label: 'Discord',
   },
 ];

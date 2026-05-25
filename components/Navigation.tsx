@@ -158,7 +158,7 @@ export default function Navigation() {
         <div className="hidden md:flex items-center gap-1.5 flex-shrink-0">
           <ThemeToggle />
           <a
-            href="https://discord.gg/unix-team"
+            href="https://https://discord.gg/Jdqhnyu2dw"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-accent text-accent-foreground text-[12.5px] font-semibold hover:bg-accent/90 active:scale-[0.98] transition-all duration-200 shadow-md shadow-accent/20"
@@ -263,7 +263,7 @@ export default function Navigation() {
                 {/* Discord CTA */}
                 <div className="px-3 pt-1 pb-4">
                   <a
-                    href="https://discord.gg/unix-team"
+                    href="https://https://discord.gg/Jdqhnyu2dw"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 w-full py-3 rounded-3xl bg-accent text-accent-foreground font-semibold text-[14px] hover:bg-accent/90 active:scale-[0.98] transition-all duration-200 shadow-lg shadow-accent/20"

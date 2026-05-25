@@ -108,7 +108,7 @@ export default function HeroSection() {
             </Link>
 
             <a
-              href="https://discord.gg/unix-team"
+              href="https://https://discord.gg/Jdqhnyu2dw"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-4 rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl text-foreground font-semibold text-base hover:bg-white/[0.08] hover:border-white/15 transition-all duration-300 active:scale-[0.98]"

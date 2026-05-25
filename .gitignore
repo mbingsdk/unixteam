@@ -34,3 +34,5 @@ public/
 scripts/
 indexnow.py
 app/admin/
+app/api/
+admin/
