@@ -73,7 +73,7 @@ export default function DiscordSection() {
 
               {/* CTA Button */}
               <motion.a
-                href="https://https://discord.gg/Jdqhnyu2dw"
+                href="https://discord.gg/Jdqhnyu2dw"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02 }}

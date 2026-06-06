@@ -275,6 +275,11 @@ export default function TeamGallery() {
                           const Icon = getSocialIcon(type);
                           if (!Icon) return null;
 
+                          // try get value from profilePage.links matching the platform type
+                          const displayHandle =
+                            member.profilePage?.links?.find((l: any) => l.platform === type)
+                              ?.value ?? handle;
+
                           if (type === 'discord') {
                             return (
                               <motion.button
@@ -299,7 +304,7 @@ export default function TeamGallery() {
                               whileHover={{ scale: 1.1 }}
                               whileTap={{ scale: 0.95 }}
                               className="p-2 rounded-lg hover:bg-white/[0.06] text-foreground/50 hover:text-accent transition-all duration-200"
-                              title={`${type}: ${handle}`}
+                              title={`${type}: ${displayHandle}`}
                             >
                               <Icon size={15} />
                             </motion.a>

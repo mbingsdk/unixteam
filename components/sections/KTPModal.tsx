@@ -33,7 +33,7 @@ function extractSocialInfo(social: Record<string, string>): ExtractedSocial[] {
     const urlLower = url.toLowerCase();
 
     if (type === 'roblox' || urlLower.includes('roblox')) {
-      const match = url.match(/user[s]?[/=](\d+)/i) || url.match(/\/([^/]+)$/);
+      const match = url.match(/userId=(\d+)/i) || url.match(/user[s]?[/=](\d+)/i) || url.match(/\/([^/]+)$/);
       if (match && match[1]) {
         result.push({ type: 'roblox', handle: match[1], icon: RobloxIcon });
       }
@@ -72,7 +72,7 @@ export default function KTPModal({ member, isOpen, onClose }: KTPModalProps) {
   const robloxSocial = socials.find((social) => social.type === 'roblox');
   const robloxUserId = robloxSocial?.handle || '';
   const robloxProfileUrl = robloxUserId
-    ? `https://www.roblox.com/users/${robloxUserId}/profile`
+    ? `roblox://navigation/profile_card?userId=${robloxUserId}`
     : '';
 
   useEffect(() => {

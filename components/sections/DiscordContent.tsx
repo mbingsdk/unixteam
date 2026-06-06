@@ -51,7 +51,7 @@ export default function DiscordContent() {
                 Klik tombol di bawah buat join server Discord kita. Ga ada paksaan. Tapi kalau ga join, ya sayang banget, ribut-ributnya seru soalnya.
               </p>
               <motion.a
-                href="https://https://discord.gg/Jdqhnyu2dw"
+                href="https://discord.gg/Jdqhnyu2dw"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
@@ -148,7 +148,7 @@ export default function DiscordContent() {
           {/* Bottom CTA */}
           <ScrollReveal delay={0.5} className="mt-16 text-center">
             <motion.a
-              href="https://https://discord.gg/Jdqhnyu2dw"
+              href="https://discord.gg/Jdqhnyu2dw"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}

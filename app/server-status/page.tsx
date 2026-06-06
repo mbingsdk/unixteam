@@ -139,7 +139,7 @@ export default function ServerStatusPage() {
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a
-                  href="https://https://discord.gg/Jdqhnyu2dw"
+                  href="https://discord.gg/Jdqhnyu2dw"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-accent text-brand-dark font-semibold text-sm hover:bg-accent/90 transition-all"

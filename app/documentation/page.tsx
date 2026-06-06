@@ -116,7 +116,7 @@ export default function DocumentationPage() {
                 {[
                   { label: 'Artikel Blog', href: '/blog' },
                   { label: 'FAQ', href: '/faq' },
-                  { label: 'Discord buat ribut', href: 'https://https://discord.gg/Jdqhnyu2dw' },
+                  { label: 'Discord buat ribut', href: 'https://discord.gg/Jdqhnyu2dw' },
                 ].map((link) => (
                   <a
                     key={link.label}

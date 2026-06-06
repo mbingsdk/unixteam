@@ -4,8 +4,8 @@
 
 [![Status](https://img.shields.io/badge/status-entah-yellow)](https://unixteam.my.id)
 [![Build](https://img.shields.io/badge/build-kadang%20works-green)](https://unixteam.my.id)
-[![Copium](https://img.shields.io/badge/copium-unlimited-blue)](https://https://discord.gg/Jdqhnyu2dw)
-[![AFK](https://img.shields.io/badge/maintainer-AFK-red)](https://https://discord.gg/Jdqhnyu2dw)
+[![Copium](https://img.shields.io/badge/copium-unlimited-blue)](https://discord.gg/Jdqhnyu2dw)
+[![AFK](https://img.shields.io/badge/maintainer-AFK-red)](https://discord.gg/Jdqhnyu2dw)
 [![License](https://img.shields.io/badge/license-UNIX%20Public%20License-orange)](./LICENSE)
 
 ---

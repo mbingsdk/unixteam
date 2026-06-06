@@ -76,7 +76,7 @@ export function generateOrganizationSchema() {
     url: 'https://unixteam.my.id',
     logo: 'https://unixteam.my.id/logo.png',
     sameAs: [
-      'https://https://discord.gg/Jdqhnyu2dw',
+      'https://discord.gg/Jdqhnyu2dw',
       'https://twitter.com/unixteam',
       'https://github.com/mbingsdk',
     ],
