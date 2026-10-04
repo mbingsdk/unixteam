@@ -180,7 +180,7 @@
         "workerDomainId": "88ddd9b38177ba337c5504d76524b6bda84e3475",
         "status": "synced",
         "message": "unix-profile-popol aktif di https://popol.unixteam.my.id",
-        "syncedAt": "2026-05-19T19:35:20.228Z"
+        "syncedAt": "2026-06-10T01:40:50.775Z"
       }
     }
   },
@@ -434,45 +434,6 @@
     }
   },
   {
-    "id": "12",
-    "name": "Wan",
-    "role": "Abang Abangan WASD",
-    "tags": [
-      "SEASONED"
-    ],
-    "bio": "Kadang jago kadang anu",
-    "image": "/images/team/wan.png",
-    "social": {
-      "roblox": "roblox://navigation/profile_card?userId=8715337949",
-      "instagram": "https://www.instagram.com/irwankurniawann_",
-      "tiktok": "https://www.tiktok.com",
-      "discord": "wan7799"
-    },
-    "profilePage": {
-      "enabled": true,
-      "subdomain": "wan",
-      "displayName": "Wan",
-      "bio": "Kadang jago kadang anu",
-      "links": [
-        {
-          "platform": "roblox",
-          "value": "wanMGS"
-        },
-        {
-          "platform": "instagram",
-          "value": "irwankurniawann_"
-        }
-      ],
-      "cloudflare": {
-        "workerScriptName": "unix-profile-wan",
-        "workerDomainId": "d13a216728e4897ef0389b6a201f7670c1924973",
-        "status": "synced",
-        "message": "unix-profile-wan aktif di https://wan.unixteam.my.id",
-        "syncedAt": "2026-05-15T15:47:35.010Z"
-      }
-    }
-  },
-  {
     "id": "13",
     "name": "Lilaccc",
     "role": "Real Dwonsol",
@@ -601,5 +562,57 @@
         "syncedAt": "2026-05-15T15:46:39.704Z"
       }
     }
+  },
+  {
+    "name": "STEVE",
+    "role": "El Sepeda",
+    "tags": [
+      "UNIX-INT"
+    ],
+    "bio": "Steve \"El Sepeda\" adalah makhluk langka berbakat yang dikutuk oleh semesta untuk selalu berada tepat di bawah pemenang, baik di Roblox maupun di dunia nyata. Jika yang menang 1 orang, ia peringkat 2; jika yang menang 1 & 2, ia peringkat 3; jika yang menang 1-3, ia peringkat 4; jika yang lolos 10 besar, ia peringkat 11; jika ada 100 slot, ia berada di posisi 101. Fenomena ini begitu konsisten hingga banyak yang percaya bahwa El Sepeda bukan sekadar julukan, melainkan takdir yang melekat pada dirinya. Legenda mengatakan bahwa selama masih ada pemenang dan batas kelolosan, Steve akan selalu ditemukan tepat satu langkah di belakangnya.",
+    "image": "/images/team/steve.png",
+    "social": {
+      "roblox": "https://www.roblox.com/users/2726247533/profile",
+      "instagram": "https://www.instagram.com/steve_corleonee",
+      "tiktok": "https://www.tiktok.com/@stevecorleone",
+      "discord": "dawet210823"
+    },
+    "profilePage": {
+      "enabled": true,
+      "subdomain": "steve",
+      "displayName": "STEVE",
+      "bio": "Steve \"El Sepeda\" adalah makhluk langka berbakat yang dikutuk oleh semesta untuk selalu berada tepat di bawah pemenang, baik di Roblox maupun di dunia nyata. Jika yang menang 1 orang, ia peringkat 2; jika yang menang 1 & 2, ia peringkat 3; jika yang menang 1-3, ia peringkat 4; jika yang lolos 10 besar, ia peringkat 11; jika ada 100 slot, ia berada di posisi 101. Fenomena ini begitu konsisten hingga banyak yang percaya bahwa El Sepeda bukan sekadar julukan, melainkan takdir yang melekat pada dirinya. Legenda mengatakan bahwa selama masih ada pemenang dan batas kelolosan, Steve akan selalu ditemukan tepat satu langkah di belakangnya.",
+      "links": [
+        {
+          "platform": "instagram",
+          "value": "steve_corleonee"
+        },
+        {
+          "platform": "tiktok",
+          "value": "@stevecorleone"
+        },
+        {
+          "platform": "discord",
+          "value": "dawet210823"
+        },
+        {
+          "platform": "roblox",
+          "value": "chandraa252"
+        },
+        {
+          "platform": "mobile-legends",
+          "value": "760170684",
+          "zoneId": "12048"
+        }
+      ],
+      "cloudflare": {
+        "workerScriptName": "unix-profile-steve",
+        "workerDomainId": "908ff25cdcbf3a411e2209d9db9287a9c02aa7a3",
+        "status": "synced",
+        "message": "unix-profile-steve aktif di https://steve.unixteam.my.id",
+        "syncedAt": "2026-06-11T05:16:12.417Z"
+      }
+    },
+    "id": 16
   }
 ]

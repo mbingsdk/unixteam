@@ -54,22 +54,59 @@ function getCelebrantNameClass(name: string) {
   return celebrantNameClasses[hash % celebrantNameClasses.length];
 }
 
+function isSafeExternalUrl(url: string) {
+  try {
+    const parsedUrl = new URL(url);
+    return parsedUrl.protocol === 'https:' || parsedUrl.protocol === 'http:';
+  } catch {
+    return false;
+  }
+}
+
 function renderInlineContent(text: string) {
-  return text.split(/(\[\[[^\[\]]+\]\])/g).map((part, index) => {
-    const match = part.match(/^\[\[([^\[\]]+)\]\]$/);
+  const inlinePattern =
+    /(\[\[[^\[\]]+\]\]|\[[^\]\n]+\]\(https?:\/\/[^\s)]+\))/g;
 
-    if (!match) return part;
+  return text.split(inlinePattern).map((part, index) => {
+    const nameMatch = part.match(/^\[\[([^\[\]]+)\]\]$/);
 
-    const name = match[1].trim();
+    if (nameMatch) {
+      const name = nameMatch[1].trim();
 
-    return (
-      <span
-        key={`${name}-${index}`}
-        className={`relative -top-px mx-0.5 inline-flex items-center rounded-md border px-1.5 py-0.5 align-baseline text-[0.85em] font-black tracking-normal ${getCelebrantNameClass(name)}`}
-      >
-        {name}
-      </span>
-    );
+      return (
+        <span
+          key={`${name}-${index}`}
+          className={`relative -top-px mx-0.5 inline-flex items-center rounded-md border px-1.5 py-0.5 align-baseline text-[0.85em] font-black tracking-normal ${getCelebrantNameClass(name)}`}
+        >
+          {name}
+        </span>
+      );
+    }
+
+    const linkMatch = part.match(/^\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)$/);
+
+    if (linkMatch) {
+      const label = linkMatch[1].trim();
+      const href = linkMatch[2].trim();
+
+      if (!isSafeExternalUrl(href)) {
+        return label;
+      }
+
+      return (
+        <a
+          key={`${href}-${index}`}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-bold text-accent underline decoration-accent/40 underline-offset-4 transition hover:text-accent/80 hover:decoration-accent"
+        >
+          {label}
+        </a>
+      );
+    }
+
+    return part;
   });
 }
 
