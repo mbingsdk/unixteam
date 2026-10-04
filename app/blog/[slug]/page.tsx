@@ -1,16 +1,12 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Calendar, Clock, User } from 'lucide-react';
-import ScrollReveal from '@/components/effects/ScrollReveal';
 import ReadingProgress from '@/components/effects/ReadingProgress';
 import { SectionsRenderer, HtmlContentRenderer } from '@/components/blog/BlogContentRenderer';
 import { blogPosts } from '@/lib/data';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
 import { formatDateFull } from '@/lib/date';
-import StructuredData, {
-  generateBlogPostingSchema,
-  generateBreadcrumbSchema,
-} from '@/components/StructuredData';
+import StructuredData, { generateBlogPostingSchema, generateBreadcrumbSchema } from '@/components/StructuredData';
 import ReadingTimeClient from '@/components/blog/ReadingTimeClient';
 
 interface BlogPostPageProps {
@@ -21,9 +17,7 @@ export async function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: BlogPostPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = blogPosts.find((p) => p.slug === slug);
   if (!post) return { title: 'Post Not Found' };
@@ -40,16 +34,12 @@ export async function generateMetadata({
       url: `https://unixteam.my.id/blog/${post.slug}`,
       siteName: 'UNIX-TEAM',
       locale: 'id_ID',
-      images: [
-        {
-          url: post.image
-            ? `https://unixteam.my.id${post.image}`
-            : 'https://unixteam.my.id/og-image.png',
-          width: 1200,
-          height: 630,
-          alt: post.title,
-        },
-      ],
+      images: [{
+        url: post.image ? `https://unixteam.my.id${post.image}` : 'https://unixteam.my.id/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: post.title,
+      }],
       publishedTime: new Date(post.date).toISOString(),
       authors: [post.author || 'UNIX-TEAM'],
       section: post.category,
@@ -58,11 +48,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: post.title,
       description: post.description,
-      images: [
-        post.image
-          ? `https://unixteam.my.id${post.image}`
-          : 'https://unixteam.my.id/og-image.png',
-      ],
+      images: [post.image ? `https://unixteam.my.id${post.image}` : 'https://unixteam.my.id/og-image.png'],
     },
     alternates: { canonical: `https://unixteam.my.id/blog/${post.slug}` },
   };
@@ -71,27 +57,18 @@ export async function generateMetadata({
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const post = blogPosts.find((p) => p.slug === slug);
-
   const currentIndex = blogPosts.findIndex((p) => p.slug === slug);
   const prevPost = currentIndex < blogPosts.length - 1 ? blogPosts[currentIndex + 1] : null;
   const nextPost = currentIndex > 0 ? blogPosts[currentIndex - 1] : null;
 
   if (!post) {
     return (
-      <main className="min-h-screen py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl font-bold text-foreground mb-4">Post Not Found</h1>
-          <p className="text-foreground/60 mb-8">
-            The blog post you're looking for doesn't exist.
-          </p>
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-accent text-brand-dark font-semibold hover:bg-accent/90 transition-all"
-          >
-            <ArrowLeft size={20} />
-            Back to Blog
-          </Link>
-        </div>
+      <main className="section-wrap py-24 text-center">
+        <h1 className="text-4xl font-bold">Post Not Found</h1>
+        <p className="mt-3 text-muted-foreground">Artikel yang kamu cari tidak ada.</p>
+        <Link href="/blog" className="neu-primary mt-7 inline-flex items-center gap-2 rounded-[18px] px-5 py-3 font-semibold">
+          <ArrowLeft size={16}/> Back to Blog
+        </Link>
       </main>
     );
   }
@@ -99,179 +76,100 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <>
       <StructuredData data={generateBlogPostingSchema(post)} />
-      <StructuredData
-        data={generateBreadcrumbSchema([
-          { name: 'Home', url: 'https://unixteam.my.id' },
-          { name: 'Blog', url: 'https://unixteam.my.id/blog' },
-          { name: post.title, url: `https://unixteam.my.id/blog/${post.slug}` },
-        ])}
-      />
-
+      <StructuredData data={generateBreadcrumbSchema([
+        { name: 'Home', url: 'https://unixteam.my.id' },
+        { name: 'Blog', url: 'https://unixteam.my.id/blog' },
+        { name: post.title, url: `https://unixteam.my.id/blog/${post.slug}` },
+      ])} />
       <ReadingProgress />
 
-      <main className="min-h-screen py-20 px-4">
-        <article className="max-w-4xl mx-auto">
-          {/* Back */}
-          <ScrollReveal>
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 text-accent hover:text-accent/80 mb-8"
-            >
-              <ArrowLeft size={18} />
-              Back to Blog
-            </Link>
-          </ScrollReveal>
+      <main className="section-wrap py-14 md:py-20">
+        <article className="mx-auto max-w-4xl">
+          <Link href="/blog" className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-accent">
+            <ArrowLeft size={15}/> Back to Blog
+          </Link>
 
-          {/* Header */}
-          <ScrollReveal className="mb-12">
-            <div className="space-y-4">
-              <div className="flex flex-wrap gap-3">
-                <span className="px-3 py-1 rounded bg-accent/10 text-accent text-sm font-semibold">
-                  {post.category}
-                </span>
-                {/* ↓ GANTI 1: badge reading time di atas judul */}
-                <span className="px-3 py-1 rounded bg-card border border-border text-foreground/60 text-sm">
-                  <ReadingTimeClient
-                    selector="article"
-                    fallback={post.readingTime}
-                    showIcon={false}
-                  />
-                </span>
-              </div>
-
-              <h1 className="text-5xl md:text-6xl font-bold text-balance text-foreground">
-                {post.title}
-              </h1>
-
-              <div className="flex flex-wrap gap-6 text-foreground/60 pt-4">
-                <div className="flex items-center gap-2">
-                  <Calendar size={18} />
-                  <span>{formatDateFull(post.date)}</span>
-                </div>
-                {/* ↓ GANTI 2: reading time di baris meta (tanggal, waktu, author) */}
-                <div className="flex items-center gap-2">
-                  <Clock size={18} />
-                  <ReadingTimeClient
-                    selector="article"
-                    fallback={post.readingTime}
-                    showIcon={false}
-                  />
-                </div>
-                {post.author && (
-                  <div className="flex items-center gap-2">
-                    <User size={18} />
-                    <span>By {post.author}</span>
-                  </div>
-                )}
-              </div>
+          <header>
+            <div className="flex flex-wrap gap-2">
+              <span className="neu-chip text-accent">{post.category}</span>
+              <span className="neu-chip">
+                <ReadingTimeClient selector="article" fallback={post.readingTime} showIcon={false} />
+              </span>
             </div>
-          </ScrollReveal>
 
-          {/* Featured Image */}
-          <ScrollReveal delay={0.1} className="mb-16">
-            {post.image ? (
-              <div className="relative w-full h-96 bg-gradient-to-br from-accent/10 to-accent/5 rounded-lg border border-border overflow-hidden">
+            <h1 className="mt-6 text-[clamp(3rem,6vw,5.5rem)] font-bold leading-[0.94] tracking-[-0.055em]">
+              {post.title}
+            </h1>
+
+            <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{post.description}</p>
+
+            <div className="mt-6 flex flex-wrap gap-4 text-sm text-muted-foreground">
+              <span className="flex items-center gap-2"><Calendar size={15}/>{formatDateFull(post.date)}</span>
+              <span className="flex items-center gap-2"><Clock size={15}/><ReadingTimeClient selector="article" fallback={post.readingTime} showIcon={false}/></span>
+              {post.author && <span className="flex items-center gap-2"><User size={15}/>By {post.author}</span>}
+            </div>
+          </header>
+
+          <div className="mt-10 overflow-hidden rounded-[30px] neu-surface">
+            <div className="relative aspect-[16/9] bg-secondary">
+              {post.image ? (
                 <ImageWithFallback
                   src={post.image}
                   alt={post.title}
-                  sizes="(max-width: 768px) 100vw, 800px"
+                  sizes="(max-width:768px) 100vw, 800px"
                   className="object-cover"
                   loading="eager"
-                  fallback={
-                    <div className="w-full h-full flex items-center justify-center">
-                      <p className="text-foreground/40 text-sm">Featured Image</p>
-                    </div>
-                  }
+                  fallback={<div className="flex h-full items-center justify-center text-sm text-muted-foreground">Featured Image</div>}
                 />
-              </div>
-            ) : (
-              <div className="w-full h-96 bg-gradient-to-br from-accent/10 to-accent/5 rounded-lg border border-border flex items-center justify-center">
-                <p className="text-foreground/40 text-sm">Featured Image</p>
-              </div>
-            )}
-          </ScrollReveal>
+              ) : (
+                <div className="schematic-grid flex h-full items-center justify-center">
+                  <span className="tech-label">NO FEATURED IMAGE</span>
+                </div>
+              )}
+            </div>
+          </div>
 
-          {/* Content */}
-          <ScrollReveal delay={0.2} className="prose prose-invert max-w-none">
-            {post.content ? (
-              <HtmlContentRenderer html={post.content} />
-            ) : post.sections ? (
-              <SectionsRenderer sections={post.sections} />
-            ) : null}
-          </ScrollReveal>
+          <section className="mt-12 rounded-[30px] p-6 neu-surface md:p-8">
+            <div className="prose max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-strong:text-foreground prose-a:text-accent">
+              {post.content ? (
+                <HtmlContentRenderer html={post.content} />
+              ) : post.sections ? (
+                <SectionsRenderer sections={post.sections} />
+              ) : null}
+            </div>
+          </section>
 
-          {/* Prev / Next navigation */}
-          <ScrollReveal
-            delay={0.3}
-            className="flex gap-4 mt-20 pt-12 border-t border-border"
-          >
+          <section className="mt-10 grid gap-4 md:grid-cols-2">
             {prevPost ? (
-              <Link
-                href={`/blog/${prevPost.slug}`}
-                className="flex-1 glass-effect rounded-lg p-6 hover:border-accent/50 transition-all group text-left"
-              >
-                <p className="text-xs text-accent mb-2 flex items-center gap-1">
-                  <ArrowLeft size={12} /> Artikel Sebelumnya
-                </p>
-                <p className="font-bold text-foreground group-hover:text-accent transition-colors line-clamp-2">
-                  {prevPost.title}
-                </p>
-                <p className="text-xs text-foreground/50 mt-1">
-                  {prevPost.category}
-                </p>
+              <Link href={`/blog/${prevPost.slug}`} className="rounded-[24px] p-5 neu-surface transition-all duration-200 hover:-translate-y-1">
+                <div className="flex items-center gap-2 text-sm font-semibold text-accent"><ArrowLeft size={14}/> Artikel Sebelumnya</div>
+                <div className="mt-2 font-bold">{prevPost.title}</div>
+                <div className="mt-1 text-xs text-muted-foreground">{prevPost.category}</div>
               </Link>
-            ) : (
-              <div className="flex-1" />
-            )}
-
+            ) : <div />}
             {nextPost ? (
-              <Link
-                href={`/blog/${nextPost.slug}`}
-                className="flex-1 glass-effect rounded-lg p-6 hover:border-accent/50 transition-all group text-right"
-              >
-                <p className="text-xs text-accent mb-2 flex items-center gap-1 justify-end">
-                  Artikel Berikutnya <ArrowRight size={12} />
-                </p>
-                <p className="font-bold text-foreground group-hover:text-accent transition-colors line-clamp-2">
-                  {nextPost.title}
-                </p>
-                <p className="text-xs text-foreground/50 mt-1">
-                  {nextPost.category}
-                </p>
+              <Link href={`/blog/${nextPost.slug}`} className="rounded-[24px] p-5 text-right neu-surface transition-all duration-200 hover:-translate-y-1">
+                <div className="flex items-center justify-end gap-2 text-sm font-semibold text-accent">Artikel Berikutnya <ArrowRight size={14}/></div>
+                <div className="mt-2 font-bold">{nextPost.title}</div>
+                <div className="mt-1 text-xs text-muted-foreground">{nextPost.category}</div>
               </Link>
-            ) : (
-              <div className="flex-1" />
-            )}
-          </ScrollReveal>
+            ) : <div />}
+          </section>
 
-          {/* Related Posts */}
-          <ScrollReveal delay={0.4} className="mt-12 pt-12 border-t border-border">
-            <h3 className="text-2xl font-bold text-foreground mb-8">
-              Related Articles
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {blogPosts
-                .filter((p) => p.category === post.category && p.id !== post.id)
-                .slice(0, 2)
-                .map((relatedPost) => (
-                  <Link
-                    key={relatedPost.id}
-                    href={`/blog/${relatedPost.slug}`}
-                    className="glass-effect rounded-lg p-6 hover:border-accent/50 transition-all group"
-                  >
-                    <span className="text-xs text-accent font-semibold">
-                      {relatedPost.category}
-                    </span>
-                    <h4 className="text-lg font-bold text-foreground mt-2 group-hover:text-accent transition-colors">
-                      {relatedPost.title}
-                    </h4>
-                    <p className="text-foreground/60 text-sm mt-2 line-clamp-2">
-                      {relatedPost.description}
-                    </p>
+          {blogPosts.filter((p) => p.category === post.category && p.id !== post.id).slice(0,2).length > 0 && (
+            <section className="mt-12">
+              <div className="tech-label mb-4">RELATED LOGS</div>
+              <div className="grid gap-4 md:grid-cols-2">
+                {blogPosts.filter((p) => p.category === post.category && p.id !== post.id).slice(0,2).map((related) => (
+                  <Link key={related.id} href={`/blog/${related.slug}`} className="rounded-[22px] p-5 neu-inset">
+                    <div className="text-xs font-semibold text-accent">{related.category}</div>
+                    <h3 className="mt-2 font-bold">{related.title}</h3>
+                    <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">{related.description}</p>
                   </Link>
                 ))}
-            </div>
-          </ScrollReveal>
+              </div>
+            </section>
+          )}
         </article>
       </main>
     </>

@@ -3,86 +3,55 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* UNIX-TEAM Dark Theme - macOS Inspired */
 :root {
-  --background: oklch(0.97 0 0);
-  --foreground: oklch(0.12 0 0);
-  --card: oklch(0.93 0 0);
-  --card-foreground: oklch(0.12 0 0);
-  --popover: oklch(0.95 0 0);
-  --popover-foreground: oklch(0.12 0 0);
-  --primary: oklch(0.55 0.18 45);
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.88 0 0);
-  --secondary-foreground: oklch(0.12 0 0);
-  --muted: oklch(0.88 0 0);
-  --muted-foreground: oklch(0.45 0 0);
-  --accent: oklch(0.55 0.18 45);
-  --accent-foreground: oklch(0.98 0 0);
-  --destructive: oklch(0.55 0.22 25);
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.82 0 0);
-  --input: oklch(0.88 0 0);
-  --ring: oklch(0.55 0.18 45);
-  --chart-1: oklch(0.55 0.18 45);
-  --chart-2: oklch(0.5 0.15 250);
-  --chart-3: oklch(0.45 0.12 200);
-  --chart-4: oklch(0.5 0.15 30);
-  --chart-5: oklch(0.55 0.18 350);
-  --radius: 0.5rem;
-  --sidebar: oklch(0.92 0 0);
-  --sidebar-foreground: oklch(0.12 0 0);
-  --sidebar-primary: oklch(0.55 0.18 45);
-  --sidebar-primary-foreground: oklch(0.98 0 0);
-  --sidebar-accent: oklch(0.88 0 0);
-  --sidebar-accent-foreground: oklch(0.12 0 0);
-  --sidebar-border: oklch(0.82 0 0);
-  --sidebar-ring: oklch(0.55 0.18 45);
-  /* brand-dark is always dark for contrast on accent buttons */
-  --brand-dark: oklch(0.05 0 0);
+  color-scheme: light;
+  --background: #F4F6F8;
+  --foreground: #2C2C2C;
+  --card: #F4F6F8;
+  --card-foreground: #2C2C2C;
+  --popover: #F4F6F8;
+  --popover-foreground: #2C2C2C;
+  --primary: #FF7A00;
+  --primary-foreground: #ffffff;
+  --secondary: #E9EDF2;
+  --secondary-foreground: #2C2C2C;
+  --muted: #E9EDF2;
+  --muted-foreground: #69717C;
+  --accent: #FF7A00;
+  --accent-foreground: #ffffff;
+  --destructive: #EB5757;
+  --destructive-foreground: #ffffff;
+  --border: #D8DEE7;
+  --input: #EEF1F4;
+  --ring: #FF7A00;
+  --radius: 20px;
+  --shadow-neu-dark: #D1D9E6;
+  --shadow-neu-light: #FFFFFF;
+  --flow-line: #FF7A00;
+  --tech-blue: #5271FF;
 }
 
-/* ── UNIX-TEAM Dark Mode (original colors) ────────────────────────────── */
 .dark {
-  --background: oklch(0.08 0 0);
-  --foreground: oklch(0.98 0 0);
-  --card: oklch(0.12 0 0);
-  --card-foreground: oklch(0.98 0 0);
-  --popover: oklch(0.12 0 0);
-  --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.7 0.2 45);
-  --primary-foreground: oklch(0.05 0 0);
-  --secondary: oklch(0.2 0 0);
-  --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.35 0 0);
-  --muted-foreground: oklch(0.65 0 0);
-  --accent: oklch(0.7 0.2 45);
-  --accent-foreground: oklch(0.05 0 0);
-  --destructive: oklch(0.6 0.2 25);
-  --destructive-foreground: oklch(0.95 0 0);
-  --border: oklch(0.2 0 0);
-  --input: oklch(0.15 0 0);
-  --ring: oklch(0.7 0.2 45);
-  --chart-1: oklch(0.7 0.2 45);
-  --chart-2: oklch(0.6 0.15 250);
-  --chart-3: oklch(0.5 0.12 200);
-  --chart-4: oklch(0.55 0.15 30);
-  --chart-5: oklch(0.65 0.18 350);
-  --radius: 0.5rem;
-  --sidebar: oklch(0.1 0 0);
-  --sidebar-foreground: oklch(0.98 0 0);
-  --sidebar-primary: oklch(0.7 0.2 45);
-  --sidebar-primary-foreground: oklch(0.05 0 0);
-  --sidebar-accent: oklch(0.2 0 0);
-  --sidebar-accent-foreground: oklch(0.98 0 0);
-  --sidebar-border: oklch(0.2 0 0);
-  --sidebar-ring: oklch(0.7 0.2 45);
-  --brand-dark: oklch(0.05 0 0);
+  color-scheme: dark;
+  --background: #171A1F;
+  --foreground: #F4F6F8;
+  --card: #1D2228;
+  --card-foreground: #F4F6F8;
+  --popover: #1D2228;
+  --popover-foreground: #F4F6F8;
+  --secondary: #242A31;
+  --secondary-foreground: #F4F6F8;
+  --muted: #242A31;
+  --muted-foreground: #AAB2BD;
+  --border: #313841;
+  --input: #20262D;
+  --shadow-neu-dark: #0E1115;
+  --shadow-neu-light: #262C33;
 }
 
 @theme inline {
-  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif;
-  --font-mono: 'SF Mono', 'JetBrains Mono', 'Fira Code', Menlo, Monaco, monospace;
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -102,241 +71,345 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 6px);
-  --radius-md: calc(var(--radius) - 4px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 8px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    border-color: var(--border);
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground antialiased;
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans), Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: rgba(255, 122, 0, .18);
   }
 }
 
-/* macOS-style utilities */
 @layer utilities {
-  .glow-accent {
-    box-shadow: 
-      0 0 20px rgba(255, 184, 0, 0.2),
-      0 0 40px rgba(255, 184, 0, 0.1);
+  .neu-surface {
+    background: var(--card);
+    box-shadow:
+      10px 10px 20px var(--shadow-neu-dark),
+      -10px -10px 20px var(--shadow-neu-light);
+    border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
   }
 
-  /* macOS Vibrancy Glass Effect */
-  .glass-effect {
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.06) 0%,
-      rgba(255, 255, 255, 0.02) 100%
-    );
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 
-      0 4px 24px -1px rgba(0, 0, 0, 0.3),
-      0 1px 3px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  .neu-surface-sm {
+    background: var(--card);
+    box-shadow:
+      6px 6px 14px var(--shadow-neu-dark),
+      -6px -6px 14px var(--shadow-neu-light);
   }
 
-  /* macOS Card Style */
-  .macos-card {
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.08) 0%,
-      rgba(255, 255, 255, 0.04) 100%
-    );
-    backdrop-filter: blur(24px) saturate(200%);
-    -webkit-backdrop-filter: blur(24px) saturate(200%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    box-shadow: 
-      0 8px 32px -8px rgba(0, 0, 0, 0.4),
-      0 2px 8px rgba(0, 0, 0, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  .neu-inset {
+    background: var(--card);
+    box-shadow:
+      inset 5px 5px 10px var(--shadow-neu-dark),
+      inset -5px -5px 10px var(--shadow-neu-light);
   }
 
-  /* macOS Button Style */
-  .macos-button {
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.12) 0%,
-      rgba(255, 255, 255, 0.06) 100%
-    );
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    box-shadow: 
-      0 2px 8px -2px rgba(0, 0, 0, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  .neu-button {
+    background: var(--card);
+    color: var(--foreground);
+    box-shadow:
+      6px 6px 14px var(--shadow-neu-dark),
+      -6px -6px 14px var(--shadow-neu-light);
+    border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+    transition: transform .2s ease, box-shadow .2s ease, color .2s ease, background .2s ease;
   }
 
-  .macos-button:hover {
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.18) 0%,
-      rgba(255, 255, 255, 0.1) 100%
-    );
-    box-shadow: 
-      0 4px 12px -2px rgba(0, 0, 0, 0.35),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  .neu-button:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      8px 8px 18px var(--shadow-neu-dark),
+      -8px -8px 18px var(--shadow-neu-light);
   }
 
-  .text-glow {
-    text-shadow: 0 0 20px rgba(255, 184, 0, 0.4);
+  .neu-button:active {
+    transform: translateY(0);
+    box-shadow:
+      inset 4px 4px 8px var(--shadow-neu-dark),
+      inset -4px -4px 8px var(--shadow-neu-light);
   }
 
-  .will-change-transform {
-    will-change: transform;
+  .neu-primary {
+    background: linear-gradient(145deg, #ff8e26, #ef6c00);
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,.18);
+    box-shadow:
+      7px 7px 16px var(--shadow-neu-dark),
+      -7px -7px 16px var(--shadow-neu-light);
   }
 
-  /* Safe area padding */
-  .pb-safe {
-    padding-bottom: env(safe-area-inset-bottom);
+  .tech-label {
+    font-family: var(--font-mono), monospace;
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
   }
 
-  /* macOS-style subtle gradient overlay */
-  .gradient-overlay {
-    background: linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(0, 0, 0, 0.4) 100%
-    );
+  .schematic-grid {
+    background-image:
+      linear-gradient(rgba(82,113,255,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(82,113,255,.06) 1px, transparent 1px);
+    background-size: 28px 28px;
   }
 
-  /* Noise texture for depth */
-  .noise-texture::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.02;
-    pointer-events: none;
-    mix-blend-mode: overlay;
+  .flow-line {
+    background: linear-gradient(90deg, transparent, var(--flow-line), transparent);
+  }
+
+  .section-wrap {
+    width: min(100% - 24px, 1280px);
+    margin-inline: auto;
+  }
+
+  @media (min-width: 640px) {
+    .section-wrap {
+      width: min(100% - 40px, 1280px);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-wrap {
+      width: min(100% - 56px, 1280px);
+    }
+  }
+
+  .neu-input {
+    width: 100%;
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--foreground);
+    padding: 12px 16px;
+    box-shadow:
+      inset 4px 4px 8px var(--shadow-neu-dark),
+      inset -4px -4px 8px var(--shadow-neu-light);
+    transition: box-shadow .2s ease, border-color .2s ease;
+  }
+
+  .neu-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow:
+      inset 4px 4px 8px var(--shadow-neu-dark),
+      inset -4px -4px 8px var(--shadow-neu-light),
+      0 0 0 2px rgba(255,122,0,.15);
+  }
+
+  .neu-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 14px;
+    padding: 7px 11px;
+    font-size: 12px;
+    font-weight: 600;
+    background: var(--card);
+    box-shadow:
+      4px 4px 9px var(--shadow-neu-dark),
+      -4px -4px 9px var(--shadow-neu-light);
+    transition: transform .2s ease, color .2s ease;
+  }
+
+  .neu-chip:hover {
+    transform: translateY(-1px);
+    color: var(--accent);
+  }
+
+  .neu-chip-active {
+    color: var(--accent);
+    box-shadow:
+      inset 3px 3px 7px var(--shadow-neu-dark),
+      inset -3px -3px 7px var(--shadow-neu-light);
+  }
+
+  .neu-code {
+    border-radius: 18px;
+    background: #252a31;
+    color: #f4f6f8;
+    padding: 16px;
+    overflow-x: auto;
+    font-family: var(--font-mono), monospace;
+    box-shadow:
+      inset 4px 4px 10px #191d22,
+      inset -4px -4px 10px #313741;
+  }
+
+  .page-intro {
+    display: grid;
+    gap: 28px;
+    grid-template-columns: minmax(0,.72fr) minmax(0,1.28fr);
+    align-items: end;
+    margin-bottom: 48px;
+  }
+
+  @media (max-width: 767px) {
+    .page-intro {
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
   }
 }
 
-/* Terminal/code style text */
-@layer utilities {
-  .font-terminal {
-    @apply font-mono text-sm tracking-wide;
-  }
+/* Compatibility bridge for legacy pages that still use the old class names.
+   This keeps them inside the same neumorphic system while they are migrated. */
+.glass-effect,
+.macos-card {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow:
+    10px 10px 20px var(--shadow-neu-dark),
+    -10px -10px 20px var(--shadow-neu-light) !important;
 }
 
-/* macOS-style scrollbars */
+.macos-button {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow:
+    6px 6px 14px var(--shadow-neu-dark),
+    -6px -6px 14px var(--shadow-neu-light) !important;
+}
+
+.unix-brand-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--card);
+  box-shadow:
+    8px 8px 18px var(--shadow-neu-dark),
+    -8px -8px 18px var(--shadow-neu-light);
+  border: 1px solid var(--border);
+}
+
 * {
-  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
   scrollbar-width: thin;
+  scrollbar-color: #B8C1CF transparent;
 }
 
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
-
 ::-webkit-scrollbar-track {
   background: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 100px;
-  border: 2px solid transparent;
-  background-clip: content-box;
+  background: #B8C1CF;
+  border-radius: 999px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
-  background-clip: content-box;
-}
-
-::-webkit-scrollbar-corner {
-  background: transparent;
-}
-
-/* Code blocks and textareas */
-pre::-webkit-scrollbar,
-textarea::-webkit-scrollbar {
-  height: 6px;
-  width: 6px;
-}
-
-pre::-webkit-scrollbar-thumb,
-textarea::-webkit-scrollbar-thumb {
-  background: rgba(255, 184, 0, 0.3);
-  border-radius: 100px;
-}
-
-/* macOS-style selection */
-::selection {
-  background: rgba(255, 184, 0, 0.3);
-  color: inherit;
-}
-
-/* Smooth focus transitions */
 *:focus-visible {
-  outline: 2px solid rgba(255, 184, 0, 0.5);
-  outline-offset: 2px;
-  transition: outline-offset 0.15s ease;
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
-/* Firefox */
-* {
-  scrollbar-color: oklch(0.25 0 0) transparent;
-  scrollbar-width: thin;
+
+/* Theme-specific material tuning */
+.dark .neu-surface,
+.dark .neu-surface-sm,
+.dark .neu-button,
+.dark .neu-chip,
+.dark .unix-brand-mark {
+  border-color: var(--border);
 }
- 
-/* Chrome, Edge, Safari */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+
+.dark .neu-button:hover {
+  background: var(--secondary);
 }
- 
-::-webkit-scrollbar-track {
-  background: transparent;
+
+.dark .neu-primary {
+  box-shadow:
+    7px 7px 16px #0d1014,
+    -7px -7px 16px #252b32;
 }
- 
-::-webkit-scrollbar-thumb {
-  background: oklch(0.25 0 0);
-  border-radius: 9999px;
+
+.dark .schematic-grid {
+  background-image:
+    linear-gradient(rgba(255,122,0,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,122,0,.045) 1px, transparent 1px);
 }
- 
-::-webkit-scrollbar-thumb:hover {
-  background: oklch(0.32 0 0);
+
+.dark input,
+.dark textarea,
+.dark select {
+  caret-color: var(--accent);
 }
- 
-::-webkit-scrollbar-corner {
-  background: transparent;
+
+.dark img {
+  filter: none;
 }
- 
-/* Scrollbar di dalam elemen tertentu (code block, textarea, dll) */
-pre::-webkit-scrollbar,
-textarea::-webkit-scrollbar {
-  height: 4px;
-  width: 4px;
+
+@media (max-width: 639px) {
+  .neu-surface {
+    box-shadow:
+      6px 6px 14px var(--shadow-neu-dark),
+      -6px -6px 14px var(--shadow-neu-light);
+  }
+
+  .neu-surface-sm,
+  .neu-button {
+    box-shadow:
+      4px 4px 10px var(--shadow-neu-dark),
+      -4px -4px 10px var(--shadow-neu-light);
+  }
+
+  .neu-inset {
+    box-shadow:
+      inset 3px 3px 7px var(--shadow-neu-dark),
+      inset -3px -3px 7px var(--shadow-neu-light);
+  }
+
+  .neu-chip {
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .tech-label {
+    font-size: 10px;
+    letter-spacing: .09em;
+  }
+
+  .page-intro h1 {
+    font-size: clamp(2.65rem, 13vw, 4.5rem);
+    line-height: .96;
+  }
+
+  .page-intro > p {
+    font-size: 1rem;
+  }
 }
- 
-pre::-webkit-scrollbar-thumb,
-textarea::-webkit-scrollbar-thumb {
-  background: oklch(0.3 0.05 45); /* sedikit accent */
-  border-radius: 9999px;
+
+@media (max-width: 359px) {
+  .section-wrap {
+    width: min(100% - 16px, 1280px);
+  }
+
+  .unix-brand-mark {
+    box-shadow:
+      4px 4px 10px var(--shadow-neu-dark),
+      -4px -4px 10px var(--shadow-neu-light);
+  }
 }

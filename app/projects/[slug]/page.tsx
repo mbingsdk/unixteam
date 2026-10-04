@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, ExternalLink, Github, Tag, Package, Zap } from 'lucide-react';
-import ScrollReveal from '@/components/effects/ScrollReveal';
+import { ArrowLeft, ArrowRight, ExternalLink, Github, Package, Tag, Zap } from 'lucide-react';
 import ReadingProgress from '@/components/effects/ReadingProgress';
 import { projects } from '@/lib/data';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
@@ -66,22 +65,12 @@ function generateProjectDetailSchema(project: (typeof projects)[number]) {
 }
 
 function StatusBadge({ status }: { status: string }) {
-  const styles: Record<string, string> = {
-    Active: 'bg-green-500/15 text-green-400 border-green-500/30',
-    'In Development': 'bg-amber-500/15 text-amber-400 border-amber-500/30',
-    Archived: 'bg-neutral-500/15 text-neutral-400 border-neutral-500/30',
-  };
-  const dots: Record<string, string> = {
-    Active: 'bg-green-400',
-    'In Development': 'bg-amber-400',
-    Archived: 'bg-neutral-400',
-  };
-  return (
-    <span className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border ${styles[status] ?? styles.Archived}`}>
-      <span className={`w-1.5 h-1.5 rounded-full ${dots[status] ?? 'bg-neutral-400'} ${status === 'Active' ? 'animate-pulse' : ''}`} />
-      {status}
-    </span>
-  );
+  const color = status === 'Active'
+    ? 'text-green-700'
+    : status === 'In Development'
+      ? 'text-amber-700'
+      : 'text-muted-foreground';
+  return <span className={`neu-chip ${color}`}>{status}</span>;
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
@@ -94,20 +83,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   if (!project) {
     return (
-      <main className="min-h-screen py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
-          <h1 className="text-4xl font-bold text-foreground">Project Not Found</h1>
-          <p className="text-foreground/60">
-            Project yang kamu cari ga ada. Mungkin belum dibuat, atau udah dihapus.
-          </p>
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-accent text-accent-foreground font-semibold hover:bg-accent/90 transition-all"
-          >
-            <ArrowLeft size={18} />
-            Kembali ke Projects
-          </Link>
-        </div>
+      <main className="section-wrap py-24 text-center">
+        <h1 className="text-4xl font-bold">Project Not Found</h1>
+        <p className="mt-3 text-muted-foreground">Project yang kamu cari ga ada. Mungkin belum dibuat, atau udah dihapus.</p>
+        <Link href="/projects" className="neu-primary mt-7 inline-flex items-center gap-2 rounded-[18px] px-5 py-3 font-semibold">
+          <ArrowLeft size={16}/> Kembali ke Projects
+        </Link>
       </main>
     );
   }
@@ -115,258 +96,105 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   return (
     <>
       <StructuredData data={generateProjectDetailSchema(project)} />
-      <StructuredData
-        data={generateBreadcrumbSchema([
-          { name: 'Home', url: BASE_URL },
-          { name: 'Projects', url: `${BASE_URL}/projects` },
-          { name: project.title, url: `${BASE_URL}/projects/${project.slug}` },
-        ])}
-      />
-
+      <StructuredData data={generateBreadcrumbSchema([
+        { name: 'Home', url: BASE_URL },
+        { name: 'Projects', url: `${BASE_URL}/projects` },
+        { name: project.title, url: `${BASE_URL}/projects/${project.slug}` },
+      ])} />
       <ReadingProgress />
 
-      <main className="min-h-screen py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
+      <main className="section-wrap py-14 md:py-20">
+        <Link href="/projects" className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-accent">
+          <ArrowLeft size={15}/> Kembali ke Projects
+        </Link>
 
-          {/* Back link */}
-          <ScrollReveal>
-            <Link
-              href="/projects"
-              className="inline-flex items-center gap-2 text-sm text-foreground/60 hover:text-accent transition-colors mb-10"
-            >
-              <ArrowLeft size={16} />
-              Kembali ke Projects
-            </Link>
-          </ScrollReveal>
+        <section className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+          <div>
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="tech-label">PROJECT MODULE</span>
+              <StatusBadge status={project.status}/>
+              <span className="neu-chip">{project.category}</span>
+            </div>
 
-          {/* Hero Image */}
-          <ScrollReveal className="mb-10">
-            <div className="relative w-full aspect-[16/7] rounded-2xl overflow-hidden bg-gradient-to-br from-accent/15 to-accent/5">
+            <h1 className="mt-6 text-[clamp(3rem,6vw,5.6rem)] font-bold leading-[0.94] tracking-[-0.055em]">
+              {project.title}
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">{project.description}</p>
+
+            <div className="mt-7 flex flex-wrap gap-3">
+              {project.demoUrl && (
+                <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="neu-primary inline-flex items-center gap-2 rounded-[18px] px-5 py-3 text-sm font-semibold">
+                  <ExternalLink size={15}/> Download / Demo
+                </a>
+              )}
+              {project.repoUrl && (
+                <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="neu-button inline-flex items-center gap-2 rounded-[18px] px-5 py-3 text-sm font-semibold">
+                  <Github size={15}/> Source Code
+                </a>
+              )}
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded-[32px] neu-surface">
+            <div className="relative aspect-[16/10] bg-secondary">
               <ImageWithFallback
                 src={project.image}
                 alt={project.title}
-                sizes="(max-width: 768px) 100vw, 896px"
+                sizes="(max-width:768px) 100vw, 50vw"
                 className="object-cover"
                 loading="eager"
-                fallback={
-                  <div className="w-full h-full flex items-center justify-center">
-                    <span className="text-8xl font-black text-accent/15">{project.title[0]}</span>
-                  </div>
-                }
+                fallback={<div className="flex h-full items-center justify-center text-7xl font-bold text-accent/30">{project.title[0]}</div>}
               />
-              {/* Overlay gradient at bottom */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
-              {/* Status badge on image */}
-              <div className="absolute top-4 left-4">
-                <StatusBadge status={project.status} />
+            </div>
+          </div>
+        </section>
+
+        <section className="mt-12 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+          <article className="rounded-[28px] p-6 neu-surface md:p-7">
+            <div className="flex items-center gap-3">
+              <Package size={19} className="text-accent"/>
+              <div className="tech-label">MODULE DESCRIPTION</div>
+            </div>
+            <h2 className="mt-5 text-2xl font-bold tracking-[-0.03em]">Tentang project.</h2>
+            <p className="mt-4 leading-relaxed text-muted-foreground">{project.description}</p>
+
+            <div className="mt-7 border-t border-border pt-5">
+              <div className="tech-label mb-3">TECH STACK</div>
+              <div className="flex flex-wrap gap-2">
+                {project.tags.map((tag) => <span key={tag} className="neu-chip"><Tag size={12}/>{tag}</span>)}
               </div>
             </div>
-          </ScrollReveal>
+          </article>
 
-          {/* Header */}
-          <ScrollReveal className="mb-8">
-            <div className="space-y-3">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="text-xs font-semibold px-3 py-1.5 rounded-full border border-accent/20 bg-accent/10 text-accent">
-                  {project.category}
-                </span>
-              </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground tracking-tight">
-                {project.title}
-              </h1>
-              <p className="text-base sm:text-lg text-foreground/60 leading-relaxed max-w-2xl">
-                {project.description}
-              </p>
+          <aside className="rounded-[28px] p-6 neu-inset md:p-7">
+            <div className="flex items-center gap-3">
+              <Zap size={19} className="text-accent"/>
+              <div className="tech-label">MODULE METADATA</div>
             </div>
-          </ScrollReveal>
+            <dl className="mt-6 space-y-4">
+              <div><dt className="tech-label">Category</dt><dd className="mt-1 font-semibold">{project.category}</dd></div>
+              <div><dt className="tech-label">Status</dt><dd className="mt-1"><StatusBadge status={project.status}/></dd></div>
+              <div><dt className="tech-label">Tech</dt><dd className="mt-1 text-sm text-muted-foreground">{project.tags.join(', ')}</dd></div>
+            </dl>
+          </aside>
+        </section>
 
-          {/* Info cards + CTA row */}
-          <ScrollReveal delay={0.1} className="mb-10">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {/* Tags card */}
-              <div
-                className="sm:col-span-2 rounded-2xl p-5"
-                style={{
-                  background: 'linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
-                  border: '1px solid rgba(255,255,255,0.08)',
-                }}
-              >
-                <p className="flex items-center gap-1.5 text-xs font-semibold text-foreground/40 uppercase tracking-wider mb-3">
-                  <Tag size={11} />
-                  Tech Stack
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1.5 rounded-xl text-sm font-medium bg-accent/10 text-accent border border-accent/20"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* CTA card */}
-              <div
-                className="rounded-2xl p-5 flex flex-col justify-between gap-3"
-                style={{
-                  background: 'linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
-                  border: '1px solid rgba(255,255,255,0.08)',
-                }}
-              >
-                <p className="flex items-center gap-1.5 text-xs font-semibold text-foreground/40 uppercase tracking-wider">
-                  <Zap size={11} />
-                  Links
-                </p>
-                <div className="flex flex-col gap-2">
-                  {project.demoUrl ? (
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-accent text-accent-foreground font-semibold text-sm hover:bg-accent/90 transition-all"
-                    >
-                      <ExternalLink size={14} />
-                      Download / Demo
-                    </a>
-                  ) : (
-                    <span className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-white/[0.06] text-foreground/30 text-sm select-none">
-                      <ExternalLink size={14} />
-                      Belum tersedia
-                    </span>
-                  )}
-                  {project.repoUrl && (
-                    <a
-                      href={project.repoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-white/[0.08] text-foreground/70 hover:text-accent hover:border-accent/40 text-sm font-medium transition-all"
-                    >
-                      <Github size={14} />
-                      Source Code
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          {/* Description / About section */}
-          <ScrollReveal delay={0.15} className="mb-10">
-            <div
-              className="rounded-2xl p-6 sm:p-8"
-              style={{
-                background: 'linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
-                border: '1px solid rgba(255,255,255,0.08)',
-              }}
-            >
-              <h2 className="flex items-center gap-2 text-lg font-bold text-foreground mb-4">
-                <Package size={18} className="text-accent" />
-                Tentang Project
-              </h2>
-              <p className="text-foreground/65 leading-relaxed">
-                {project.description}
-              </p>
-
-              {/* Category detail */}
-              <div className="mt-6 pt-5 border-t border-white/[0.06] grid grid-cols-2 sm:grid-cols-3 gap-4">
-                <div>
-                  <p className="text-xs text-foreground/40 mb-1">Kategori</p>
-                  <p className="text-sm font-semibold text-foreground">{project.category}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-foreground/40 mb-1">Status</p>
-                  <StatusBadge status={project.status} />
-                </div>
-                <div>
-                  <p className="text-xs text-foreground/40 mb-1">Tech</p>
-                  <p className="text-sm font-semibold text-foreground">{project.tags.slice(0, 2).join(', ')}{project.tags.length > 2 ? '…' : ''}</p>
-                </div>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          {/* Prev / Next navigation */}
-          <ScrollReveal delay={0.2}>
-            <div className="flex gap-3 pt-10 border-t border-white/[0.06]">
-              {prevProject ? (
-                <Link
-                  href={`/projects/${prevProject.slug}`}
-                  className="flex-1 rounded-2xl p-5 hover:border-accent/40 transition-all duration-200 group text-left"
-                  style={{
-                    background: 'linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
-                    border: '1px solid rgba(255,255,255,0.08)',
-                  }}
-                >
-                  <p className="flex items-center gap-1 text-xs text-accent mb-2">
-                    <ArrowLeft size={12} /> Sebelumnya
-                  </p>
-                  <p className="font-bold text-foreground group-hover:text-accent transition-colors text-sm line-clamp-2">
-                    {prevProject.title}
-                  </p>
-                  <p className="text-xs text-foreground/40 mt-1">{prevProject.category}</p>
-                </Link>
-              ) : (
-                <div className="flex-1" />
-              )}
-
-              {nextProject ? (
-                <Link
-                  href={`/projects/${nextProject.slug}`}
-                  className="flex-1 rounded-2xl p-5 hover:border-accent/40 transition-all duration-200 group text-right"
-                  style={{
-                    background: 'linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
-                    border: '1px solid rgba(255,255,255,0.08)',
-                  }}
-                >
-                  <p className="flex items-center gap-1 text-xs text-accent mb-2 justify-end">
-                    Berikutnya <ArrowRight size={12} />
-                  </p>
-                  <p className="font-bold text-foreground group-hover:text-accent transition-colors text-sm line-clamp-2">
-                    {nextProject.title}
-                  </p>
-                  <p className="text-xs text-foreground/40 mt-1">{nextProject.category}</p>
-                </Link>
-              ) : (
-                <div className="flex-1" />
-              )}
-            </div>
-          </ScrollReveal>
-
-          {/* Related projects */}
-          {(() => {
-            const related = projects
-              .filter((p) => p.category === project.category && p.id !== project.id)
-              .slice(0, 2);
-            if (!related.length) return null;
-            return (
-              <ScrollReveal delay={0.25} className="mt-10 pt-10 border-t border-white/[0.06]">
-                <h3 className="text-xl font-bold text-foreground mb-5">Project Sejenis</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {related.map((rel) => (
-                    <Link
-                      key={rel.id}
-                      href={`/projects/${rel.slug}`}
-                      className="rounded-2xl p-5 hover:border-accent/40 transition-all duration-200 group"
-                      style={{
-                        background: 'linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
-                        border: '1px solid rgba(255,255,255,0.08)',
-                      }}
-                    >
-                      <StatusBadge status={rel.status} />
-                      <h4 className="text-base font-bold text-foreground mt-3 mb-1 group-hover:text-accent transition-colors">
-                        {rel.title}
-                      </h4>
-                      <p className="text-sm text-foreground/50 line-clamp-2">{rel.description}</p>
-                    </Link>
-                  ))}
-                </div>
-              </ScrollReveal>
-            );
-          })()}
-
-        </div>
+        <section className="mt-12 grid gap-4 md:grid-cols-2">
+          {prevProject ? (
+            <Link href={`/projects/${prevProject.slug}`} className="rounded-[24px] p-5 neu-surface transition-all duration-200 hover:-translate-y-1">
+              <div className="flex items-center gap-2 text-sm font-semibold text-accent"><ArrowLeft size={14}/> Sebelumnya</div>
+              <div className="mt-2 font-bold">{prevProject.title}</div>
+              <div className="mt-1 text-xs text-muted-foreground">{prevProject.category}</div>
+            </Link>
+          ) : <div />}
+          {nextProject ? (
+            <Link href={`/projects/${nextProject.slug}`} className="rounded-[24px] p-5 text-right neu-surface transition-all duration-200 hover:-translate-y-1">
+              <div className="flex items-center justify-end gap-2 text-sm font-semibold text-accent">Berikutnya <ArrowRight size={14}/></div>
+              <div className="mt-2 font-bold">{nextProject.title}</div>
+              <div className="mt-1 text-xs text-muted-foreground">{nextProject.category}</div>
+            </Link>
+          ) : <div />}
+        </section>
       </main>
     </>
   );

@@ -222,7 +222,7 @@ export default function KTPModal({ member, isOpen, onClose }: KTPModalProps) {
             >
               <div
                 ref={frontRef}
-                className="absolute inset-0 rounded-2xl overflow-hidden p-3 sm:p-6 flex flex-col justify-between shadow-2xl [backface-visibility:hidden]"
+                className="absolute inset-0 rounded-[26px] overflow-hidden p-3 sm:p-6 flex flex-col justify-between neu-surface [backface-visibility:hidden]"
                 style={{
                   background: 'linear-gradient(135deg, rgb(10 10 10) 0%, rgb(20 20 20) 100%)',
                   border: '2px solid rgb(38 38 38)',
@@ -257,11 +257,11 @@ export default function KTPModal({ member, isOpen, onClose }: KTPModalProps) {
                   </div>
                 </div>
 
-                <div className="h-px bg-gradient-to-r from-accent/40 to-transparent" />
+                <div className="h-px bg-accent/30" />
 
                 <div className="flex items-start gap-3 sm:gap-5">
                   <div className="w-20 sm:w-24 flex-shrink-0 space-y-1.5 sm:space-y-2">
-                    <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden shadow-lg border-2 border-accent/30 bg-card">
+                    <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-[18px] overflow-hidden neu-inset border border-border bg-card">
                       <ImageWithFallback
                         src={member.image}
                         alt={member.name}
@@ -331,7 +331,7 @@ export default function KTPModal({ member, isOpen, onClose }: KTPModalProps) {
 
               <div
                 ref={backRef}
-                className="absolute inset-0 rounded-2xl overflow-hidden p-3 sm:p-6 flex flex-col justify-between shadow-2xl [backface-visibility:hidden]"
+                className="absolute inset-0 rounded-[26px] overflow-hidden p-3 sm:p-6 flex flex-col justify-between neu-surface [backface-visibility:hidden]"
                 style={{
                   background: 'linear-gradient(135deg, rgb(10 10 10) 0%, rgb(20 20 20) 100%)',
                   border: '2px solid rgb(38 38 38)',
@@ -351,7 +351,7 @@ export default function KTPModal({ member, isOpen, onClose }: KTPModalProps) {
                   </div>
                 </div>
 
-                <div className="h-px bg-gradient-to-r from-accent/40 to-transparent" />
+                <div className="h-px bg-accent/30" />
 
                 <div className="flex items-start gap-3 sm:gap-4">
                   <div className="relative h-18 w-18 sm:h-24 sm:w-24 rounded-lg overflow-hidden border border-accent/40 bg-slate-900 p-1.5 flex-shrink-0 shadow-[0_0_18px_rgba(255,184,0,0.25)]">

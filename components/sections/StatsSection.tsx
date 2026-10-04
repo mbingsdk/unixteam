@@ -1,53 +1,39 @@
-'use client';
-
-import { motion } from 'framer-motion';
-import ScrollReveal from '@/components/effects/ScrollReveal';
+import { Activity, Boxes, RadioTower, Users } from 'lucide-react';
 import { stats } from '@/lib/content';
+
+const icons = [Users, Boxes, Activity, RadioTower];
 
 export default function StatsSection() {
   return (
-    <section className="relative py-24 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <ScrollReveal className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-balance">
-            Statistik Kekacauan
+    <section className="section-wrap py-20 md:py-28">
+      <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+        <div>
+          <div className="tech-label mb-4">SYSTEM TELEMETRY / LIVE</div>
+          <h2 className="text-4xl font-bold tracking-[-0.04em] md:text-6xl">
+            Statistik
+            <span className="block text-accent">kekacauan.</span>
           </h2>
-          <p className="text-foreground/50 text-lg mt-4 max-w-2xl mx-auto font-medium">
-            Komunitas kita tumbuh dan berkembang dengan orang-orang yang gila di seluruh dunia
+          <p className="mt-5 max-w-md text-lg leading-relaxed text-muted-foreground">
+            Angka-angka dari jaringan UNIX. Sebagian penting, sebagian cuma terlihat keren kalau masuk dashboard.
           </p>
-        </ScrollReveal>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-          {stats.map((stat, index) => (
-            <ScrollReveal key={stat.label} delay={index * 0.08}>
-              <motion.div
-                className="relative p-8 rounded-3xl text-center h-full flex flex-col justify-center group overflow-hidden"
-                whileHover={{ y: -4, scale: 1.02 }}
-                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-                style={{
-                  background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%)',
-                  backdropFilter: 'blur(24px) saturate(180%)',
-                  WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
-                  boxShadow: '0 8px 32px -8px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
-                }}
-              >
-                {/* Hover glow effect */}
-                <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
-                
-                <motion.div
-                  className="relative text-5xl md:text-6xl font-bold text-accent mb-3 tracking-tight"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: 0.2 + index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  {stat.value}
-                </motion.div>
-                <p className="relative text-foreground/50 font-medium text-base">{stat.label}</p>
-              </motion.div>
-            </ScrollReveal>
-          ))}
+        <div className="grid gap-4 sm:grid-cols-2">
+          {stats.map((stat, index) => {
+            const Icon = icons[index % icons.length];
+            return (
+              <article key={stat.label} className="rounded-[24px] p-6 neu-surface">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-[16px] neu-inset">
+                    <Icon size={19} className="text-accent" />
+                  </div>
+                  <span className="tech-label">NODE {String(index + 1).padStart(2, '0')}</span>
+                </div>
+                <div className="mt-8 text-4xl font-bold tracking-[-0.04em] md:text-5xl">{stat.value}</div>
+                <p className="mt-2 text-sm font-medium text-muted-foreground">{stat.label}</p>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

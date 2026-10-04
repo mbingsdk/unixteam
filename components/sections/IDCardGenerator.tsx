@@ -155,7 +155,7 @@ function IDCard({ member, index }: { member: TeamMemberWithUsername; index: numb
       {/* ID Card */}
       <div
         ref={cardRef}
-        className="relative w-full max-w-sm mx-auto aspect-[16/10] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-xl shadow-2xl overflow-hidden border border-slate-700/50 p-6 flex flex-col justify-between"
+        className="relative w-full max-w-sm mx-auto aspect-[16/10] rounded-[26px] overflow-hidden border border-border p-6 flex flex-col justify-between neu-surface"
         style={{
           backgroundImage: `
             linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.8) 100%),
@@ -166,7 +166,7 @@ function IDCard({ member, index }: { member: TeamMemberWithUsername; index: numb
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div>
-            <h2 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-300">
+            <h2 className="text-2xl font-black text-foreground">
               KARTU TANDA
             </h2>
             <p className="text-xs text-cyan-300/80 font-semibold tracking-wider">
@@ -186,7 +186,7 @@ function IDCard({ member, index }: { member: TeamMemberWithUsername; index: numb
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent mb-4" />
+        <div className="h-px bg-accent/30 mb-4" />
 
         {/* Main Content */}
         <div className="flex gap-4 mb-4">
@@ -225,7 +225,7 @@ function IDCard({ member, index }: { member: TeamMemberWithUsername; index: numb
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent mb-3" />
+        <div className="h-px bg-accent/30 mb-3" />
 
         {/* Social Links */}
         {socials.length > 0 && (
@@ -265,7 +265,7 @@ function IDCard({ member, index }: { member: TeamMemberWithUsername; index: numb
         whileTap={{ scale: 0.98 }}
         onClick={downloadCard}
         disabled={downloading || loading}
-        className="w-full max-w-sm mx-auto flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold text-sm hover:from-cyan-600 hover:to-blue-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+        className="w-full max-w-sm mx-auto flex items-center justify-center gap-2 px-4 py-3 rounded-[16px] neu-primary text-white font-semibold text-sm transition-all duration-200 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {downloading ? (
           <>
@@ -287,7 +287,7 @@ export default function IDCardGenerator() {
   const membersWithRoblox: TeamMemberWithUsername[] = teamMembers;
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background via-background to-accent/5">
+    <section className="section-wrap py-20 md:py-28">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="text-center mb-16">
@@ -295,7 +295,7 @@ export default function IDCardGenerator() {
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 mb-4"
+            className="text-4xl md:text-5xl font-bold tracking-[-0.04em] text-foreground mb-4"
           >
             Kartu Tanda Pasien UNIX-TEAM
           </motion.h2>

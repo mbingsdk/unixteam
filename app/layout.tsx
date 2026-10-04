@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Roboto, JetBrains_Mono } from 'next/font/google'
 import Navigation from '@/components/Navigation'
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import Footer from '@/components/Footer'
 import StructuredData, { generateOrganizationSchema, generateWebSiteSchema } from '@/components/StructuredData'
 import { Toaster } from '@/components/ui/sonner'
-import { ThemeProvider } from '@/components/Theme-provider'
+import { ThemeProvider } from '@/components/AppThemeProvider'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"], variable: '--font-sans' });
-const _geistMono = Geist_Mono({ subsets: ["latin"], variable: '--font-mono' });
+const _roboto = Roboto({ subsets: ["latin"], variable: '--font-sans', display: 'swap' });
+const _jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: '--font-mono', display: 'swap' });
 
 const BASE_URL = 'https://unixteam.my.id';
 
@@ -107,7 +107,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="id" className={`${_geist.variable} ${_geistMono.variable}`} suppressHydrationWarning>
+    <html lang="id" className={`${_roboto.variable} ${_jetbrainsMono.variable}`} suppressHydrationWarning>
       <head>
         <StructuredData data={generateOrganizationSchema()} />
         <StructuredData data={generateWebSiteSchema()} />
@@ -115,8 +115,10 @@ export default function RootLayout({
       <body className="font-sans antialiased bg-background text-foreground flex flex-col min-h-screen">
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
-          enableSystem
+          defaultTheme="light"
+          enableSystem={false}
+          themes={['light', 'dark']}
+          storageKey="unix-theme-v2"
           disableTransitionOnChange
         >
           <Navigation />
@@ -131,6 +133,7 @@ export default function RootLayout({
               style: {
                 background: 'var(--card)',
                 border: '1px solid var(--border)',
+                borderRadius: '20px',
                 color: 'var(--foreground)',
               },
             }}

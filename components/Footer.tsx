@@ -1,160 +1,64 @@
-'use client';
-
 import Link from 'next/link';
-import { RobloxIcon, InstagramIcon, DiscordIcon } from '@/components/ui/SocialIcons';
-import { motion } from 'framer-motion';
+import { Github, Instagram } from 'lucide-react';
+import BrandMark from './BrandMark';
+import { DiscordIcon, RobloxIcon } from './ui/SocialIcons';
 
-const footerLinks = [
+const groups = [
   {
-    title: 'Komunitas',
-    links: [
-      { label: 'Discord', href: 'https://discord.gg/Jdqhnyu2dw' },
-      { label: 'Roblox', href: 'https://www.roblox.com/communities/unix-team' },
-      { label: 'Instagram', href: 'https://instagram.com/mbingsdk' },
-    ],
+    title: 'Navigate',
+    links: [['About','/about'],['Team','/team'],['Projects','/projects'],['Blog','/blog']],
   },
   {
-    title: 'Sumber Daya',
-    links: [
-      { label: 'Dokumentasi', href: '/documentation' },
-      { label: 'Blog', href: '/blog' },
-      { label: 'FAQ', href: '/faq' },
-    ],
+    title: 'Resources',
+    links: [['Documentation','/documentation'],['FAQ','/faq'],['Contact','/contact']],
   },
-  {
-    title: 'Tentang Kami',
-    links: [
-      { label: 'About', href: '/about' },
-      { label: 'Team', href: '/team' },
-      { label: 'Contact', href: '/contact' },
-    ],
-  },
-];
-
-const socialLinks = [
-  {
-    icon: RobloxIcon,
-    href: 'https://www.roblox.com/communities/unix-team',
-    label: 'Roblox',
-  },
-  {
-    icon: InstagramIcon,
-    href: 'https://instagram.com/mbingsdk',
-    label: 'Instagram',
-  },
-  {
-    icon: DiscordIcon,
-    href: 'https://discord.gg/Jdqhnyu2dw',
-    label: 'Discord',
-  },
-];
+] as const;
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-white/[0.06] bg-background/50 backdrop-blur-2xl">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-          {/* Brand */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center gap-2.5 mb-4">
-              <div 
-                className="h-9 w-9 rounded-xl bg-accent flex items-center justify-center"
-                style={{
-                  boxShadow: '0 4px 12px -2px rgba(255, 184, 0, 0.3)'
-                }}
-              >
-                <span className="text-accent-foreground font-bold text-lg">U</span>
+    <footer className="section-wrap pb-8 pt-10">
+      <div className="rounded-[24px] p-5 neu-surface sm:rounded-[32px] sm:p-6 md:p-8">
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr]">
+          <div>
+            <div className="flex items-center gap-4">
+              <BrandMark size="md" />
+              <div>
+                <div className="text-xl font-bold tracking-[-0.03em]">UNIX-TEAM</div>
+                <div className="tech-label mt-1">community system</div>
               </div>
-              <span className="font-bold text-xl tracking-tight">UNIX-TEAM</span>
             </div>
-            <p className="text-foreground/45 text-sm leading-relaxed">
-              Komunitas game tidak sehat dan sangat menyesatkan. Bukan tentang menang, tapi tentang ribut bersama.
+            <p className="mt-5 max-w-md text-sm leading-relaxed text-muted-foreground">
+              Komunitas game tidak sehat, project aneh, dan tempat beberapa keputusan questionable berubah jadi fitur.
             </p>
-          </motion.div>
+            <div className="mt-6 flex gap-2">
+              <a href="https://discord.gg/Jdqhnyu2dw" target="_blank" rel="noopener noreferrer" className="neu-button flex h-10 w-10 items-center justify-center rounded-[14px]" aria-label="Discord"><DiscordIcon size={16}/></a>
+              <a href="https://www.roblox.com/communities/unix-team" target="_blank" rel="noopener noreferrer" className="neu-button flex h-10 w-10 items-center justify-center rounded-[14px]" aria-label="Roblox"><RobloxIcon size={16}/></a>
+              <a href="https://instagram.com/mbingsdk" target="_blank" rel="noopener noreferrer" className="neu-button flex h-10 w-10 items-center justify-center rounded-[14px]" aria-label="Instagram"><Instagram size={16}/></a>
+              <a href="https://github.com/mbingsdk/unixteam" target="_blank" rel="noopener noreferrer" className="neu-button flex h-10 w-10 items-center justify-center rounded-[14px]" aria-label="GitHub"><Github size={16}/></a>
+            </div>
+          </div>
 
-          {/* Footer Links */}
-          {footerLinks.map((group, index) => (
-            <motion.div
-              key={group.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: (index + 1) * 0.08, ease: [0.25, 0.46, 0.45, 0.94] }}
-              viewport={{ once: true }}
-            >
-              <h3 className="font-semibold text-foreground mb-4 tracking-tight">{group.title}</h3>
-              <ul className="space-y-2.5">
-                {group.links.map((link) => (
-                  <li key={link.href}>
-                    {link.href.startsWith('http') ? (
-                      <a
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-foreground/45 hover:text-accent text-sm transition-colors duration-200"
-                      >
-                        {link.label}
-                      </a>
-                    ) : (
-                      <Link
-                        href={link.href}
-                        className="text-foreground/45 hover:text-accent text-sm transition-colors duration-200"
-                      >
-                        {link.label}
-                      </Link>
-                    )}
+          {groups.map((group) => (
+            <div key={group.title}>
+              <div className="tech-label mb-4">{group.title}</div>
+              <ul className="space-y-3">
+                {group.links.map(([label, href]) => (
+                  <li key={href}>
+                    <Link href={href} className="text-sm font-medium text-muted-foreground transition-colors hover:text-accent">{label}</Link>
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-white/[0.06] my-8" />
-
-        {/* Bottom Section */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          {/* Copyright */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-foreground/40 text-sm"
-          >
-            © {new Date().getFullYear()} UNIX-TEAM. Hak cipta diabaikan bersama.
-          </motion.p>
-
-          {/* Social Links */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-2"
-          >
-            {socialLinks.map((social) => {
-              const Icon = social.icon;
-              return (
-                <a
-                  key={social.href}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2.5 rounded-xl hover:bg-white/[0.06] transition-all duration-200 text-foreground/50 hover:text-accent"
-                  aria-label={social.label}
-                >
-                  <Icon size={18} />
-                </a>
-              );
-            })}
-          </motion.div>
+        <div className="mt-10 flex flex-col gap-3 border-t border-border pt-5 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <span>© 2026 UNIX-TEAM. Hak cipta diabaikan bersama.</span>
+          <div className="flex flex-wrap gap-4">
+            <Link href="/privacy" className="hover:text-accent">Privacy</Link>
+            <Link href="/terms" className="hover:text-accent">Terms</Link>
+            <Link href="/sitemap.xml" className="hover:text-accent">Sitemap</Link>
+          </div>
         </div>
       </div>
     </footer>

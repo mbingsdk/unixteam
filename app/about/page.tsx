@@ -1,150 +1,116 @@
 import { Metadata } from 'next';
-// import { motion } from 'framer-motion';
-import ScrollReveal from '@/components/effects/ScrollReveal';
+import { Compass, Network, Radio, ShieldCheck } from 'lucide-react';
+import BrandMark from '@/components/BrandMark';
 
 export const metadata: Metadata = {
   title: 'About | UNIX-TEAM',
   description: 'Komunitas game tidak sehat dan sangat menyesatkan.',
 };
 
+const rules = [
+  ['Tunduk dan Patuh', 'Sama siapa pun bukan kewajiban kamu. Bebas aja.'],
+  ['Bebas Berekspresi', 'Udah jelas dari namanya, bebas.'],
+  ['Bebas Berkreasi', 'Mau bikin apa aja, silakan.'],
+  ['Bebas Berprestasi', 'Atau ga, juga gapapa.'],
+  ['Bebas Berinovasi', 'Inovasi aneh juga boleh.'],
+  ['Bebas Berpikir', 'Atau ga mikir sama sekali.'],
+  ['Bebas Berinteraksi', 'Saling bully itu interaksi kan.'],
+  ['Bebas Bertindak', 'Asal jangan toxic banget ya.'],
+];
+
 export default function AboutPage() {
   return (
-    <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-border">
-        <div className="mx-auto max-w-4xl">
-          <ScrollReveal className="text-center mb-12">
-            <h1 className="text-5xl md:text-6xl font-bold text-balance mb-4">
-              About UNIX-TEAM
-            </h1>
-            <p className="text-foreground/60 text-lg">
-              Komunitas Game Tidak Sehat Dan Sangat Menyesatkan
-            </p>
-          </ScrollReveal>
+    <main className="section-wrap py-16 md:py-24">
+      <section className="grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
+        <div>
+          <div className="tech-label mb-4">SYSTEM PROFILE / ABOUT</div>
+          <h1 className="text-[clamp(3.4rem,7vw,6.6rem)] font-bold leading-[0.92] tracking-[-0.055em]">
+            About
+            <span className="block text-accent">UNIX-TEAM.</span>
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            Komunitas game tidak sehat dan sangat menyesatkan. Ribut bareng, saling bully, bikin project aneh, lalu tetap nongkrong bareng besoknya.
+          </p>
+        </div>
 
-          <ScrollReveal delay={0.1} className="prose prose-invert max-w-none">
-            <div className="glass-effect rounded-lg p-8 space-y-6 text-foreground/80">
-              <p className="text-lg">
-                Selamat datang di UNIX! Ini cuma komunitas game doang, bukan tempat developer serius. Di sini kita ribut bareng, saling bully, dan nikmatin kekacauan terstruktur.
-              </p>
-              <p className="text-lg">
-                UNIX ga punya struktur jabatan, gada ketua-ketua. Kalau harus ada ketua, maka semua adalah ketua. Bebas berekpresi, bebas berkarya, bebas berprestasi, bebas berinovasi, bebas berpikir, bebas berinteraksi, bebas bertindak.
-              </p>
-              <p className="text-lg">
-                Kalau bosen dan ga suka di sini, boleh leave dan ga perlu pamit. Silent leave is our culture.
-              </p>
-            </div>
-          </ScrollReveal>
+        <div className="schematic-grid relative min-h-[360px] rounded-[36px] neu-inset">
+          <div className="absolute inset-[16%] rounded-full border border-dashed border-accent/30" />
+          <div className="absolute inset-[31%] rounded-full border border-accent/20" />
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <BrandMark size="hub" />
+          </div>
+          <span className="absolute left-5 top-5 tech-label">IDENTITY NODE</span>
+          <span className="absolute bottom-5 right-5 tech-label">STATUS / ACTIVE</span>
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-border">
-        <div className="mx-auto max-w-4xl">
-          <ScrollReveal className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-balance">
-              Rules
-            </h2>
-          </ScrollReveal>
+      <section className="mt-16 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+        <article className="rounded-[28px] p-7 neu-surface">
+          <div className="flex h-12 w-12 items-center justify-center rounded-[16px] neu-inset">
+            <Network size={20} className="text-accent" />
+          </div>
+          <h2 className="mt-6 text-3xl font-bold tracking-[-0.035em]">Cara sistem ini jalan.</h2>
+          <div className="mt-5 space-y-4 text-base leading-relaxed text-muted-foreground">
+            <p>UNIX cuma komunitas game, bukan organisasi yang sibuk ngurus jabatan.</p>
+            <p>Kalau harus ada ketua, maka semua adalah ketua. Bebas berekspresi, berkarya, berinovasi, berpikir, berinteraksi, dan bertindak.</p>
+            <p>Kalau bosen, boleh leave tanpa pamit. Silent leave is our culture.</p>
+          </div>
+        </article>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                title: 'Tunduk dan Patuh',
-                description: 'Sama siapa pun bukan kewajiban kamu. Bebas aja.',
-              },
-              {
-                title: 'Bebas Berekspresi',
-                description: 'Udah jelas dari namanya, bebas.',
-              },
-              {
-                title: 'Bebas Berkreasi',
-                description: 'Mau bikin apa aja, silakan.',
-              },
-              {
-                title: 'Bebas Berprestasi',
-                description: 'Atau ga, juga gapapa.',
-              },
-              {
-                title: 'Bebas Berinovasi',
-                description: 'Inovasi aneh juga boleh.',
-              },
-              {
-                title: 'Bebas Berpikir',
-                description: 'Atau ga mikir sama sekali.',
-              },
-              {
-                title: 'Bebas Berinteraksi',
-                description: 'Saling bully itu interaksi kan.',
-              },
-              {
-                title: 'Bebas Bertindak',
-                description: 'Asal jangan toxic banget ya.',
-              },
-            ].map((value, index) => (
-              <ScrollReveal key={value.title} delay={index * 0.1}>
-                <div className="glass-effect rounded-lg p-8">
-                  <h3 className="text-2xl font-bold text-accent mb-3">
-                    {value.title}
-                  </h3>
-                  <p className="text-foreground/60">{value.description}</p>
+        <article className="rounded-[28px] p-7 neu-surface">
+          <div className="tech-label mb-5">CORE PRINCIPLES / 08</div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {rules.map(([title, description], index) => (
+              <div key={title} className="rounded-[20px] p-4 neu-inset">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-sm font-semibold">{title}</span>
+                  <span className="tech-label">{String(index + 1).padStart(2,'0')}</span>
                 </div>
-              </ScrollReveal>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{description}</p>
+              </div>
             ))}
           </div>
-        </div>
+        </article>
       </section>
 
-      {/* Timeline Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl">
-          <ScrollReveal className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-balance">
-              VISI & MISI UNIX-TEAM
-            </h2>
-          </ScrollReveal>
-
-          <div className="space-y-8">
-            <ScrollReveal delay={0}>
-              <div className="glass-effect rounded-lg p-8">
-                <h3 className="text-2xl font-bold text-accent mb-4">VISI</h3>
-                <p className="text-foreground/80 text-lg">
-                  Menjadi komunitas game yang penuh keakraban, kekacauan terstruktur, dan solidaritas absurd tanpa arah yang jelas dan sangat menyesatkan.
-                </p>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal delay={0.1}>
-              <div className="glass-effect rounded-lg p-8">
-                <h3 className="text-2xl font-bold text-accent mb-4">MISI</h3>
-                <ul className="space-y-3 text-foreground/80">
-                  <li>• Menjalin keakraban dengan ngebully @katspoll bersama-sama sampai kebal mental dan naik pangkat jadi NPC legendaris.</li>
-                  <li>• Membangun generasi nyawit yang alon-alon masak kalkun, sambil debat hal sepele seolah sedang sidang PBB.</li>
-                  <li>• Saling mendukung untuk berproses dari orang baik-baik, menjadi kurang ajar secara kolektif dan konsisten.</li>
-                  <li>• Mendukung penuh dagangan CEO Diks agar semakin rugi demi menjaga keseimbangan kosmis ekonomi UNIX.</li>
-                  <li>• Saling merendahkan dan saling bully untuk mematikan hasrat gila pujian. Karena yang boleh dipuji cuma popol. Katanya sih, sudah masuk tahap disembah.</li>
-                  <li>• Menjunjung tinggi solidaritas palsu, di mana gas berarti males banget dan ntar berarti brisik lu.</li>
-                  <li>• Melestarikan budaya salah paham berkepanjangan, lalu berdamai tanpa menyelesaikan masalah apa pun.</li>
-                  <li>• Menghormati hierarki UNIX, di mana yang paling ribut dianggap paling bijak, dan yang paling AFK paling ditakuti.</li>
-                  <li>• Menciptakan lingkungan gaming yang tidak sehat secara logika, tapi hangat secara batin.</li>
-                  <li>• Berkomitmen untuk selalu offline saat dibutuhkan, dan online pas lagi butuh.</li>
-                  <li>• Berkomitmen untuk selalu silent leave kalo sudah bosan.</li>
-                  <li>• Mengabadikan copium, hopium, dan delusionium sebagai sumber energi utama komunitas.</li>
-                  <li>• Bersatu dalam perbedaan build, skill pas-pasan, dan keputusan gameplay yang jelas-jelas salah.</li>
-                </ul>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal delay={0.2}>
-              <div className="glass-effect rounded-lg p-8 text-center">
-                <p className="text-foreground/80 text-lg italic">
-                  UNIX bukan tentang menang, tapi tentang ribut bersama.
-                </p>
-              </div>
-            </ScrollReveal>
+      <section className="mt-16 grid gap-6 md:grid-cols-2">
+        <article className="rounded-[28px] p-7 neu-surface">
+          <div className="flex items-center gap-3">
+            <Compass size={20} className="text-accent" />
+            <span className="tech-label">VISION</span>
           </div>
-        </div>
+          <h2 className="mt-5 text-3xl font-bold tracking-[-0.035em]">Visi.</h2>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+            Menjadi komunitas game yang penuh keakraban, kekacauan terstruktur, dan solidaritas absurd tanpa arah yang jelas dan sangat menyesatkan.
+          </p>
+        </article>
+
+        <article className="rounded-[28px] p-7 neu-surface">
+          <div className="flex items-center gap-3">
+            <Radio size={20} className="text-accent" />
+            <span className="tech-label">MISSION BUS</span>
+          </div>
+          <h2 className="mt-5 text-3xl font-bold tracking-[-0.035em]">Misi.</h2>
+          <ul className="mt-4 space-y-3 text-sm leading-relaxed text-muted-foreground">
+            {[
+              'Menjalin keakraban lewat interaksi yang kadang terlalu kreatif.',
+              'Mendukung project, dagangan, eksperimen, dan keputusan questionable sesama member.',
+              'Melestarikan budaya salah paham, lalu berdamai tanpa menyelesaikan semuanya.',
+              'Menciptakan lingkungan gaming yang tidak sehat secara logika, tapi hangat secara batin.',
+              'Selalu offline saat dibutuhkan dan online pas lagi butuh.',
+            ].map((item) => (
+              <li key={item} className="flex gap-3">
+                <ShieldCheck size={16} className="mt-0.5 shrink-0 text-accent" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </article>
       </section>
+
+      <div className="mt-16 rounded-[26px] p-6 text-center neu-inset">
+        <p className="text-xl font-semibold tracking-[-0.02em]">UNIX bukan tentang menang, tapi tentang ribut bersama.</p>
+      </div>
     </main>
   );
 }
