@@ -2,7 +2,7 @@
   {
     "id": "1",
     "name": "Mbing SDK",
-    "role": "Bukan Ketua",
+    "role": "Penguin Antarctica",
     "tags": [
       "DEV"
     ],
@@ -55,7 +55,7 @@
         "workerDomainId": "020e6a16da9351e3b800cf444cfab2f112b7ed4a",
         "status": "synced",
         "message": "unix-profile-mbing aktif di https://mbing.unixteam.my.id",
-        "syncedAt": "2026-05-19T19:32:11.883Z"
+        "syncedAt": "2026-10-04T16:44:37.549Z"
       }
     }
   },
